@@ -1,3 +1,20 @@
 .contactForm {
     text-align: center;
 }
+#name,
+#email,
+#message {
+    width: 43%;
+    display: block;
+    margin: 0 0 3% 28%;
+    font: inherit;
+    font-weight: 500;
+}
+
+#submitBtn {
+    margin-bottom: 3%;
+    width: 15em;
+    height: 4em;
+    font: inherit;
+    font-weight: 900;
+}
