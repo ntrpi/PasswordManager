@@ -1,0 +1,23 @@
+.formDiv {
+    width: 45em;
+    background-color: var(--orange);
+    border-radius: 8px;
+}
+
+.phDelete {
+    color: var(--orange);
+    background-color: var(--mediumPurple);
+    border-radius: 8px;
+    width: 5em;
+    font-weight: bold;
+}
+
+th {
+    color: var(--darkPurple);
+    font-weight: 700;    
+}
+
+tr {
+    color: var(--lightGrey);
+}
+
