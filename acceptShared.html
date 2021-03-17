@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Pass**** Manager Home</title>
+    <title>Pass**** Manager Accept Shared Password</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/home.css">
+    <link rel="stylesheet" href="./css/login.css">
     <script src="./js/script.js" async defer></script>
   </head>
   <body>
@@ -39,7 +39,7 @@
     <main>
       <div class="mainDiv">
 
-        <!-- <nav id="accountNav" class="accountNav">
+        <nav id="accountNav" class="accountNav">
           <ul>
             <li><a href="#">Passwords</a></li>
             <li><a href="#">Profile</a></li>
@@ -47,38 +47,26 @@
             <li><a href="#">Import</a></li>
             <li><a href="#">Export</a></li>
           </ul>
-        </nav> -->
+        </nav>
   
         <!-- YOUR STUFF GOES HERE-->
         <div class="content">
           <div>
-            <h2>Keepers of your digital life.</h2>
-            <h3>You hold the key.</h3>
-            <p>
-              A great password manager can be a game-changer, especially in this new year. This is particularly true during this pandemic where millions are being forced to work from home. If you're looking for a trusted password manager app to keep your login information private and secure, <strong>Pass**** Manager</strong> is one of the best for the task! Letting you access your accounts and services with one master password and it's responsive for all major device platforms.
-            </p>
-            <div class="contentBox">
-              <div class="cBox">
-                <img src="./img/login-history.png" alt="white clock with circle arrow" />
-                <h5>Login History</h5>
-                You can review your login history at anytime.
-              </div>
-              <div class="cBox">
-                <img src="./img/two-step-vari.png" alt="two step verification icon" />
-                <h5>Two-step Verification</h5>
-                Supporting two-factor recovery to keep your even more secure.
-              </div>
-              <div class="cBox">
-                <img src="./img/sharing-icon.png" alt="person to person sharing" />
-                <h5>Securely Share</h5>
-                Securely create, share and manage passwords.
-              </div>
+            <h2 class="hidden">Accept Shared Password</h2>
+            <div class="formDiv">
+              <p>Accept password for <span id="sharedUrlSpan"></span> from <span id="sharingUserSpan"></span>?</p>
+              <form action="" method="POST">
+                <div class="inputDiv">
+                  <a class="linkAsButton" href="index.html">Cancel</a>
+                  <input type="submit" value="Accept">
+                </div>  
+              </form>
             </div>
-            <h4>Take charge of your security.</h4>
           </div>
         </div>
       </div>
     </main>
+
     <footer>
       <div class="borderDiv"></div>
       <nav class="footerNav">
@@ -92,5 +80,4 @@
   
   </body>
 </html>
-
-
+  

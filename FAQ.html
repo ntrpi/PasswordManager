@@ -3,14 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Pass**** Manager Log In</title>
+    <title>Pass**** Manager Home</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="css/FAQ.css" >
     <script src="./js/script.js" async defer></script>
   </head>
   <body>
@@ -51,31 +50,35 @@
   
         <!-- YOUR STUFF GOES HERE-->
         <div class="content">
-          <div>
-            <h2 class="hidden">Log In</h2>
-            <!-- <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut<strong>Wafa made some changes her
-              </strong> labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p> -->
-            <div class="formDiv">
-              <form action="" method="POST">
-                <div class="inputDiv">
-                  <label for="userName">User name</label>
-                  <input type="text" name="userName" id="userName" />
+            <h2 id="faqh2">FAQ</h2>
+            <ul id="faqlist">
+                <div class="contentBox">
+                    <div class="cBox">
+                        <li class="faqquestions">What if I forget my login information?</li>
+                        <li class="faqanswers">You can reset your account by click on "Forgot my username/password" 
+                    and filling out the security questions form you had set up when you created your account.</li>
+                    </div>
+                    <div class="cBox">
+                        <li class="faqquestions">What if I forget my security answers?</li>
+                        <li class="faqanswers">You can click on "I forgot my security answers" and have a recovery code sent to the email or phone number 
+                        you entered on your account.</li>
+                    </div>
+                    <div class="cBox">
+                        <li class="faqquestions">Can I import and/or export my passwords?</li>
+                        <li class="faqanswers">Yes you can. After signing in you will see import and export pages on the left sidebar depending on which you'd like to perform.</li>
+                    </div>
                 </div>
-                <div class="inputDiv">
-                  <label for="password">Password</label>
-                  <input type="password" name="password" id="password" />
+                <div class="contentBox">
+                    <div class="cBox">
+                        <li class="faqquestions">What do I get in the subscription letter?</li>
+                        <li class="faqanswers">Any recommendations or updates we make towards the application will be send to your email directly. You won't have to worry about being uninformed on changes being made!</li>
+                    </div>
+                    <div class="cBox">
+                        <li class="faqquestions">Can I delete my password history?</li>
+                        <li class="faqanswers">Yes you can. When you are viewing your current password library, you will have the ability to choose part of your password history and delete it.</li>
+                    </div>
                 </div>
-                <div class="inputDiv">
-                  <input type="submit" value="Log In">
-                </div>  
-              </form>
-            </div>
-            <div>
-              <p>Not a user yet? <a href="signUp.html">Create an account here.</a></p>
-            </div>
-          </div>
+            </ul>
         </div>
       </div>
     </main>
@@ -93,4 +96,3 @@
   
   </body>
 </html>
-  

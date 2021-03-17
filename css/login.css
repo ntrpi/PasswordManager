@@ -9,18 +9,11 @@ a {
 }
 
 a:link {
-  color: var( --lightGrey );
-}
-
-a:visited {
-  color: var( --lightGrey );
+  color: var( --orange );
 }
 
 a:hover {
-  color: var( --orange )  
+  color: var( --lightGrey );
 }
 
-a:link {
-  color: var( --orange );
-}
 
