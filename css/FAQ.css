@@ -138,6 +138,8 @@ header nav ul {
   width: 100%;
 }
 
+
+
 /*****Orange boxes*****/
 .contentBox{
   display: flex;
@@ -147,11 +149,13 @@ header nav ul {
 
 .cBox{
   border-radius: 15px;
-  width: 22em;
-  height: 10em;
+  width: 50em;
+  height: 3em;
   opacity: 0.9; 
   background-color: var(--orange);
   margin: 1em;
+  color:#301930;
+  margin-left: 140px;
 }
 
 /*****Footer*****/
@@ -166,8 +170,6 @@ footer {
   align-items: stretch;
   justify-content: space-around;
 }
-
-
 
 /***** Forms *****/
 .formDiv {
@@ -331,7 +333,7 @@ footer {
 }
 
 .faqquestions{
-    font-size: 30px;
+    font-size: 32px;
     display: inline-block;
     font-weight: bold;
 }
@@ -339,5 +341,14 @@ footer {
 .faqanswers{
     display: inline-block;
     font-weight: normal;
-
+    font-size: 22px;
+    margin-top: 10px;
+    margin-left: 140px;
+    margin-right: 140px;
+}
+#faqlist{
+  padding-right: 50px;
+}
+.questionanswersection {
+  padding-bottom: 50px;
 }
