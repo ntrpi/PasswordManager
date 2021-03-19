@@ -3,18 +3,17 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Pass**** Manager Home</title>
+    <title>Pass**** Manager Create Account</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/sharing.css">
+    <link rel="stylesheet" href="./css/sharePass.css">
     <script src="./js/script.js" async defer></script>
   </head>
   <body>
-
     <header>
       <div class="banner">
         <div class="logo">
@@ -24,55 +23,49 @@
       </div>
 
       <div class="borderDiv"></div>
-      <nav>
+      <!--<nav>
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="login.html">Log In</a></li>
-          <li><a href="createAccount.html">Sign Up</a></li>
+          <li><a href="#">Sign Up</a></li>
           <li><a href="subscribe.html">Subscribe</a></li>
         </ul>
-      </nav>
+      </nav>-->
       <div class="borderDiv"></div>
-
     </header>
 
     <main>
         <div class="mainDiv">
             <nav id="accountNav" class="accountNav">
                 <ul>
-                    <li><a href="#">Passwords</a></li>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="sharing.html">Sharing</a></li>
-                    <li><a href="#">Import</a></li>
-                    <li><a href="#">Export</a></li>
+                <li><a href="crudpasswords.html">Passwords</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="sharing.html">Sharing</a></li>
+                <li><a href="#">Import</a></li>
+                <li><a href="#">Export</a></li>
                 </ul>
             </nav>
-        <!-- YOUR STUFF GOES HERE-->
+            <!--Share Password-->
             <div class="content">
-                <h2>Pass**** Sharing</h2>
-                <div class="contentBox">
-                    <div class="cBox">
-                        <h5>User 1</h5>
+                <h2>Share Password </h2>
+                <form action="" method="POST">
+                    <div class="shareDiv">
+                        <label for="shareName">Name</label>
+                        <input type="text" name="shareName" id="shareName" />
+                        <label for="shareEmail">Email</label>
+                        <input type="text" name="shareEmail" id="shareEmail" />
+                        <div>
+                        <input type="submit" value="Share Password">
+                        </div>
                     </div>
-                    <div class="cBox">
-                        <h5>User 2</h5>
-                    </div>
-                    <div class="cBox">
-                        <h5>User 3</h5>
-                    </div>
-                    <div class="cBox">
-                        <h5>User 4</h5>
-                    </div>
-                    <div class="cBox">
-                        <h5>User 5</h5>
-                    </div>
-                    <div class="cBox">
-                        <h5>User 6</h5>
-                    </div>
+                </form>
+                <div id="shareSuccess" style="display: none">
+                    <p>Password has been shared!</p>
                 </div>
             </div>
         </div>
     </main>
+
     <footer>
       <div class="borderDiv"></div>
       <nav class="footerNav">
@@ -83,8 +76,6 @@
         </ul>
       </nav>
     </footer>
-  
   </body>
 </html>
-
 
