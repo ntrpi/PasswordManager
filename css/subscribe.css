@@ -9,6 +9,12 @@ fieldset {
   font-weight:500;  
 }
 
+.inputDiv {
+  display: inline-block;
+  text-align: center;
+  margin: 1em auto;  
+}
+
 #subscribe_b {
   margin-left: 2em;
 }
