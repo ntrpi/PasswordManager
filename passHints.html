@@ -10,11 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/createAccount.css">
+    <link rel="stylesheet" href="./css/passHints.css">
     <script src="./js/script.js" async defer></script>
   </head>
   <body>
-
     <header>
       <div class="banner">
         <div class="logo">
@@ -24,54 +23,51 @@
       </div>
 
       <div class="borderDiv"></div>
-      <nav>
+      <!--<nav>
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="login.html">Log In</a></li>
           <li><a href="#">Sign Up</a></li>
           <li><a href="subscribe.html">Subscribe</a></li>
         </ul>
-      </nav>
+      </nav>-->
       <div class="borderDiv"></div>
-
     </header>
 
     <main>
-      <div class="mainDiv">
-        <div class="content">
-          <h2 class="hidden">Create Account</h2>
-          <div id="signUpForm" class="formDiv">
-            <form action="" method="POST">
-              <div class="inputDiv">
-                <label for="userName">Create a user name</label>
-                <input type="text" name="userName" id="userName" />
-                <span class="showHideSpan"></span>
-              </div>
-              <div class="inputDiv">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" />
-                <span class="showHideSpan"></span>
-              </div>
-              <div class="inputDiv">
-                <label for="password1">Password</label>
-                <input type="password" name="password1" id="password1" />
-                <span class="showHideSpan">Show</span>
-              </div>
-              <div class="inputDiv">
-                <label for="password2">Repeat password</label>
-                <input type="password" name="password2" id="password2" />
-                <span class="showHideSpan">Show</span>
-              </div>
-              <div class="inputDiv">
-                <input type="submit" value="Sign Up">
-              </div>  
-            </form>
-          </div>
-          <div id="signUpSuccess" style="display: none">
-            <p>Account created! <a href="login.html">Click here to log in.</a></p>
-          </div>
-      </div>
-      </div>
+        <div class="mainDiv">
+            <nav id="accountNav" class="accountNav">
+                <ul>
+                <li><a href="crudpasswords.html">Passwords</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="sharing.html">Sharing</a></li>
+                <li><a href="#">Import</a></li>
+                <li><a href="#">Export</a></li>
+                </ul>
+            </nav>
+            <!--add or update password hints-->
+            <div class="content">
+                <h2>Password Hints</h2>
+                <form action="" method="POST">
+                    <div class="hintDiv">
+                        <!--Hint one-->
+                        <label for="questionOne">Hint One</label>
+                        <input type="text" name="questionOne" id="questionOne" />
+                        <label for="answerOne">Answer One</label>
+                        <input type="text" name="answerOne" id="answerOne" />
+
+                        <!--Hint two-->
+                        <label for="questionTwo">Hint Two</label>
+                        <input type="text" name="questionTwo" id="questionTwo" />
+                        <label for="answerTwo">Answer Two</label>
+                        <input type="text" name="answerTwo" id="answerTwo" />
+                        <div>
+                        <input type="submit" value="Submit">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </main>
 
     <footer>

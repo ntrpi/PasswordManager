@@ -4,7 +4,7 @@
 .content h2 {
     font-size: 3em;
 }
-.contactForm {
+#contactForm {
     text-align: center;
     font-size: 1.3em;
     font-weight: 500;
@@ -16,7 +16,7 @@
 #name,
 #email,
 #message {
-    width: 50%;
+    width: 184%;
     display: flex;
     justify-content: center;
     margin: 1em auto;
@@ -31,4 +31,16 @@
     font-weight:500;
     border-radius: 10px;
     background-color: #ff980c;
+}
+
+@media screen and (max-width: 530px) {
+    #contactInputDiv,
+    #contactInputDiv1,
+    #contactInputDiv2,
+    #contactInputDiv3 {
+        flex-direction: column;
+        margin: 1em 0;
+        text-align: justify;
+        width: 42vw;
+    }
 }

@@ -1,0 +1,19 @@
+#history {
+    width: 45em;
+    background-color: var(--orange);
+    border-radius: 8px;
+    color: black;
+    font-size: 1.6vw;
+    padding-bottom: 1em;
+}
+td {
+    font-weight: 400;
+    padding: 0.7em;
+}
+.tableHead {
+    padding: 1em;
+    font-size: 1.1em;
+}
+.title {
+    font-size: 2em;
+}

@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/recoveryRD.css">
+    <link rel="stylesheet" href="./css/loginHistory.css">
     <script src="./js/script.js" async defer></script>
   </head>
   <body>
@@ -27,8 +27,8 @@
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="login.html">Log In</a></li>
-          <li><a href="createAccount.html">Sign Up</a></li>
-          <li><a href="subscribe.html">Subscribe</a></li>
+          <li><a href="#">Sign Up</a></li>
+          <li><a href="#">Subscribe</a></li>
         </ul>
       </nav>
       <div class="borderDiv"></div>
@@ -48,36 +48,44 @@
               <!-- YOUR STUFF GOES HERE-->
               <div class="content">
                 <div>
-                  <h2 class="hidden">Recovery Questions</h2>                   
-                  <div class="tableDiv">            
+                  <h2 class="title">Login History</h2>                   
+                  <div class="formDiv" id="history">            
                     <table>
                       <thead>
-                        <th>Question ID</th>
-                        <th>Answer ID</th>
-                        <th>Question</th>
-                        <th>Answer</th>
-                        <th>User ID</th>                       
+                        <tr>
+                            <th class="tableHead">Action</th>
+                            <th class="tableHead">Date and Time</th>
+                            <th class="tableHead">Duration</th>
+                        </tr>
                       </thead>
                      <tbody>
                         <tr>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>                          
-                          <td>
-                            <form action="" method="post">
-                              <input type="hidden" name="id" value=""/>
-                              <input type="submit" class="sqa" name="sqaDelete" value="Delete"/>
-                            </form>
-                         </td>
-                         <td>
-                          <form action="" method="post">
-                            <input type="hidden" name="id" value=""/>
-                            <input type="submit" class="sqa" name="sqaUpdate" value="Update/Add"/>
-                          </form>
-                       </td>
-                          </tr>
+                            <td>Login</td>
+                            <td>2020-04-02 11:00:00</td>
+                        </tr>
+                        <tr>
+                            <td>Logout</td>
+                            <td>2020-04-02 13:20:47</td>
+                            <td>02:20:47</td>
+                        </tr>
+                        <tr>
+                            <td>Login</td>
+                            <td>2020-02-11 03:20:47</td>
+                        </tr>
+                        <tr>
+                            <td>Logout</td>
+                            <td>2020-02-11 03:21:55</td>
+                            <td>00:01:08</td>
+                        </tr>
+                        <tr>
+                            <td>Login</td>
+                            <td>2020-09-20 06:00:47</td>
+                        </tr>
+                        <tr>
+                            <td>Logout</td>
+                            <td>2020-09-20 06:18:55</td>
+                            <td>00:18:08</td>
+                        </tr>
                       </tbody>
                     </table>
                   </div>                
@@ -91,8 +99,8 @@
             <nav class="footerNav">
               <ul>
                 <li><a href="aboutUs.html">About Us</a></li>
-                <li><a href="FAQ.html">FAQ</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="./FAQ.html">FAQ</a></li>
+                <li><a href="./contact.html">Contact Us</a></li>
               </ul>
             </nav>
           </footer>
