@@ -32,3 +32,15 @@
     border-radius: 10px;
     background-color: #ff980c;
 }
+
+@media screen and (max-width: 530px) {
+    #contactInputDiv,
+    #contactInputDiv1,
+    #contactInputDiv2,
+    #contactInputDiv3 {
+        flex-direction: column;
+        margin: 1em 0;
+        text-align: justify;
+        width: 42vw;
+    }
+}
