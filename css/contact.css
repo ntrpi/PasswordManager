@@ -1,12 +1,12 @@
 .content p {
-    font-size: 1.5em;
+    font-size: 1em;
 }
 .content h2 {
-    font-size: 3em;
+    font-size: 2.5em;
 }
 #contactForm {
-    text-align: center;
-    font-size: 1.3em;
+    display: flex;
+    font-size: 1em;
     font-weight: 500;
 }
 #name,
@@ -16,7 +16,7 @@
 #name,
 #email,
 #message {
-    width: 184%;
+    width: 58%;
     display: flex;
     justify-content: center;
     margin: 1em auto;
@@ -27,7 +27,7 @@
     margin: 0.9em 0 1.5em 0;
     width: 5em;
     height: 2em;
-    font-size: 1.2em;
+    font-size: 0.9em;
     font-weight:500;
     border-radius: 10px;
     background-color: #ff980c;
@@ -41,6 +41,6 @@
         flex-direction: column;
         margin: 1em 0;
         text-align: justify;
-        width: 42vw;
+        width: 100%;
     }
 }
