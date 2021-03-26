@@ -1,7 +1,7 @@
 window.onload = function () {
 
     const createAccountForm = document.forms.createAccountForm;
-    const formFieldNames = [ "firstName", "lastName", "userName", "email", "password1", "password2" ];
+    const formFieldNames = [ "first_name", "last_name", "user_name", "email", "login_password", "password2" ];
     const formFields = {};
 
     const errorDivs = {};

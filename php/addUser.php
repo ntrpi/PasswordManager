@@ -14,6 +14,7 @@ if (FormProcessor::isPost($userObject->getSubmitAdd())) {
     $userObject->createUser($params);
 
     if ($numUsers != $userObject->getNumUsers()) {
+        // Success!
         header("Location: index.php");
     } else {
         echo "Unable to add user.";
@@ -34,19 +35,19 @@ if (FormProcessor::isPost($userObject->getSubmitAdd())) {
 
 <?php include 'header.php' ?>
 
-    <main>
+<main>
       <div class="mainDiv">
         <div class="content">
           <h2 class="hidden">Create Account</h2>
           <div id="signUpForm" class="formDiv">
             <form name="createAccountForm" action="" method="POST">
-              <div id="firstNameError" class="errorDiv"></div>
+              <div id="first_nameError" class="errorDiv"></div>
               <div class="inputDiv">
                 <label for="first_name">First name</label>
                 <input type="text" name="first_name" id="first_name" />
                 <span class="showHideSpan"></span>
               </div>
-              <div id="lastNameError" class="errorDiv"></div>
+              <div id="last_nameError" class="errorDiv"></div>
               <div class="inputDiv">
                 <label for="last_name">Last name</label>
                 <input type="text" name="last_name" id="last_name" />
@@ -64,7 +65,7 @@ if (FormProcessor::isPost($userObject->getSubmitAdd())) {
                 <input type="email" name="email" id="email" />
                 <span class="showHideSpan"></span>
               </div>
-              <div id="password1Error" class="errorDiv"></div>
+              <div id="login_passwordError" class="errorDiv"></div>
               <div class="inputDiv">
                 <label for="login_password">Password</label>
                 <input type="password" name="login_password" id="login_password" />

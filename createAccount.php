@@ -43,22 +43,22 @@ if( FormProcessor::isPost( $userObject->getSubmitAdd() ) ) {
           <h2 class="hidden">Create Account</h2>
           <div id="signUpForm" class="formDiv">
             <form name="createAccountForm" action="" method="POST">
-              <div id="firstNameError" class="errorDiv"></div>
+              <div id="first_nameError" class="errorDiv"></div>
               <div class="inputDiv">
-                <label for="firstName">First name</label>
-                <input type="text" name="firstName" id="firstName" />
+                <label for="first_name">First name</label>
+                <input type="text" name="first_name" id="first_name" />
                 <span class="showHideSpan"></span>
               </div>
-              <div id="lastNameError" class="errorDiv"></div>
+              <div id="last_nameError" class="errorDiv"></div>
               <div class="inputDiv">
-                <label for="lastName">Last name</label>
-                <input type="text" name="lastName" id="lastName" />
+                <label for="last_name">Last name</label>
+                <input type="text" name="last_name" id="last_name" />
                 <span class="showHideSpan"></span>
               </div>
               <div id="NameError" class="errorDiv"></div>
               <div class="inputDiv">
-                <label for="userName">Create a user name</label>
-                <input type="text" name="userName" id="userName" />
+                <label for="user_name">Create a user name</label>
+                <input type="text" name="user_name" id="user_name" />
                 <span class="showHideSpan"></span>
               </div>
               <div id="emailError" class="errorDiv"></div>
@@ -67,10 +67,10 @@ if( FormProcessor::isPost( $userObject->getSubmitAdd() ) ) {
                 <input type="email" name="email" id="email" />
                 <span class="showHideSpan"></span>
               </div>
-              <div id="password1Error" class="errorDiv"></div>
+              <div id="login_passwordError" class="errorDiv"></div>
               <div class="inputDiv">
-                <label for="password1">Password</label>
-                <input type="password" name="password1" id="password1" />
+                <label for="login_password">Password</label>
+                <input type="password" name="login_password" id="login_password" />
                 <span class="showHideSpan">Show</span>
               </div>
               <div id="password2Error" class="errorDiv"></div>

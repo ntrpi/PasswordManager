@@ -47,7 +47,6 @@ namespace Codesses\php\Models
             // This params object will likely be from the form processor, so make sure you add in values for the columns
             // that don't have input fields and unset value that don't correspond to a column.
 
-//            unset( $params->user_id );      // New user, doesn't have an id yet.
             unset( $params->password2 );    // password2 is used for validation, it doesn't exist in the database.
 
             return parent::addRow( $params );
