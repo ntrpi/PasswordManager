@@ -1,15 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--global head.php-->
+    <?php include "php/head.php" ?>
     <title>Pass**** Manager Create Account</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/sharePass.css">
     <script src="./js/script.js" async defer></script>
   </head>
@@ -23,14 +17,14 @@
       </div>
 
       <div class="borderDiv"></div>
-      <!--<nav>
+      <nav>
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="login.html">Log In</a></li>
           <li><a href="createAccount.html">Sign Up</a></li>
           <li><a href="subscribe.html">Subscribe</a></li>
         </ul>
-      </nav>-->
+      </nav>
       <div class="borderDiv"></div>
     </header>
 
@@ -38,11 +32,7 @@
         <div class="mainDiv">
             <nav id="accountNav" class="accountNav">
                 <ul>
-<<<<<<< HEAD
-                <li><a href="crudpasswords.html">Passwords</a></li>
-=======
                 <li><a href="passwords.html">Passwords</a></li>
->>>>>>> cf97229f4f26d5e39eab52a0687cd5802d8f4292
                 <li><a href="profile.html">Profile</a></li>
                 <li><a href="sharing.html">Sharing</a></li>
                 <li><a href="import.html">Import</a></li>
