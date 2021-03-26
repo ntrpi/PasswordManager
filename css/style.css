@@ -259,6 +259,10 @@ footer {
   margin: 2em auto;
 }
 
+.errorDiv {
+  display: none;
+  font-size: .75em;
+}
 /***** Tablet Landscape View ******/
 @media screen and (max-width: 957px) {
 
