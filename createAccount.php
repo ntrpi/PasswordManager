@@ -32,9 +32,8 @@ if( FormProcessor::isPost( $userObject->getSubmitAdd() ) ) {
     <link rel="stylesheet" href="./css/style.css">
   </head>
   <body>
-
-<?php include 'php/header.php' ?>
-
+    <!--main nav-->
+    <?php include 'php/header.php' ?>
     <main>
       <div class="mainDiv">
         <div class="content">

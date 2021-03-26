@@ -11,8 +11,7 @@
   </head>
   <body>
     <!--main nav-->
-    <?php require_once "php/header.php" ?>
-
+    <?php include 'php/header.php' ?>
     <main>
       <div class="mainDiv">
         <div class="content">
