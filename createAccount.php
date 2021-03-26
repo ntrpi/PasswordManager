@@ -87,9 +87,8 @@ if( FormProcessor::isPost( $userObject->getSubmitAdd() ) ) {
       </div>
       </div>
     </main>
-
-<?php include "php/footer.php" ?>
-
+<!--global footer-->
+<?php include "php/footer.php"?>
   </body>
 </html>
   

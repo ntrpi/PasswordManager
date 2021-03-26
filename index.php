@@ -44,7 +44,7 @@
       </div>
     </main>
     <!--global footer-->
-    <?php include_once "php/footer.php"?>
+    <?php include "php/footer.php"?>
   </body>
 </html>
 
