@@ -1,16 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Pass**** Manager Home</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/profile.css">
+    <!--global head.php-->
+    <?php include "php/head.php" ?>
+    <title>Pass**** Manager Export</title>
+    <link rel="stylesheet" href="./css/login.css">
     <script src="./js/script.js" async defer></script>
   </head>
   <body>
@@ -33,35 +27,45 @@
         </ul>
       </nav>
       <div class="borderDiv"></div>
+
     </header>
+
     <main>
       <div class="mainDiv">
+
         <nav id="accountNav" class="accountNav">
           <ul>
             <li><a href="passwords.html">Passwords</a></li>
-            <li><a href="#">Profile</a></li>
+            <li><a href="profile.html">Profile</a></li>
             <li><a href="sharing.html">Sharing</a></li>
             <li><a href="import.html">Import</a></li>
             <li><a href="export.html">Export</a></li>
           </ul>
         </nav>
   
-
+        <!-- YOUR STUFF GOES HERE-->
         <div class="content">
           <div>
-            <h2>Profile</h2>
-            <div class="contentBox">
-              <div class="cBox">
-                <img src="./img/profile-icon.png" alt="empty image" />
-                <h3>Georgia</h3>
-                <p>Member since 2005</p>
-              </div>
+            <h2>Export Passwords</h2>
+            <div class="formDiv">
+              <form action="" method="GET">
+                <div>
+                  <label for="fileOutput" class="fileInputLabel">Choose a File</label>
+                  <div class="fileNameDiv"></div>
+                  <input class="hidden" id="fileInput" name="fileInput" type="file"/>
+                </div>                
+                <div class="inputDiv">
+                  <input type="submit" value="Export">
+                </div>  
+              </form>
             </div>
           </div>
         </div>
       </div>
     </main>
+
     <footer>
+      <div class="borderDiv"></div>
       <nav class="footerNav">
         <ul>
           <li><a href="aboutUs.html">About Us</a></li>
@@ -70,7 +74,7 @@
         </ul>
       </nav>
     </footer>
+  
   </body>
 </html>
-
-
+  

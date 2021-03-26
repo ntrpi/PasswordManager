@@ -1,5 +1,5 @@
 .formDiv {
-    width: 45em;
+    max-width: 100%;
     background-color: var(--orange);
     border-radius: 8px;
 }
