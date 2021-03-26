@@ -11,16 +11,7 @@
     <!--main nav-->
     <?php include 'php/header.php' ?>
         <main>
-            <div class="mainDiv">      
-              <!-- <nav id="accountNav" class="accountNav">
-                <ul>
-                  <li><a href="#">Passwords</a></li>
-                  <li><a href="#">Profile</a></li>
-                  <li><a href="#">Sharing</a></li>
-                  <li><a href="#">Import</a></li>
-                  <li><a href="#">Export</a></li>
-                </ul>
-              </nav> -->        
+            <div class="mainDiv">        
               <!-- YOUR STUFF GOES HERE-->
               <div class="content">
                 <div>
