@@ -1,7 +1,7 @@
 <header>
     <div class="banner">
         <div class="logo">
-            <img src="./img/padlock-white-locked-th.png" alt="White padlock, locked.">
+            <img src="../img/padlock-white-locked-th.png" alt="White padlock, locked.">
         </div>
         <h1 class="siteName">Pass**** Manager</h1>
     </div>

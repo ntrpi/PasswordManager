@@ -5,7 +5,7 @@ namespace Codesses\php\Models
 
 use PDOException;
 
-class Database {
+    class Database {
 
         private static $dbName = "skdssite_Codesses";
         private static $host = "158.69.17.240:3306";
@@ -46,15 +46,20 @@ class Database {
     
         public static function runSql( $sql )
         {
+            // echo $sql;
             $dataPdo = self::getPdo();
             $pdoStatement = $dataPdo->prepare( $sql );
             $pdoStatement->execute();
+            // $pdoStatement->debugDumpParams();
     
             return $pdoStatement;
         }
     
         public static function runSqlWithParams( $sql, $params )
         {
+            // echo $sql;
+            // var_dump( $params );
+
             $dataPdo = self::getPdo();
             $pdoStatement = $dataPdo->prepare( $sql );
     
@@ -63,6 +68,7 @@ class Database {
             }
     
             $pdoStatement->execute();
+            // $pdoStatement->debugDumpParams();
     
             return $pdoStatement;
         }

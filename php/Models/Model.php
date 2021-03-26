@@ -3,7 +3,7 @@
 namespace Codesses\php\Models
 {
     use Codesses\php\Models\Database;
-    require_once "./php/Models/Database.php";
+    require_once "./Models/Database.php";
 
     class Model 
     {
@@ -101,11 +101,11 @@ namespace Codesses\php\Models
         {
             // Set up the sql.
             $sql = "UPDATE " . $this->tableName . " SET ";
-            foreach( $this->columns as $column ) {
-                if( $column == $this->idName ) {
+            foreach( $params as $key=>$value ) {
+                if( $key == $this->idName ) {
                     continue;
                 }
-                $sql .= "{$column} = :{$column}, ";
+                $sql .= "{$key} = :{$key}, ";
             }
             
             // Strip trailing comma.
@@ -125,12 +125,12 @@ namespace Codesses\php\Models
             // Set up the sql.
             $sql = "INSERT INTO " . $this->tableName . " (";
             $values = " ) VALUES ( ";
-            foreach( $this->columns as $column ) {
-                if( $column == $this->idName ) {
+            foreach( $params as $key=>$value ) {
+                if( $key == $this->idName ) {
                     continue;
                 }
-                $sql .= "{$column}, ";
-                $values .= ":{$column}, ";
+                $sql .= "{$key}, ";
+                $values .= ":{$key}, ";
             }
 
             // Strip trailing comma.
