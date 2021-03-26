@@ -6,7 +6,6 @@ require_once "./php/Models/User.php";
 require_once "./php/Models/FormProcessor.php";
 
 $userObject = new User;
-echo $userObject->getSubmitAdd();
 
 if( FormProcessor::isPost( $userObject->getSubmitAdd() ) ) {
 
@@ -30,8 +29,7 @@ if( FormProcessor::isPost( $userObject->getSubmitAdd() ) ) {
     <?php include "php/head.php" ?>
 
     <title>Pass**** Manager Create Account</title>
-    <script src="./js/createAccount.js" async defer></script>
-    <script src="https://unpkg.com/v8n/dist/v8n.min.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
   </head>
   <body>
 

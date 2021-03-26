@@ -3,7 +3,7 @@
 namespace Codesses\php\Models
 {
     use Codesses\php\Models\Database;
-    require_once "./Models/Database.php";
+    require_once "Database.php";
 
     class Model 
     {

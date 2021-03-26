@@ -2,7 +2,7 @@
 namespace Codesses\php\Models
 {
     use Codesses\php\Models\Model;
-    require_once "./Models/Model.php";
+    require_once "Model.php";
 
     class User extends Model
     {
