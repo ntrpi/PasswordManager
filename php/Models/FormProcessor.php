@@ -44,13 +44,13 @@ namespace Codesses\php\Models
         public static function isValidName( $name, $length = 2 )
         {
             $nameRegex = "/^[a-zA-Z-' ]*$/";
-            return preg_match( $nameRegex, $name ) && sizeof( $name ) >= $length;
+            return is_string( $name ) && preg_match( $nameRegex, $name ) && strlen( $name ) >= $length;
         }
 
         // Validating format only.
         public static function isValidEmail( $email )
         {
-            return filter_var( $email, FILTER_VALIDATE_EMAIL );
+            return is_string( $email ) && filter_var( $email, FILTER_VALIDATE_EMAIL );
         }
 
         // Validating against 10 digits only.
@@ -62,10 +62,10 @@ namespace Codesses\php\Models
         // Use the paramaters to make the conditions more strict.
         public static function isValidPassword( $password, $length = 8, $mustContainUpper = false, $mustContainNumber = false, $mustContainSpecial = false )
         {
-            return sizeof( $password ) >= $length
-            && ( $mustContainUpper && preg_match( "/*[A-Z]*/", $password ) )
-            && ( $mustContainNumber && preg_match( "/*[0-9]*/", $password ) )
-            && ( $mustContainSpecial && preg_match( "/*[^a-zA-Z0-9]*/", $password ) );
+            return strlen( $password ) >= $length
+            && ( $mustContainUpper && preg_match( "/.*[A-Z].*/", $password ) )
+            && ( $mustContainNumber && preg_match( "/.*[0-9].*/", $password ) )
+            && ( $mustContainSpecial && preg_match( "/.*[^a-zA-Z0-9].*/", $password ) );
         }
     }
 }

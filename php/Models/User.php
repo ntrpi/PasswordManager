@@ -7,19 +7,19 @@ namespace Codesses\php\Models
     class User extends Model
     {
         // There should be one item for every column in the database.
-        public static array $columnNames = array( "user_id", "first_name", "last_name", "email", "login_password", "recovery_email", "phone", "is_admin" );
+        public static array $columnNames = array( "user_id", "first_name", "last_name", "user_name", "email", "login_password", "recovery_email", "phone", "is_admin" );
 
         // These correspond to the names of the input fields of your form.
         // They may or may not be the same as the associated columns in the database, but if they are not,
         // you will need to deal with that manually. See createUser( $params ) below.
-        public static array $inputNames = array( "user_id", "first_name", "last_name", "email", "login_password", "password2" );
+        public static array $inputNames = array( "user_id", "first_name", "last_name", "user_name", "email", "login_password", "password2" );
 
         // Error messages that correspond 1-to-1 with the input fields.
         public static array $errorMessages = array(
             "user_id" => "Please enter a valid user ID.",
             "first_name" => "Please enter a name that is a least two characters long and has only letters, hyphens, and apostrophes.",
             "last_name" => "Please enter a name that is a least two characters long and has only letters, hyphens, and apostrophes.",
-            "user_name" => "Please enter a user name that is at least 8 characters long.",
+            "user_name" => "That user name is already in use. Please enter a different user name.",
             "email" => "Please enter a valid email address.",
             "login_password" => "Please enter a password that is at least 8 characters long and contains at least one upper case letter, one number, and one special character.",
             "password2" => "Please enter a matching password."
@@ -75,9 +75,8 @@ namespace Codesses\php\Models
         public function createUser( $params )
         {
             // This params object will likely be from the form processor, so make sure you add in values for the columns
-            // that don't have input fields and unset value that don't correspond to a column.
-
-            unset( $params->password2 );    // password2 is used for validation, it doesn't exist in the database.
+            // that don't have input fields and unset value that don't correspond to a column, 
+            // or call fixParams( $params, "create" ) first.
 
             return parent::addRow( $params );
         }
@@ -89,10 +88,14 @@ namespace Codesses\php\Models
             if( $action == "create" ) {
                 unset( $params->user_id );
                 unset( $params->password2 );
-                return $params;
-            }
-            if( $action == "update" ) {
+
+            } else if( $action == "update" ) {
                 // Not sure yet.
+            }
+
+            // Hash the password no matter what.
+            if( isset( $params->login_password ) ) {
+                $params->login_password = password_hash( $params->login_password, PASSWORD_DEFAULT );
             }
             return $params;
         }
@@ -109,16 +112,29 @@ namespace Codesses\php\Models
             if( $columnName == "email" ) {
                 return FormProcessor::isValidEmail( $value );
             }
+            if( $columnName == "user_name" ) {
+                // Check that the user name is unique.
+                return strlen( $value ) > 0 && sizeof( $this->getUsersWhere( $columnName, $value ) ) == 0;
+            }
             return false;
         }
 
         // Validate all of the key/value pairs in the $params object.
         // If everything is valid, return null. Otherwise, return the name of the 
         // invalid input.
-        public function validateInput( $params )
+        public function validateInput( $params, $action )
         {
-            foreach( $params as $key=>$value ) {
-                if( !$this->isValid( $key, $value ) ) {
+            foreach( self::$inputNames as $key ) {
+                if( $key == $this->idName && $action == "create" ) {
+                    continue;
+                }
+                if( $key == "password2" ) {
+                    if( strcmp( $params->login_password, $params->$key ) != 0 ) {
+                        return $key;
+                    }
+                    continue;
+                }
+                if( !$this->isValid( $key, $params->$key ) ) {
                     return $key;
                 }
             }

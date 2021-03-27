@@ -2,8 +2,9 @@
 
 namespace Codesses\php\Models
 {
-    use Codesses\php\Models\Database;
+    use Codesses\php\Models\{Database};
     require_once "Database.php";
+    require_once "utl.php";
 
     // This class standardizes how Models interact with the database. 
     class Model 
@@ -63,13 +64,13 @@ namespace Codesses\php\Models
 
         // Given an array of key names to use as keys and an associated array to use as values,
         // return an object with the key/value pairs as properties.
-        public static function getParams( array $keyNames, array $values )
+        public static function getParams( array $keyNames, array $values = null )
         {
             $params = new \stdClass();
             $numItems = sizeof( $keyNames );
             for( $i = 0; $i < $numItems; $i++ ) {
                 $columnName = $keyNames[$i];
-                $params->$columnName = $values[$i];
+                $params->$columnName = $values != null ? $values[$i] : "";
             }
             return $params;
         }
