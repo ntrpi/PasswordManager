@@ -61,17 +61,24 @@ namespace Codesses\php\Models
             $this->submitDelete = "delete" . $tableName;
         }
 
-        // Given an array of column names to use as keys and an associated array to use as values,
+        // Given an array of key names to use as keys and an associated array to use as values,
         // return an object with the key/value pairs as properties.
-        public static function getParams( array $columnNames, array $values )
+        public static function getParams( array $keyNames, array $values )
         {
             $params = new \stdClass();
-            $numItems = sizeof( $columnNames );
+            $numItems = sizeof( $keyNames );
             for( $i = 0; $i < $numItems; $i++ ) {
-                $columnName = $columnNames[$i];
+                $columnName = $keyNames[$i];
                 $params->$columnName = $values[$i];
             }
             return $params;
+        }
+
+        public static function getParam( $key, $value )
+        {
+            $param = new \stdClass();
+            $param->$key = $value;
+            return $param;
         }
 
         // Return the array of column names for this table.
@@ -114,10 +121,7 @@ namespace Codesses\php\Models
         // Return an object with the primary key and passed in $id are the only property.
         protected function getIdParamsObject( $id )
         {
-            $params = new \stdClass();
-            $name = $this->idName;
-            $params->$name = $id;
-            return $params;
+            return self::getParam( $this->idName, $id );
         }
 
         // Return an object that has the columns and values of the row in the database with the given primary key
@@ -126,6 +130,14 @@ namespace Codesses\php\Models
         {
             $results = Database::getDbResultWithParams( $this->findSql, $this->getIdParamsObject( $id ) );
             return $results[0];
+        }
+
+        // Return the objects for the rows that have the value for the given column.
+        // Basically SELECT * with a single WHERE clause.
+        protected function getRowObjectsWithValue( $columnName, $value )
+        {
+            $sql = $this->listSql . " WHERE " . $columnName . " = :" . $columnName;
+            return Database::getDbResultWithParams( $sql, self::getParam( $columnName, $value ) );
         }
 
         // Delete the row in the database with the given primary key.

@@ -6,6 +6,7 @@ require_once "./php/Models/User.php";
 require_once "./php/Models/FormProcessor.php";
 
 $userDbHelper = new User;
+$errorMessages = array();
 
 // Use the FormProcessor to check if the form has been submitted.
 // The name of the submit button in the form (see the html below)
@@ -19,16 +20,41 @@ if( FormProcessor::isPost( $userDbHelper->getSubmitAdd() ) ) {
 
   // Validate the input. This will reflect what the js validate does,
   // but we can do a bit more because we have access to the database.
+  $params = $userDbHelper->fixParams( $params, "create" );
+  $result = $userDbHelper->validateInput( $params );
+  if( $result != null ) {
+
+    // Setting the error message here will cause it to show up in the html.
+    // See the divs with class="errorDiv" below.
+    $errorMessages[$result] = User::$errorMessages[$result];
   
-
-  $numUsers = $userDbHelper->getNumUsers();
-  $userDbHelper->createUser( $params );
-
-  if( $numUsers != $userDbHelper->getNumUsers() ) {
-    header("Location: index.php");
   } else {
-    echo "Unable to create account.";
+    // Sometimes we don't get useful return values from the database.
+    // The best way to check that a new user has been added is to check
+    // that the number of users after adding the user has increased.
+    // *NOTE: in a large system this won't work because someone might
+    // delete a user after you get the number of users before adding
+    // yours. But it will do for now.
+
+    // Get the current number of users.
+    $numUsers = $userDbHelper->getNumUsers();
+
+    // Add the new user.
+    $userDbHelper->createUser( $params );
+
+    // Make sure that the number of users has changed.
+    if( $numUsers != $userDbHelper->getNumUsers() ) {
+      // Success! 
+      // TODO: go to account page.
+      header("Location: index.php");
+
+    } else {
+      // Failed.
+      // TODO: go to error message.
+      echo "Unable to create account.";
+    }
   }
+
 }
 ?>
 
@@ -49,43 +75,48 @@ if( FormProcessor::isPost( $userDbHelper->getSubmitAdd() ) ) {
           <h2 class="hidden">Create Account</h2>
           <div id="signUpForm" class="formDiv">
             <form name="createAccountForm" action="" method="POST">
-              <div id="first_nameError" class="errorDiv"></div>
+              <div id="first_nameError" class="errorDiv"><?php if( isset( $errorMessages["first_name"] ) ) echo $errorMessages["first_name"]; ?></div>
               <div class="inputDiv">
                 <label for="first_name">First name</label>
                 <input type="text" name="first_name" id="first_name" />
                 <span class="showHideSpan"></span>
               </div>
-              <div id="last_nameError" class="errorDiv"></div>
+              <div id="last_nameError" class="errorDiv"><?php if( isset( $errorMessages["last_name"] ) ) echo $errorMessages["last_name"]; ?></div>
               <div class="inputDiv">
                 <label for="last_name">Last name</label>
                 <input type="text" name="last_name" id="last_name" />
                 <span class="showHideSpan"></span>
               </div>
-              <div id="NameError" class="errorDiv"></div>
+              <div id="user_nameError" class="errorDiv"><?php if( isset( $errorMessages["user_name"] ) ) echo $errorMessages["user_name"]; ?></div>
               <div class="inputDiv">
                 <label for="user_name">Create a user name</label>
                 <input type="text" name="user_name" id="user_name" />
                 <span class="showHideSpan"></span>
               </div>
-              <div id="emailError" class="errorDiv"></div>
+              <div id="emailError" class="errorDiv"><?php if( isset( $errorMessages["email"] ) ) echo $errorMessages["email"]; ?></div>
               <div class="inputDiv">
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" />
                 <span class="showHideSpan"></span>
               </div>
-              <div id="login_passwordError" class="errorDiv"></div>
+              <div id="login_passwordError" class="errorDiv"><?php if( isset( $errorMessages["login_password"] ) ) echo $errorMessages["login_password"]; ?></div>
               <div class="inputDiv">
                 <label for="login_password">Password</label>
                 <input type="password" name="login_password" id="login_password" />
                 <span class="showHideSpan">Show</span>
               </div>
-              <div id="password2Error" class="errorDiv"></div>
+
+              <!-- This div will only show up if the error message is set above. -->
+              <div id="password2Error" class="errorDiv"><?php if( isset( $errorMessages["password2"] ) ) echo $errorMessages["password2"]; ?></div>
               <div class="inputDiv">
                 <label for="password2">Repeat password</label>
                 <input type="password" name="password2" id="password2" />
                 <span class="showHideSpan">Show</span>
               </div>
               <div class="inputDiv">
+
+              <!-- Note that I am setting the name of the submit input to be the same as what the
+                  FormProcessor is checking for. -->
                 <input type="submit"  name="<?php echo $userDbHelper->getSubmitAdd(); ?>" value="Sign Up">
               </div>  
             </form>
