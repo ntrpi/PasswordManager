@@ -1,21 +1,30 @@
 <?php
 
-use Codesses\php\Models\{FormProcessor, User};
+use Codesses\php\Models\{Database, FormProcessor, User};
 
 require_once "./php/Models/User.php";
 require_once "./php/Models/FormProcessor.php";
 
-$userObject = new User;
+$userDbHelper = new User;
 
-if( FormProcessor::isPost( $userObject->getSubmitAdd() ) ) {
+// Use the FormProcessor to check if the form has been submitted.
+// The name of the submit button in the form (see the html below)
+// was set using $userDbHelper->getSubmitAdd(), so we know it will
+// be the same and we don't have to worry about typos.
+if( FormProcessor::isPost( $userDbHelper->getSubmitAdd() ) ) {
 
-  $params = FormProcessor::getValuesObject( User::$columnNames );
-  var_dump( $params );
+  // Use the FormProcessor to retrieve the values from the form.
+  $params = FormProcessor::getValuesObject( User::$inputNames );
+  Database::prettyPrintObj( $params );
 
-  $numUsers = $userObject->getNumUsers();
-  $userObject->createUser( $params );
+  // Validate the input. This will reflect what the js validate does,
+  // but we can do a bit more because we have access to the database.
+  
 
-  if( $numUsers != $userObject->getNumUsers() ) {
+  $numUsers = $userDbHelper->getNumUsers();
+  $userDbHelper->createUser( $params );
+
+  if( $numUsers != $userDbHelper->getNumUsers() ) {
     header("Location: index.php");
   } else {
     echo "Unable to create account.";
@@ -77,7 +86,7 @@ if( FormProcessor::isPost( $userObject->getSubmitAdd() ) ) {
                 <span class="showHideSpan">Show</span>
               </div>
               <div class="inputDiv">
-                <input type="submit"  name="<?php echo $userObject->getSubmitAdd(); ?>" value="Sign Up">
+                <input type="submit"  name="<?php echo $userDbHelper->getSubmitAdd(); ?>" value="Sign Up">
               </div>  
             </form>
           </div>
