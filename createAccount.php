@@ -56,7 +56,7 @@ if( FormProcessor::isPost( $userDbHelper->getSubmitAdd() ) ) {
     if( $numUsers != $userDbHelper->getNumUsers() ) {
       // Success! 
       // TODO: go to account page.
-      header("Location: index.php");
+      header("Location: passwords.php");
 
     } else {
       // Failed.
