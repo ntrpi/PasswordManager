@@ -23,6 +23,9 @@ if( FormProcessor::isPost( $userDbHelper->getSubmitAdd() ) ) {
   $params = $userDbHelper->fixParams( $params, "create" );
   $result = $userDbHelper->validateInput( $params );
   if( $result != null ) {
+
+    // Setting the error message here will cause it to show up in the html.
+    // See the divs with class="errorDiv" below.
     $errorMessages[$result] = User::$errorMessages[$result];
   
   } else {
@@ -102,6 +105,8 @@ if( FormProcessor::isPost( $userDbHelper->getSubmitAdd() ) ) {
                 <input type="password" name="login_password" id="login_password" />
                 <span class="showHideSpan">Show</span>
               </div>
+
+              <!-- This div will only show up if the error message is set above. -->
               <div id="password2Error" class="errorDiv"><?php if( isset( $errorMessages["password2"] ) ) echo $errorMessages["password2"]; ?></div>
               <div class="inputDiv">
                 <label for="password2">Repeat password</label>
@@ -109,6 +114,9 @@ if( FormProcessor::isPost( $userDbHelper->getSubmitAdd() ) ) {
                 <span class="showHideSpan">Show</span>
               </div>
               <div class="inputDiv">
+
+              <!-- Note that I am setting the name of the submit input to be the same as what the
+                  FormProcessor is checking for. -->
                 <input type="submit"  name="<?php echo $userDbHelper->getSubmitAdd(); ?>" value="Sign Up">
               </div>  
             </form>
