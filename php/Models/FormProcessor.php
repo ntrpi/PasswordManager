@@ -4,6 +4,7 @@ namespace Codesses\php\Models
     class FormProcessor 
     {
 
+        // Static class.
         private function __construct()
         {        
         }
@@ -15,12 +16,13 @@ namespace Codesses\php\Models
             return ( htmlspecialchars( stripslashes( trim( $input ) ) ) );
         }
         
-
+        // Confirm that a form was submitted with POST and that the submit input had the given name.
         public static function isPost( $submitName )
         {
             return $_SERVER["REQUEST_METHOD"] == "POST" && isset( $_POST[ $submitName ] );
         }
 
+        // Return an object with the input names as keys and the input field values as values.
         public static function getValuesObject( $inputNames ) // Expecting an array of input element names.
         {
             $values = new \stdClass();
@@ -32,9 +34,38 @@ namespace Codesses\php\Models
             return $values;
         }
 
+        // Syntactic sugar.
         public static function getPostValue( $value )
         {
             return $_POST[ $value ];
+        }
+
+        // Names can only have letters, apostrophes, and hyphens.
+        public static function isValidName( $name, $length = 2 )
+        {
+            $nameRegex = "/^[a-zA-Z-' ]*$/";
+            return preg_match( $nameRegex, $name ) && sizeof( $name ) >= $length;
+        }
+
+        // Validating format only.
+        public static function isValidEmail( $email )
+        {
+            return filter_var( $email, FILTER_VALIDATE_EMAIL );
+        }
+
+        // Validating against 10 digits only.
+        public static function isValidPhone( $phone )
+        {
+            return preg_match( "/\d{10}/", $phone );
+        }
+
+        // Use the paramaters to make the conditions more strict.
+        public static function isValidPassword( $password, $length = 8, $mustContainUpper = false, $mustContainNumber = false, $mustContainSpecial = false )
+        {
+            return sizeof( $password ) >= $length
+            && ( $mustContainUpper && preg_match( "/*[A-Z]*/", $password ) )
+            && ( $mustContainNumber && preg_match( "/*[0-9]*/", $password ) )
+            && ( $mustContainSpecial && preg_match( "/*[^a-zA-Z0-9]*/", $password ) );
         }
     }
 }

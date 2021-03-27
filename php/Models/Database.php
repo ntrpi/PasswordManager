@@ -7,17 +7,22 @@ use PDOException;
 
     class Database {
 
+        // These variables must be set to the specific database connection information.
         private static $dbName = "skdssite_Codesses";
         private static $host = "158.69.17.240:3306";
         private static $userName = "skdssite_test";
         private static $password = "tU8U4jB3Cz7yVRK";
+
+        // Private variables to interact with the database.
         private static $dataSourceName;
         private static $dataPdo;
     
+        // Static class.
         private function __construct()
         {        
         }
         
+        // Construct the PDO if required, then return PDO.
         private static function getPdo()
         {
             if( self::$dataPdo == null ) {
@@ -37,13 +42,15 @@ use PDOException;
             }
             return self::$dataPdo;
         }
-    
+
+        // This may not be the best place for this, but it's here now.
         public static function prettyPrintObj( $obj )
         {
             $jsonData = json_encode( $obj, JSON_PRETTY_PRINT );
             echo "<pre> {$jsonData} </pre>";
         }
     
+        // Use the PDO to run the provided SQL string. Return the PDO statement that was run.
         public static function runSql( $sql )
         {
             // echo $sql;
@@ -55,6 +62,8 @@ use PDOException;
             return $pdoStatement;
         }
     
+        // Prepare the PDO statement by binding the provided key/value pairs. 
+        // Use the PDO to run the SQL, then return the PDO statement.
         public static function runSqlWithParams( $sql, $params )
         {
             // echo $sql;
@@ -73,6 +82,8 @@ use PDOException;
             return $pdoStatement;
         }
 
+        // $pdoResult is what is returned by the call to PDO execute(). 
+        // Get an array of all the rows retrieved from the database, close the cursor, then return the array.
         public static function getRows( $pdoResult )
         {
             $rows = $pdoResult->fetchAll( \PDO::FETCH_OBJ );
@@ -80,19 +91,22 @@ use PDOException;
             return $rows;
         }
 
+        // Syntactic sugar to execute some SQL and return the array of rows retrieved from the database.
         public static function getDbResult( $sql )
         {
             $pdoResult = self::runSql( $sql );
             return self::getRows( $pdoResult );
         }
 
+        // Syntactic sugar to bind the key/value pairs in $params, 
+        // execute some SQL, and return the array of rows retrieved from the database.
         public static function getDbResultWithParams( $sql, $params )
         {
             $pdoResult = self::runSqlWithParams( $sql, $params );
             return self::getRows( $pdoResult );
         }
 
-
+        // Close the database connection on destruction.
         public function __destruct() {
             $this->datapdo->close();
         }
