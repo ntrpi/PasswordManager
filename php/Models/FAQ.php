@@ -9,9 +9,6 @@ namespace Codesses\php\Models
         // There should be one item for every column in the database.
         public static array $columnNames = array( "faq_id", "question", "answer");
 
-        // These correspond to the names of the input fields of your form.
-        public static array $inputNames = array( "faq_id", "question", "answer");
-
         public function __construct()
         {
             parent::__construct( "faq", "faq_id", self::$columnNames );
@@ -46,8 +43,6 @@ namespace Codesses\php\Models
         {
             // This params object will likely be from the form processor, so make sure you add in values for the columns
             // that don't have input fields and unset value that don't correspond to a column.
-
-            unset( $params->password2 );    // password2 is used for validation, it doesn't exist in the database.
 
             return parent::addRow( $params );
         }
