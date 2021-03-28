@@ -25,4 +25,8 @@
   width: auto;
   font-weight: lighter;
 }
+#backtoFAQ a:link{
+  text-emphasis: none;
+  text-decoration: none;
+}
 
