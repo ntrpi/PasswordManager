@@ -6,6 +6,7 @@ require_once "./php/Models/User.php";
 require_once "./php/Models/FormProcessor.php";
 
 $userDbHelper = new User;
+
 $errorMessages = array();
 foreach( User::$inputNames as $input ) {
   $errorMessages[$input] = "";
@@ -32,7 +33,6 @@ if( FormProcessor::isPost( $userDbHelper->getSubmitAdd() ) ) {
     // Setting the error message here will cause it to show up in the html.
     // See the divs with class="errorDiv" below.
     $errorMessages[$result] = User::$errorMessages[$result];
-    echo $errorMessages[ "first_name" ];
   
   } else {
     // Sometimes we don't get useful return values from the database.
@@ -64,7 +64,6 @@ if( FormProcessor::isPost( $userDbHelper->getSubmitAdd() ) ) {
       echo "Unable to create account.";
     }
   }
-
 }
 ?>
 
@@ -75,6 +74,7 @@ if( FormProcessor::isPost( $userDbHelper->getSubmitAdd() ) ) {
 
     <title>Pass**** Manager Create Account</title>
     <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/createAccount.js"></script>
   </head>
   <body>
     <!--main nav-->
