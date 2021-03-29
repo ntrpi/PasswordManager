@@ -5,8 +5,8 @@ use Codesses\php\Models\{DatabaseTwo, Contact};
 // require_once 'vendor/autoload.php';
 // require_once 'Library/form-functions.php';
 
-require_once './Models/DatabaseTwo.php';
-require_once './Models/Contact.php';
+require_once './php/Models/DatabaseTwo.php';
+require_once './php/Models/Contact.php';
 
 
 $s = new Contact();

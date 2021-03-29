@@ -5,8 +5,8 @@ use Codesses\php\Models\{DatabaseTwo, Contact};
 // require_once 'vendor/autoload.php';
 // require_once 'Library/form-functions.php';
 
-require_once './Models/DatabaseTwo.php';
-require_once './Models/Contact.php';
+require_once './php/Models/DatabaseTwo.php';
+require_once './php/Models/Contact.php';
 
 
 
@@ -35,34 +35,34 @@ $contactMessages =  $s->getAllContactMessages(DatabaseTwo::getDb());
         <thead>
         <tr>
             <th scope="col">ID</th>
-            <th scope="col">User</th>
             <th scope="col">timestamp</th>
+            <th scope="col">User</th>
             <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
             <th scope="col">Email</th>
             <th scope="col">Message</th>
-            <th scope="col">Update</th>
-            <th scope="col">Delete</th>
+
         </tr>
         </thead>
         <tbody>
         <?php foreach ($contactMessages as $contactMessages) { ?>
             <tr>
-                <th><?= $contactMessages->id; ?></th>
+                <th><?= $contactMessages->cm_id; ?></th>
                 <td><?= $contactMessages->timestamp; ?></td>
+                <td><?= $contactMessages->user; ?></td>
                 <td><?= $contactMessages->first_name; ?></td>
                 <td><?= $contactMessages->last_name; ?></td>
                 <td><?= $contactMessages->email; ?></td>
                 <td><?= $contactMessages->message; ?></td>
                 <td>
                     <form action="./updateContactMessage.php" method="post">
-                        <input type="hidden" name="id" value="<?= $contactMessages->id; ?>"/>
+                        <input type="hidden" name="id" value="<?= $contactMessages->cm_id; ?>"/>
                         <input type="submit" class="button btn btn-primary" name="updateContactMessage" value="Update"/>
                     </form>
                 </td>
                 <td>
                     <form action="./deleteContactMessage.php" method="post">
-                        <input type="hidden" name="id" value="<?=  $contactMessages->id; ?>"/>
+                        <input type="hidden" name="cm_id" value="<?=  $contactMessages->cm_id; ?>"/>
                         <input type="submit" class="button btn btn-danger" name="deleteContactMessage" value="Delete"/>
                     </form>
                 </td>

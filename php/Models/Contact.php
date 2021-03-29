@@ -1,5 +1,6 @@
 <?php
 namespace Codesses\php\Models;
+
 class Contact
 {
     public function getUsers($db){
@@ -58,13 +59,12 @@ class Contact
     }
 
     public function deleteContactMessage($id, $db){
-        $sql = "DELETE FROM contact_messages WHERE id = :id";
+        $sql = "DELETE FROM contact_messages WHERE cm_id = :id";
 
         $pst = $db->prepare($sql);
         $pst->bindParam(':id', $id);
         $count = $pst->execute();
         return $count;
-
     }
 
     public function updateContactMessage($id, $user, $timestamp, $first_name, $last_name, $email, $message, $db){
@@ -75,7 +75,7 @@ class Contact
                 last_name = :last_name,
                 email = :email,
                 message = :message,
-                WHERE id = :id
+                WHERE cm_id = :id
         -- 
         ";
 
