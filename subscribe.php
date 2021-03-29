@@ -1,3 +1,28 @@
+<?php
+
+use Codesses\php\Models\{DatabaseTwo, Subscriber};
+// require_once 'vendor/autoload.php';
+
+require_once './php/Models/DatabaseTwo.php';
+require_once './php/Models/Subscriber.php';
+
+$dbconnection = DatabaseTwo::getDb();
+$s = new subscriber();
+$subscribers =  $s->getAllSubscribers(DatabaseTwo::getDb());
+
+// $s = new Subscriber();
+// $users = $c->getUsers(DatabaseTwo::getDb());
+
+// $user = $_GET['make'] ?? "";
+
+// if(isset($_GET['make'])){
+//    $cars = $c->getCarsInMake(Database::getDb(), $_GET['make']);
+// } else {
+//     $cars = $c->getAllCars(Database::getDb());
+// }
+
+
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -17,7 +42,44 @@
           <div>
             <h2 class="hidden">Subscribe</h2>
             <div class="formDiv">
-              <form action="" method="POST">
+              <table>
+              <thead>        
+              <tr>                  
+                  <th>User Name</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>       
+                  <th>Frequency</th>
+                  <th>User ID</th>
+                  <th><!--Update--></th>
+                  <th><!--Delete--></th>
+              </tr>
+              </thead>
+              <tbody>
+                  <?php foreach($subscribers as $subscriber) { ?>
+                  <tr>
+                      <td><?= $subscriber->uname; ?></td>
+                      <td><?= $subscriber->fname; ?></td>
+                      <td><?= $subscriber->lname; ?></td>
+                      <td><?= $subscriber->frequency; ?></td>
+                      <td><?= $subscriber->user; ?></td>
+                      <td>
+                          <form action="./updateSubscriber.php" method="post">
+                              <input type="hidden" name="id" value="<?= $subscriber->id; ?>"/>
+                              <input type="submit" name="updateSubscriber" value="Update"/>
+                          </form>
+                      </td>
+                      <td>
+                          <form action="./deleteSubscriber.php" method="post">
+                              <input type="hidden" name="id" value="<?= $subscriber->id; ?>"/>
+                              <input type="submit" name="deleteSubscriber" value="Delete"/>
+                          </form>
+                      </td>                    
+                  </tr>         
+              <?php } ?>
+              </tbody>
+          </table>
+          <a href="./addSubscriber.php" id="btn_addSubscriber">Add</a>
+              <!-- <form action="" method="POST">
                 <fieldset>
                   <legend>Do you want to join the mailing list?</legend>
                     <div class="inputDiv">
@@ -34,7 +96,7 @@
                 <div class="inputDiv" id="subscribe_b">
                   <input type="submit" value="Subscribe" >
                 </div>  
-              </form>
+              </form> -->              
             </div>
           </div>
         </div>

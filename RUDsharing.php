@@ -1,10 +1,21 @@
+<?php
+use Codesses\php\Models\{DatabaseTwo, Sharepassword};
+
+require_once "./php/Models/Sharepassword.php";
+require_once "./php/Models/DatabaseTwo.php";
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html>
   <head>
     <!--global head.php-->
     <?php include "php/head.php" ?>
     <title>Pass**** Manager sharing</title>
-    <link rel="stylesheet" href="./css/sharing.css">
+    <link rel="stylesheet" href="./css/RUDsharing.css">
     <script src="./js/script.js" async defer></script>
   </head>
   <body>
@@ -20,6 +31,8 @@
                 <div class="contentBox">
                     <div class="cBox">
                         <h5>User 1</h5>
+                        <a class="editSP" href="#">Edit</a> ||
+                        <a class="deleteSP" href="#">Delete</a>
                     </div>
                     <div class="cBox">
                         <h5>User 2</h5>
