@@ -14,7 +14,7 @@ require_once "./php/Models/DatabaseTwo.php";
   <head>
     <!--global head.php-->
     <?php include "php/head.php" ?>
-    <title>Pass**** Manager sharing</title>
+    <title>Pass**** Manager Edit and Delete Sharing</title>
     <link rel="stylesheet" href="./css/RUDsharing.css">
     <script src="./js/script.js" async defer></script>
   </head>
@@ -57,5 +57,4 @@ require_once "./php/Models/DatabaseTwo.php";
 <?php include "php/footer.php"?>
   </body>
 </html>
-
 
