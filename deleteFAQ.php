@@ -3,10 +3,8 @@ use Codesses\php\Models\{DatabaseTwo, FAQ};
 require "./php/Models/FAQ.php";
 require "./php/Models/DatabaseTwo.php";
 
-
-
-if(isset($_POST['id'])){
-    $id = $_POST['id'];
+if(isset($_POST['faq_id'])){
+    $id = $_POST['faq_id'];
     $db = DatabaseTwo::getDb();
 
     $s = new FAQ();

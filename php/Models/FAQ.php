@@ -1,6 +1,16 @@
 <?php
 namespace Codesses\php\Models;
 class FAQ {
+    public function getFAQ($dbcon){
+
+        $sql = "SELECT * FROM faq";
+        $pdostm = $dbcon->prepare($sql);
+        $pdostm->execute();
+        
+        $faq = $pdostm->fetchAll(\PDO::FETCH_ASSOC);
+        return $faq;
+    }
+
     public function addFAQ($question, $answer, $db){
 
         $sql = "INSERT INTO faq (question, answer)
@@ -16,11 +26,11 @@ class FAQ {
 
         public function deleteFAQ($id, $db){
 
-            $sql = "DELETE FROM faq WHERE id = :id";
+            $sql = "DELETE FROM faq WHERE faq_id = :faq_id";
     
-            $id = $_POST['id'];
+            $id = $_POST['faq_id'];
             $pst = $db->prepare($sql);
-            $pst->bindParam(':id', $id);
+            $pst->bindParam(':faq_id', $id);
             $count = $pst->execute();
             return $count;
     
