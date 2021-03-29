@@ -15,7 +15,7 @@ require_once "./php/Models/DatabaseTwo.php";
     <!--global head.php-->
     <?php include "php/head.php" ?>
     <title>Pass**** Manager sharing</title>
-    <link rel="stylesheet" href="./css/sharing.css">
+    <link rel="stylesheet" href="./css/RUDsharing.css">
     <script src="./js/script.js" async defer></script>
   </head>
   <body>
@@ -31,6 +31,8 @@ require_once "./php/Models/DatabaseTwo.php";
                 <div class="contentBox">
                     <div class="cBox">
                         <h5>User 1</h5>
+                        <a class="editSP" href="#">Edit</a> ||
+                        <a class="deleteSP" href="#">Delete</a>
                     </div>
                     <div class="cBox">
                         <h5>User 2</h5>

@@ -23,6 +23,23 @@
     font-size: 2em;
 }
 
+.cBox a {
+    text-decoration: none;
+}
+  
+.cBox a:link {
+    color: var( --lightGrey );
+}
+  
+.cBox a:visited {
+    color: var( --lightGrey );
+}
+  
+.cBox a:hover {
+    color: var( --darkPurple )  
+}
+
+
 /***** Tablet Landscape View ******/
 @media screen and (max-width: 957px) {
 
