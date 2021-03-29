@@ -26,4 +26,37 @@
   font-weight: lighter;
 }
 
+.backLink{
+  border-radius: 10px;
+  margin: .5em;
+  padding: .5em 1em;
+  font-size: .8em;
+  font-weight:500;
+  height: unset;
+  background-color: var( --orange );
+  color: black !important;
+  text-decoration: none;
+}
+
+.formDiv {
+  flex-direction: row !important;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.formDiv2 {
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5vw;
+}
+
+#deleteFAQ{
+  margin-right: 35vw;
+}
+
+#updateFAQ{
+  margin-left: 30vw;
+}
+
 

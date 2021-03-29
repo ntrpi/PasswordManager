@@ -51,9 +51,9 @@ if(isset($_POST['updFAQ'])){
       <div class="mainDiv">
         <div class="content">
           <h2 class="hidden">Update FAQ</h2>
-          <div id="FAQForm" class="formDiv">
+          <div id="FAQForm" class="formDiv2">
             <form name="addFAQForm" action="" method="POST">
-            <input type="hidden" name="faqid" value="<?= $id; ?>" />
+            <input type="hidden" name="faq_id" value="<?= $id; ?>" />
               <div class="inputDiv">
                 <label for="faq_question">Question</label>
                 <input type="text" name="question" id="question" value="<?= $question; ?>" />
@@ -65,7 +65,7 @@ if(isset($_POST['updFAQ'])){
               <div class="inputDiv">
                 <input type="submit"  name="updFAQ" value="Submit" />
               </div>  
-              <a href="./listFAQ.php" id="backtoFAQ">Back to FAQ</a>
+              <a href="./listFAQ.php" class="backLink">Back to FAQ</a>
             </form>
           </div>
       </div>

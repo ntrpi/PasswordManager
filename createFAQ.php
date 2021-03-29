@@ -28,10 +28,10 @@ if($f){
 
 <head>
     <!--global head.php-->
-    <?php include "php/head.php" ?>
+    <?php //include "php/head.php" ?>
     <title>Pass**** Manager FAQ</title>
-    <link rel="stylesheet" href="css/FAQ.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/FAQ.css">
     <script src="./js/script.js" async defer></script>
 </head>
 
@@ -42,7 +42,7 @@ if($f){
       <div class="mainDiv">
         <div class="content">
           <h2 class="hidden">Add FAQ</h2>
-          <div id="FAQForm" class="formDiv">
+          <div id="FAQForm" class="formDiv2">
             <form name="addFAQForm" action="" method="POST">
               <div class="inputDiv">
                 <label for="faq_question">Question</label>
@@ -55,7 +55,9 @@ if($f){
               <div class="inputDiv">
                 <input type="submit"  name="addFAQ" value="Submit" />
               </div>  
-              <a href="./listFAQ.php" id="backtoFAQ">Back to FAQ</a>
+              <div id="backtoFaq">
+              <a href="./listFAQ.php" class="backLink">Back to FAQ</a>
+              </div>
             </form>
           </div>
       </div>
