@@ -6,12 +6,12 @@
 require_once './php/Models/DatabaseTwo.php';
 require_once './php/Models/Subscriber.php';
 
-$user = $frecuency = "";
+$user = $frequency2 = "";
 $s2 = new subscriber();
-$users = $s2->getUsers(DatabaseTwo::getDb());
+// $users = $s2->getUsers(DatabaseTwo::getDb());
 
 if(isset($_POST['updateSubscriber'])){
-    $id= $_POST['id'];
+    $id= $_POST['subscriber_id'];
     
     $db = DatabaseTwo::getDb();
 
@@ -19,14 +19,14 @@ if(isset($_POST['updateSubscriber'])){
     $subscriber = $s->getSubscriberById($id, $db);
 
     $user =  $subscriber->user;
-    $frequency = $subscriber->frequency;
+    $frequency2 = $subscriber->frequency;
      
 
 }
 if(isset($_POST['updSubscriber'])){
     $id= $_POST['sid'];
     $user = $_POST['user'];
-    $frecuency = $_POST['frequency'];
+    $frequency = $_POST['frequency'];
     
 
     $db = DatabaseTwo::getDb();
@@ -63,9 +63,10 @@ if(isset($_POST['updSubscriber'])){
             <h2 class="hidden">Subscribe</h2>
             <div class="formDiv">
               <form action="" method="POST">
+              <input type="hidden" name="sid" value="<?= $id ?>"/>
                 <fieldset>
                   <legend>Do you want to join the mailing list?</legend>
-                  <input type="hidden" name="sid" value="<?= $id ?>"/>
+                  
                     <!-- <div class="inputDiv">
                       <input type="radio" id="subscribeYes" name="subscribeYesNo" value="yes">
                       <label for="yes">Yes</label>
@@ -77,11 +78,11 @@ if(isset($_POST['updSubscriber'])){
                       <input type="text" name="user" id="user" value="<?= $user; ?>"  />
                     </div>
                     <div class="inputDiv">
-                      <input type="radio" id="subscribew" name="frequency" value="weekly">
+                      <input type="radio" id="subscribew" name="frequency" value="weekly" <?= ($frequency2 == 'weekly') ? 'checked' : ''; ?> />
                       <label for="weekly">Weekly</label>
-                      <input type="radio" id="subscribem" name="frequency" value="monthly">
+                      <input type="radio" id="subscribem" name="frequency" value="monthly" <?= ($frequency2 == 'monthly') ? 'checked' : ''; ?>/>
                       <label for="monthly">Monthly</label>
-                      <input type="radio" id="subscribes" name="frequency" value="specials">
+                      <input type="radio" id="subscribes" name="frequency" value="special" <?= ($frequency2 == 'special') ? 'checked' : ''; ?>/>
                       <label for="specials">Specials</label>
                     </div> 
                 </fieldset>

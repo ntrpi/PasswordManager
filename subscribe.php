@@ -64,13 +64,13 @@ $subscribers =  $s->getAllSubscribers(DatabaseTwo::getDb());
                       <td><?= $subscriber->user; ?></td>
                       <td>
                           <form action="./updateSubscriber.php" method="post">
-                              <input type="hidden" name="id" value="<?= $subscriber->id; ?>"/>
+                              <input type="hidden" name="subscriber_id" value="<?= $subscriber->subscriber_id; ?>"/>
                               <input type="submit" name="updateSubscriber" value="Update"/>
                           </form>
                       </td>
                       <td>
                           <form action="./deleteSubscriber.php" method="post">
-                              <input type="hidden" name="id" value="<?= $subscriber->id; ?>"/>
+                              <input type="hidden" name="subscriber_id" value="<?= $subscriber->subscriber_id; ?>"/>
                               <input type="submit" name="deleteSubscriber" value="Delete"/>
                           </form>
                       </td>                    

@@ -85,6 +85,7 @@ window.onload = function () {
             }
         }
         
+        createAccountForm.submit();
         return true;
     } );
 };
