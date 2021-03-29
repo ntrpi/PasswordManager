@@ -15,7 +15,7 @@ class Subscriber {
     }
 
     public function getSubscribersByUser($db, $user){
-        $query = "SELECT users.user_name as uname, users.first_name as fname, users.last_name as lname, subscribers.subscribers_id,subscribers.frequency, subscribers.user_id as user FROM subscribers, users where subscribers.user_id = users.user_id AND subscribers.user_id = :user";
+        $query = "SELECT users.user_name as uname, users.first_name as fname, users.last_name as lname, subscribers.frequency, subscribers.user_id as user FROM subscribers, users where subscribers.user_id = users.user_id AND subscribers.user_id = :user";
         $pdostm = $db->prepare($query);
         $pdostm->bindValue(':user', $user, \PDO::PARAM_STR);
         $pdostm->execute();
@@ -25,11 +25,12 @@ class Subscriber {
 
 public function getSubscriberById($id, $db)
 {
-    $sql = "SELECT users.user_name as uname, users.first_name as fname, users.last_name as lname, subscribers.subscribers_id, subscribers.frequency, subscribers.user_id as user FROM users, subscribers WHERE subscribers.user_id = users.user_id AND subscribers.subscriber_id = :id";
+    $sql = "SELECT users.user_name as uname, users.first_name as fname, users.last_name as lname, subscribers.frequency, subscribers.user_id as user FROM users, subscribers WHERE subscribers.user_id = users.user_id AND subscribers.subscriber_id = :id";
         $pst = $db->prepare($sql);
         $pst->bindParam(':id', $id);
         $pst->execute();
         return $pst->fetch(\PDO::FETCH_OBJ);
+        return $s;
     }
 
 
@@ -58,7 +59,7 @@ public function addSubscriber($user, $frequency, $db)
 
 public function deleteSubscriber($id, $db)
 {
-    $sql = "DELETE FROM subscribers WHERE subscriber_id= :id";
+    $sql = "DELETE FROM subscribers WHERE subscriber_id = :id";
 
         $pst = $db->prepare($sql);
         $pst->bindParam(':id', $id);
@@ -66,10 +67,10 @@ public function deleteSubscriber($id, $db)
         return $count;
 }
 public function updateSubscriber($id, $user, $frequency, $db){
-    $sql = "Subscribers
+    $sql = "UPDATE subscribers
             set user_id = :user,
             frequency = :frequency            
-            WHERE id = :id
+            WHERE subscriber_id = :id
     
     ";
 
