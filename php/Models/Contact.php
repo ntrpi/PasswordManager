@@ -1,6 +1,5 @@
 <?php
-namespace Codesses\php\Models
-{
+namespace Codesses\php\Models;
 class Contact
 {
     public function getUsers($db){
@@ -77,7 +76,7 @@ class Contact
                 email = :email,
                 message = :message,
                 WHERE id = :id
-        
+        -- 
         ";
 
         $pst =  $db->prepare($sql);
@@ -94,5 +93,4 @@ class Contact
 
         return $count;
     }
-}
-}
+};

@@ -3,7 +3,7 @@
 use Codesses\php\Models\{DatabaseTwo, Contact};
 
 // require_once 'vendor/autoload.php';
-require_once 'Library/form-functions.php';
+// require_once 'Library/form-functions.php';
 
 require_once './Models/DatabaseTwo.php';
 require_once './Models/Contact.php';
@@ -19,6 +19,7 @@ if(isset($_POST['id'])){
     }
     else {
         echo " problem deleting";
+        /**/ 
     }
 
 

@@ -3,7 +3,7 @@
 use Codesses\php\Models\{DatabaseTwo, Contact};
 
 // require_once 'vendor/autoload.php';
-require_once 'Library/form-functions.php';
+// require_once 'Library/form-functions.php';
 
 require_once './Models/DatabaseTwo.php';
 require_once './Models/Contact.php';
@@ -53,14 +53,18 @@ if(isset($_POST['updContactMessage'])){
 <html lang="en">
 
 <head>
-    <title>Update Contact Message - Contact Management System</title>
-    <meta user="description" content="Contact Management System">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="CSS/main.css" type="text/css">
+    <!-- Head -->
+    <?php include "php/head.php" ?>
+    <title>Pass**** Manager Home</title>
+    <link rel="stylesheet" href="#">
+    <script src="./js/script.js" async defer></script>
 </head>
 
 <body>
-
+    <!-- Header -->
+    <?php include "php/header.php" ?>
+<main>
+<h1 class="h1 text-center">Update Contact Message</h1>
 <div>
     <!--    Form to Update  Contact Message -->
     <form action="" method="post">
@@ -110,11 +114,12 @@ if(isset($_POST['updContactMessage'])){
         <a href="./listContactMessages.php" id="btn_back" class="btn btn-success float-left">Back</a>
         <button type="submit" name="updCar"
                 class="btn btn-primary float-right" id="btn-submit">
-            Update Contact Message
+            Update
         </button>
     </form>
 </div>
-
-
+</main>
+<!-- Footer -->
+<?php include "php/footer.php"?>
 </body>
 </html

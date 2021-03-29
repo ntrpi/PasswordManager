@@ -11,7 +11,7 @@ require_once './Models/Contact.php';
 
 $s = new Contact();
 $users = $s->getUsers(DatabaseTwo::getDb());
-
+/* */
 
     if(isset($_POST['addContactMessage'])){
         $user = $_POST['user'];
@@ -28,7 +28,7 @@ $users = $s->getUsers(DatabaseTwo::getDb());
 
 
         if($c){
-            echo "Added contact message sucessfully";
+            echo "Added contact message sucessfully";/* */
         } else {
             echo "problem adding a contact message";
         }
@@ -40,15 +40,18 @@ $users = $s->getUsers(DatabaseTwo::getDb());
 <html lang="en">
 
 <head>
-    <title>Add Contact Message - Contact Message Management System</title>
-    <meta name="description" content="Contact Management System">
-    <meta name="keywords" content="Contact, College, Admission, Humber">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="CSS/main.css" type="text/css">
+    <!-- Head -->
+    <?php include "php/head.php" ?>
+    <title>Pass**** Manager Home</title>
+    <link rel="stylesheet" href="#">
+    <script src="./js/script.js" async defer></script>
 </head>
 
 <body>
-
+    <!-- Header -->
+    <?php include "php/header.php" ?>
+<main>
+<h1 class="h1 text-center">Add Contact Message</h1>
 <div>
     <!--    Form to Add  Contact Message -->
     <form action="" method="post">
@@ -102,7 +105,8 @@ $users = $s->getUsers(DatabaseTwo::getDb());
         </button>
     </form>
 </div>
-
-
+</main>
+<!-- Footer -->
+<?php include "php/footer.php"?>
 </body>
 </html

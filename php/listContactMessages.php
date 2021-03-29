@@ -10,21 +10,25 @@ require_once './Models/Contact.php';
 
 
 
-$dbcon = DatabaseTwo::getDb();
+$dbconnection = DatabaseTwo::getDb();
 $s = new Contact();
 $contactMessages =  $s->getAllContactMessages(DatabaseTwo::getDb());
 
 ?>
 <html lang="en">
 <head>
-    <title>Humber</title>
-    <meta name="description" content="Contact Management System">
-    <!-- <meta name="keywords" content="Contact, College, Admission, Humber"> -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Head -->
+    <?php include "php/head.php" ?>
+    <title>Pass**** Manager Home</title>
+    <link rel="stylesheet" href="#">
+    <script src="./js/script.js" async defer></script>
 </head>
 
 <body>
-<p class="h1 text-center">Contact Management System</p>
+    <!-- Header -->
+    <?php include "php/header.php" ?>
+<main>
+<h1 class="h1 text-center">List of Contact Messages</h1>
 <div class="m-1">
     <!--    Displaying Data in Table-->
     <table class="table table-bordered tbl">
@@ -70,5 +74,8 @@ $contactMessages =  $s->getAllContactMessages(DatabaseTwo::getDb());
     <a href="./addContactMessage.php" id="btn_addContactMessage" class="btn btn-success btn-lg float-right">Add Contact Message</a>
 
 </div>
+</main>
+<!-- Footer -->
+<?php include "php/footer.php"?>
 </body>
 </html>
