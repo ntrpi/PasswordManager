@@ -15,7 +15,7 @@ $db = DatabaseTwo::getDb();
        $f = $s->addFAQ($question, $answer, $db);
 
 if($f){
-    echo "Added FAQ sucessfully";
+    header("Location:listFAQ.php");
 } else {
     echo "Problem adding FAQ";
 }
@@ -53,7 +53,7 @@ if($f){
                 <input type="text" name="answer" id="answer" value=""/>
               </div>
               <div class="inputDiv">
-                <input type="submit"  name="addFAQ" value="Submit">
+                <input type="submit"  name="addFAQ" value="Submit" />
               </div>  
               <a href="./listFAQ.php" id="backtoFAQ">Back to FAQ</a>
             </form>
