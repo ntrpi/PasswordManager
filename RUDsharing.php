@@ -1,3 +1,14 @@
+<?php
+use Codesses\php\Models\{DatabaseTwo, Sharepassword};
+
+require_once "./php/Models/Sharepassword.php";
+require_once "./php/Models/DatabaseTwo.php";
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html>
   <head>
