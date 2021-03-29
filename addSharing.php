@@ -13,7 +13,7 @@ require_once "./php/Models/DatabaseTwo.php";
   <head>
     <!--global head.php-->
     <?php include "php/head.php" ?>
-    <title>Pass**** Manager Create Account</title>
+    <title>Pass**** Manager Create Sharepassword</title>
     <link rel="stylesheet" href="./css/sharePass.css">
     <script src="./js/script.js" async defer></script>
   </head>
