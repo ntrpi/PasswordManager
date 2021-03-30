@@ -40,7 +40,7 @@ $faq =  $f->getFAQ(DatabaseTwo::getDb());
                     <?php } ?>
                 </ul>
                 <div class="inputDiv">
-                    <a href="./createFAQ.php" id="createFAQ" class="createFAQ">Add FAQ</a>
+                    <a href="./listFAQ.php" id="createFAQ" class="backLink">List FAQ</a>
                 </div>
             </div>
         </div>
