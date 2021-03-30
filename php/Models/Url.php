@@ -1,5 +1,6 @@
 <?php
 namespace Codesses\php\Models
+// File created by Sandra Kupfer 2021/03.
 {
     use Codesses\php\Models\Model;
     require_once "Model.php";
