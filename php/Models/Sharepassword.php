@@ -98,7 +98,7 @@ namespace Codesses\php\Models
         //new list function
         public function listallsharepass($dbcon)
         {
-            $sql = "SELECT users.user_name, users.first_name, url.url 
+            $sql = "SELECT users.user_name, users.first_name, url.url, url.password
                 from users inner join url on users.user_id = url.user_id inner join shared_passwords sp on sp.url_id = url.url_id";
             $pdostm = $dbcon->prepare($sql);
             $pdostm->execute();

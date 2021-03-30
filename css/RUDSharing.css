@@ -38,6 +38,15 @@
 .cBox a:hover {
     color: var( --darkPurple )  
 }
+.editSP {
+    border-radius: 10px;
+    margin: .5em;
+    padding: .5em;
+    font-size: .8em;
+    font-weight: bold;
+    height: unset;
+    background-color: var( --lightGrey );
+}
 
 
 /***** Tablet Landscape View ******/
