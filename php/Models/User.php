@@ -87,16 +87,16 @@ namespace Codesses\php\Models
         {
             if( $action == "create" ) {
                 unset( $params->user_id );
-                unset( $params->password2 );
-
-            } else if( $action == "update" ) {
-                // Not sure yet.
             }
 
             // Hash the password no matter what.
             if( isset( $params->login_password ) ) {
                 $params->login_password = password_hash( $params->login_password, PASSWORD_DEFAULT );
             }
+
+            // Get rid of the repeat password.
+            unset( $params->password2 );
+
             return $params;
         }
 
@@ -141,6 +141,76 @@ namespace Codesses\php\Models
             return null;
         }
 
+        public function getTableHeadersRow( $getActions)
+        {
+            echo '
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">User Name</th>
+                <th scope="col">Email</th>';
+            if( $getActions ) {
+                echo '
+                <th scope="col"></th>
+                <th scope="col"></th>';
+            }
+
+            echo '
+            </tr>
+            ';
+        }
+
+        public function getRowForUser( $user, $getActions )
+        {
+            $edit = $this->submitEdit;
+            $delete = $this->submitDelete;
+            $user_id = $user->user_id;
+            $rows = "
+            <tr>
+                <th>{$user_id}</th>
+                <td>{$user->first_name} {$user->last_name}</td>
+                <td>{$user->user_name}</td>
+                <td>{$user->email}</td>";
+
+            if( $getActions ) {
+                $rows .= "            
+            <td>
+                <form action=\"./account.php?action=update&user_id={$user_id}\" method=\"POST\">
+                    <div class=\"inputDiv\">
+                        <input type=\"hidden\" id=\"user_id\" name=\"user_id\" value=\"{$user_id}\">
+                        <input type=\"submit\" value=\"Edit\" name=\"{$edit}\">
+                    </div>
+                </form>
+            </td>
+            <td class=\"formTd\">
+                <form action=\"./account.php?action=delete&user_id={$user_id}\" method=\"POST\">
+                    <div class=\"inputDiv\">
+                        <input type=\"hidden\" id=\"user_id\" name=\"user_id\" value=\"{$user_id}\">
+                        <input type=\"submit\" value=\"Delete\" name=\"{$delete}\">
+                    </div>
+                </form>
+            </td>";
+            }
+
+            $rows .= "
+            </tr>";
+            echo $rows;
+        }
+
+        public function getRowForUserId( $user_id, $getActions )
+        {
+            $user = $this->getUser( $user_id );
+            return $this->getRowForUser( $user, $getActions );
+        }
+
+        public function getRowsForUsers()
+        {
+            $rows = "";
+            $users = $this->getUsers();
+            foreach( $users as $user ) {
+                $rows .= $this->getRowForUser( $user, true );
+            }
+        }
 
     }
 }

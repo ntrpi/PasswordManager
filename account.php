@@ -5,66 +5,105 @@ use Codesses\php\Models\{FormProcessor, User};
 require_once "./php/Models/User.php";
 require_once "./php/Models/FormProcessor.php";
 
+// Get the action.
+$action = "view";
+if( isset( $_GET[ "action" ] ) ) {
+  $action = $_GET[ "action" ];
+}
+
+// Create a User object to help talk to the database and generate html.
 $userDbHelper = new User;
 
-$errorMessages = array();
-foreach( User::$inputNames as $input ) {
-  $errorMessages[$input] = "";
-}
+// The create and update actions are very similar.
+if( $action == "update" || $action == "create" ) {
 
-$params = User::getParams( User::$inputNames );
+  $errorMessages = array();
+  foreach( User::$inputNames as $input ) {
+    $errorMessages[$input] = "";
+  }
 
-// Use the FormProcessor to check if the form has been submitted.
-// The name of the submit button in the form (see the html below)
-// was set using $userDbHelper->getSubmitAdd(), so we know it will
-// be the same and we don't have to worry about typos.
-if( FormProcessor::isPost( $userDbHelper->getSubmitAdd() ) ) {
+  $params = null;
 
-  // Use the FormProcessor to retrieve the values from the form.
-  $params = FormProcessor::getValuesObject( User::$inputNames );
-  // Database::prettyPrintObj( $params );
+  // The biggest difference is that for update, we pre-populate the form.
+  if( $action == "update" ) {
+    $user_id = $_GET[ "user_id" ];
+    $params = $userDbHelper->getUser( $user_id );
 
-  // Validate the input. This will reflect what the js validate does,
-  // but we can do a bit more because we have access to the database.
-  $result = $userDbHelper->validateInput( $params, "create" );
-
-  if( $result != null ) {
-
-    // Setting the error message here will cause it to show up in the html.
-    // See the divs with class="errorDiv" below.
-    $errorMessages[$result] = User::$errorMessages[$result];
-  
   } else {
-    // Sometimes we don't get useful return values from the database.
-    // The best way to check that a new user has been added is to check
-    // that the number of users after adding the user has increased.
-    // *NOTE: in a large system this won't work because someone might
-    // delete a user after you get the number of users before adding
-    // yours. But it will do for now.
+    $params = User::getParams( User::$inputNames );
+  }
 
-    // Adjust the params for the database.
-    $params = $userDbHelper->fixParams( $params, "create" );
+  // Use the FormProcessor to check if the form has been submitted.
+  // The name of the submit button in the form (see the html below)
+  // was set using $userDbHelper->getSubmitAdd(), so we know it will
+  // be the same and we don't have to worry about typos.
+  if( FormProcessor::isPost( $userDbHelper->getSubmitAdd() ) ) {
+
+    // Use the FormProcessor to retrieve the values from the form.
+    $params = FormProcessor::getValuesObject( User::$inputNames );
     // Database::prettyPrintObj( $params );
-  
-    // Get the current number of users.
-    $numUsers = $userDbHelper->getNumUsers();
 
-    // Add the new user.
-    $userDbHelper->createUser( $params );
+    // Validate the input. This will reflect what the js validate does,
+    // but we can do a bit more because we have access to the database.
+    $result = $userDbHelper->validateInput( $params, $action );
+    if( $result != null ) {
 
-    // Make sure that the number of users has changed.
-    if( $numUsers != $userDbHelper->getNumUsers() ) {
-      // Success! 
-      // TODO: go to account page.
-      header("Location: passwords.php");
-
+      // Setting the error message here will cause it to show up in the html.
+      // See the divs with class="errorDiv" below.
+      $errorMessages[$result] = User::$errorMessages[$result];
+    
     } else {
-      // Failed.
-      // TODO: go to error message.
-      echo "Unable to create account.";
+      // Adjust the params for the database.
+      $params = $userDbHelper->fixParams( $params, $action );
+      // Database::prettyPrintObj( $params );
+
+      if( $action == "update" ) {
+        $userDbHelper->updateUser( $params );
+
+        // Check that the values in the database match what we updated.
+        $user = $userDbHelper->getUser( $user_id );
+        $isSuccess = true;
+        foreach( $params as $key=>$value ) {
+          if( $params->$key != $user->$key ) {
+            $isSuccess = false;
+            break;
+          }
+        }
+
+        if( $isSuccess ) {
+          header( "Location: account.php?user_id={$user_id}" );
+        } else {
+          // Failed.
+          // TODO: go to error message.
+          echo "Unable to update settings.";
+        }
+      } else {
+
+        // Add the new user.
+        $userDbHelper->createUser( $params );
+
+        // Since we checked ahead of time that the user name is unique,
+        // we can confirm that the user was created by get the user
+        // with that user name from the database.
+        $newUser = $userDbHelper->getUsersWhere( "user_name", $params->user_name );
+        if( is_object( $newUser ) ) {
+          // Success! 
+          header("Location: passwords.php");
+
+        } else {
+          // Failed.
+          // TODO: go to error message.
+          echo "Unable to create account.";
+        }
+      }
     }
   }
+} else if( $action == "delete" ) {
+
+} else {
+
 }
+
 ?>
 
 <html>
@@ -84,7 +123,7 @@ if( FormProcessor::isPost( $userDbHelper->getSubmitAdd() ) ) {
         <div class="content">
           <h2 class="hidden">Create Account</h2>
           <div id="signUpForm" class="formDiv">
-            <form name="createAccountForm" action="" method="POST">
+            <form name="accountForm" action="" method="POST">
               <div id="first_nameError" class="errorDiv"><?php echo $errorMessages["first_name"]; ?></div>
               <div class="inputDiv">
                 <label for="first_name">First name</label>
@@ -131,10 +170,7 @@ if( FormProcessor::isPost( $userDbHelper->getSubmitAdd() ) ) {
               </div>  
             </form>
           </div>
-          <div id="signUpSuccess" style="display: none">
-            <p>Account created! <a href="login.html">Click here to log in.</a></p>
-          </div>
-      </div>
+        </div>
       </div>
     </main>
 <!--global footer-->

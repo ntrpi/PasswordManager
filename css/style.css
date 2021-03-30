@@ -263,6 +263,43 @@ footer {
   font-size: .75em;
 }
 
+.basicTable {
+  color: var( --lightGrey );
+}
+
+.basicTable form {
+  margin-block-end: unset;
+}
+
+.basicTable td {
+  border-top: 1px solid var( --darkPurple   );
+  padding: 0 1.2em;
+  vertical-align: middle;
+}
+
+.basicTable .formTd {
+  padding: 0;
+}
+
+.basicTable th {
+  border-top: 1px solid var( --darkPurple   );
+    font-size: 1.2em;
+}
+
+.basicTable tr {
+  font-size: 1em;
+}
+
+.basicTable .inputDiv {
+  margin: 0 auto;
+}
+
+.basicTable input {
+  margin-bottom: 0;
+}
+
+
+
 /***** Tablet Landscape View ******/
 @media screen and (max-width: 957px) {
 
