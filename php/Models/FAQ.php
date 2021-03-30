@@ -35,7 +35,7 @@ class FAQ {
 
         public function updateFAQ($id, $question, $answer, $db){
 
-            $sql = "UPDATE faq set question = :question, answer = :answer, WHERE faq_id = :faq_id";
+            $sql = "UPDATE faq set question = :question, answer = :answer WHERE faq_id = :faq_id";
     
             $pst =   $db->prepare($sql);
             $pst->bindParam(':faq_id', $id);

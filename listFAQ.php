@@ -39,22 +39,23 @@ $faq =  $f->getFAQ(DatabaseTwo::getDb());
                     <div class="inputDiv">
                     <form action="./updateFAQ.php" method="post">
                         <input type="hidden" name="faq_id" value="<?= $qa['faq_id']; ?>"/>
-                        <input type="submit" class="updateFAQ" name="updateFAQ" value="Update"/>
+                        <input type="submit" id="updateFAQ" name="updateFAQ" value="Update"/>
                     </form>
                     </div>
-                    </div>
-                    <div class="formDiv">
                     <form action="./deleteFAQ.php" method="post">
                     <div class="inputDiv">
                         <input type="hidden" name="faq_id" value="<?= $qa['faq_id']; ?>"/>
-                        <input type="submit" class="deleteFAQ" name="deleteFAQ" value="Delete"/>
+                        <input type="submit" id="deleteFAQ" name="deleteFAQ" value="Delete"/>
                     </div>
                     </form>
                     </div>
                     <?php } ?>
                 </ul>
                 <div class="inputDiv">
-                <a href="./createFAQ.php" id="createFAQ" class="createFAQ">Add FAQ</a>
+                <a href="./createFAQ.php" id="createFAQ" class="backLink">Add FAQ</a>
+                </div>
+                <div class="inputDiv">
+                <a href="./clientFAQ.php" id="createFAQ" class="backLink">Client FAQ</a>
                 </div>
             </div>
         </div>
