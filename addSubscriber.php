@@ -26,6 +26,16 @@ require_once './php/Models/Subscriber.php';
        }
     }
 
+    $frequency = '';
+
+    if(isset($_POST['addSubscriber'])){
+      $frequency = $_POST['frequency'] ?? '';
+      if(isset($_POST['frequency'])){
+        $radionov = "Please fill the radio button";    
+      }
+
+    }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -59,22 +69,22 @@ require_once './php/Models/Subscriber.php';
                     </div>                   -->
                      <div class="inputDiv">
                       <label for="user">User_ID</label>
-                      <input type="text" name="user" id="user" value=""/>
+                      <input type="text" name="user" id="user" value="" placeholder="Temporary Field"/>
                     </div>
                     <div class="inputDiv">
-                      <input type="radio" id="subscribew" name="frequency" value="weekly">
+                      <input type="radio" id="subscribew" name="frequency" value="weekly" <?= ($frequency == 'weekly') ? 'checked' : ''; ?> />
                       <label for="weekly">Weekly</label>
-                      <input type="radio" id="subscribem" name="frequency" value="monthly">
+                      <input type="radio" id="subscribem" name="frequency" value="monthly" <?= ($frequency == 'monthly') ? 'checked' : ''; ?> />
                       <label for="monthly">Monthly</label>
-                      <input type="radio" id="subscribes" name="frequency" value="special">
+                      <input type="radio" id="subscribes" name="frequency" value="special" <?= ($frequency == 'special') ? 'checked' : ''; ?> />
                       <label for="specials">Specials</label>
+                      <span style="..."><?= isset($radionov) ? $radionov : ''; ?></span>
                     </div> 
                 </fieldset>
-                <!-- <div class="inputDiv" id="subscribe_b">
-                  <input type="submit" value="Subscribe" >
-                </div>   -->
-                <a href="./subscribe.php" id="btn_back">Back</a>
-                <button type="submit" name="addSubscriber" id="btn-submit">Subscribe</button>
+                <div class='bt'>
+                  <a href="./subscribe.php" id="btn_back" class="backLink">Back</a>
+                  <button type="submit" name="addSubscriber" id="btn-submit" class="backLink">Subscribe</button>
+                </div>  
               </form>
             </div>
           </div>

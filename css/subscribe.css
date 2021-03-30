@@ -2,19 +2,47 @@ fieldset {
   border: 1px solid var( --orange ) ;
   border-radius: 8px;
   box-shadow: 0 0 10px var( --orange ) ;
+  padding-bottom: 20px;
  }
-
  legend {
   font-size: 1.2em;
   font-weight:500;  
 }
-
 .inputDiv {
   display: inline-block;
   text-align: center;
   margin: 1em auto;  
 }
-
-#subscribe_b {
-  margin-left: 2em;
+th {
+  color:var(--orange); 
+  padding:auto;
+}  
+.backLink {
+  border-radius: 10px;
+  margin: .5em;
+  padding: .45em 1em;
+  font-size: .8em;
+  font-weight:500;
+  height: unset;
+  background-color: var( --orange );
+  color: black !important;
+  text-decoration: none;
 }
+.bt {
+  padding-top: 20px;
+}
+#btn_addSubscriber {
+  margin-left: 614px;  
+  background-color: var( --orange );
+  color: black;
+  text-decoration: none;
+  border: black solid 0.02em;
+  border-radius: 10px;  
+  padding: .45em 2em;
+  font-size: .8em;
+  font-weight:500;  
+}
+#addDiv {
+  margin-top: 20px;
+}
+

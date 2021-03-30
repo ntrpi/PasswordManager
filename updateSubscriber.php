@@ -40,6 +40,8 @@ if(isset($_POST['updSubscriber'])){
     }
 }
 
+// No validatioon for user_id field because it is temporary
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -75,7 +77,7 @@ if(isset($_POST['updSubscriber'])){
                     </div>                   -->
                      <div class="inputDiv">
                       <label for="user">User_ID</label>
-                      <input type="text" name="user" id="user" value="<?= $user; ?>"  />
+                      <input type="text" name="user" id="user" value="<?= $user; ?>" />
                     </div>
                     <div class="inputDiv">
                       <input type="radio" id="subscribew" name="frequency" value="weekly" <?= ($frequency2 == 'weekly') ? 'checked' : ''; ?> />
@@ -83,14 +85,13 @@ if(isset($_POST['updSubscriber'])){
                       <input type="radio" id="subscribem" name="frequency" value="monthly" <?= ($frequency2 == 'monthly') ? 'checked' : ''; ?>/>
                       <label for="monthly">Monthly</label>
                       <input type="radio" id="subscribes" name="frequency" value="special" <?= ($frequency2 == 'special') ? 'checked' : ''; ?>/>
-                      <label for="specials">Specials</label>
+                      <label for="specials">Specials</label>                      
                     </div> 
                 </fieldset>
-                <!-- <div class="inputDiv" id="subscribe_b">
-                  <input type="submit" value="Subscribe" >
-                </div>   -->
-                <a href="./subscribe.php" id="btn_back">Back</a>
-                <button type="submit" name="updSubscriber" id="btn-submit">Update</button>
+                <div class="bt">
+                  <a href="./subscribe.php" id="btn_back" class="backLink">Back</a>
+                  <button type="submit" name="updSubscriber" id="btn-submit" class="backLink">Update</button>
+                </div>
               </form>
             </div>
           </div>

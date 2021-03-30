@@ -29,7 +29,7 @@ $subscribers =  $s->getAllSubscribers(DatabaseTwo::getDb());
     <!--global head.php-->
     <?php include "php/head.php" ?>
     <title>Pass**** Manager Home</title>
-    <link rel="stylesheet" href="./css/subscribe.css">
+    <link rel="stylesheet" href="css/subscribe.css">
     <script src="./js/script.js" async defer></script>
   </head>
   <body>
@@ -43,6 +43,7 @@ $subscribers =  $s->getAllSubscribers(DatabaseTwo::getDb());
             <h2 class="hidden">Subscribe</h2>
             <div class="formDiv">
               <table>
+              
               <thead>        
               <tr>                  
                   <th>User Name</th>
@@ -65,20 +66,22 @@ $subscribers =  $s->getAllSubscribers(DatabaseTwo::getDb());
                       <td>
                           <form action="./updateSubscriber.php" method="post">
                               <input type="hidden" name="subscriber_id" value="<?= $subscriber->subscriber_id; ?>"/>
-                              <input type="submit" name="updateSubscriber" value="Update"/>
+                              <input type="submit" name="updateSubscriber"  class="backLink" value="Update"/>
                           </form>
                       </td>
                       <td>
                           <form action="./deleteSubscriber.php" method="post">
                               <input type="hidden" name="subscriber_id" value="<?= $subscriber->subscriber_id; ?>"/>
-                              <input type="submit" name="deleteSubscriber" value="Delete"/>
+                              <input type="submit" name="deleteSubscriber" value="Delete" class="backLink"/>
                           </form>
                       </td>                    
                   </tr>         
               <?php } ?>
               </tbody>
-          </table>
-          <a href="./addSubscriber.php" id="btn_addSubscriber">Add</a>
+          </table>          
+          <div id="addDiv">
+            <a href="./addSubscriber.php" id="btn_addSubscriber" >Add</a>
+          </div>
               <!-- <form action="" method="POST">
                 <fieldset>
                   <legend>Do you want to join the mailing list?</legend>
