@@ -56,7 +56,7 @@ $contactMessages =  $s->getAllContactMessages(DatabaseTwo::getDb());
                 <td><?= $contactMessages->message; ?></td>
                 <td>
                     <form action="./updateContactMessage.php" method="post">
-                        <input type="hidden" name="id" value="<?= $contactMessages->cm_id; ?>"/>
+                        <input type="hidden" name="cm_id" value="<?= $contactMessages->cm_id; ?>"/>
                         <input type="submit" class="button btn btn-primary" name="updateContactMessage" value="Update"/>
                     </form>
                 </td>
