@@ -31,14 +31,15 @@ use PDOException;
                 try {
                 // Establish the connection.
                 self::$dbconnection = new \PDO( self::$dataSourceName, self::$userName, self::$password );
-        
+
+                // Set some connection attributes.
+                self::$dbconnection->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION );
+
                 } catch( PDOException $e ) {
                     echo $e->getMessage()();
                     exit();
                 }
 
-                // Set some connection attributes.
-                self::$dbconnection->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION );
             }
             return self::$dbconnection;
         }

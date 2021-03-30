@@ -34,6 +34,44 @@ $users = $s->getUsers(DatabaseTwo::getDb());
         }
 
     }
+    if(isset($_POST['submit'])) {
+        $emailerr = "";
+        $nameerr = "";
+        $lasterr = "";
+        $usererr = "";
+        $timestamperr = "";
+        $messageerr = "";
+        $user = $_POST['user'];
+        $timestamp = $_POST['timestamp'];
+        $first_name = $_POST['first_name'];
+        $last_name = $_POST['last_name'];
+        $email = $_POST['email'];
+        $message = $_POST['message'];
+        
+        if($email == ""){
+            $emailerr = "please enter email";
+        } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $emailerr = "please enter a valid email";
+        } else {
+            $emailerr = " That's a valid email";
+        }
+        if(empty($user)) {
+            $usererr = " Please enter name";
+        }
+        if(empty($timestamp)) {
+            $timestamperr = " Please enter name";
+        }
+        if(empty($first_name)) {
+            $nameerr = " Please enter name";
+        }
+        if(empty($last_name)) {
+            $lasterr = " Please enter name";
+        }
+        if(empty($message)) {
+            $messageerr = " Please enter name";
+        }
+    
+    };
 ?>
 
 
@@ -64,7 +102,7 @@ $users = $s->getUsers(DatabaseTwo::getDb());
             </span>
         </div>
         <div class="form-group">
-            <label for="timestamp">timestamp :</label>
+            <label for="timestamp">Time :</label>
             <input type="text" class="form-control" id="timestamp" name="timestamp"
                    value="" placeholder="Enter timestamp">
             <span style="color: red">
