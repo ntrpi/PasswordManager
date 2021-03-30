@@ -1,5 +1,7 @@
 <?php
+
 use Codesses\php\Models\{DatabaseTwo, FAQ};
+
 require "./php/Models/FAQ.php";
 require "./php/Models/DatabaseTwo.php";
 
@@ -20,30 +22,31 @@ $faq =  $f->getFAQ(DatabaseTwo::getDb());
 </head>
 
 <body>
-<!--main nav-->
-<?php include 'php/header.php' ?>
+    <!--main nav-->
+    <?php include 'php/header.php' ?>
     <main>
         <div class="mainDiv">
             <!-- YOUR STUFF GOES HERE-->
             <div class="content">
                 <h2 id="faqh2">FAQ</h2>
                 <ul id="faqlist">
-                <?php foreach ($faq as $qa) { ?>
-                    <div class="questionanswersection">
-                        <div class="cBox">
-                            <li class="faqquestions"><?= $qa['question'] ?></li>
+                    <?php foreach ($faq as $qa) { ?>
+                        <div class="questionanswersection">
+                            <div class="cBox">
+                                <li class="faqquestions"><?= $qa['question'] ?></li>
+                            </div>
+                            <li class="faqanswers"><?= $qa['answer'] ?></li>
                         </div>
-                        <li class="faqanswers"><?= $qa['answer'] ?></li>
-                    </div>
                     <?php } ?>
                 </ul>
                 <div class="inputDiv">
-                <a href="./createFAQ.php" id="createFAQ" class="createFAQ">Add FAQ</a>
+                    <a href="./createFAQ.php" id="createFAQ" class="createFAQ">Add FAQ</a>
                 </div>
             </div>
         </div>
     </main>
- <!--global footer-->
- <?php include "php/footer.php"?>
+    <!--global footer-->
+    <?php include "php/footer.php" ?>
 </body>
+
 </html>
