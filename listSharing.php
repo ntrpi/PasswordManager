@@ -4,6 +4,14 @@ use Codesses\php\Models\{DatabaseTwo, Sharepassword};
 require_once "./php/Models/Sharepassword.php";
 require_once "./php/Models/DatabaseTwo.php";
 
+$dbcon = DatabaseTwo::getDb();
+//list the shared password
+$sp = new Sharepassword();
+//connection to databse to access all shared password 
+$allspass = $sp->listallsharepass(DatabaseTwo::getDb());
+//list shared password under that username
+//$allshared = $listSharedPass->listSharedPasswordByUser(DatabaseTwo::getDb(), $_GET['user_id']);
+
 
 
 ?>
@@ -29,27 +37,20 @@ require_once "./php/Models/DatabaseTwo.php";
             <div class="content">
                 <h2>Pass**** Sharing</h2>
                 <div class="contentBox">
+                    <!--listing the shared password-->
+                    <!-- list not working -->
+                    <?php foreach ($allspass as $shared) { ?>
                     <div class="cBox">
-                        <h5>User 1</h5>
-                        <a class="editSP" href="#">Edit</a> ||
-                        <a class="deleteSP" href="#">Delete</a>
+                        <h5><?= $shared['owner_id'] ?></h5>
+                        <p><?= $shared['url_id'] ?></p>
+                        <p><?= $shared['recipient_id'] ?></p>
                     </div>
-                    <div class="cBox">
-                        <h5>User 2</h5>
-                    </div>
-                    <div class="cBox">
-                        <h5>User 3</h5>
-                    </div>
-                    <div class="cBox">
-                        <h5>User 4</h5>
-                    </div>
-                    <div class="cBox">
-                        <h5>User 5</h5>
-                    </div>
-                    <div class="cBox">
-                        <h5>User 6</h5>
-                    </div>
-                </div>
+                    <form action="./editdeleteSharing.php" method="post">
+                        <input type="hidden" name="sp_id" value="<?= $shared->$sp_id; ?>"/>
+                        <input type="submit" class="editSP" name="updateSharedPassword" value="Update"/>
+                    </form>
+                    <!--closing php tag-->
+                    <?php } ?>
             </div>
         </div>
     </main>

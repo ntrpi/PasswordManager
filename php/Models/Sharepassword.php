@@ -5,10 +5,10 @@ namespace Codesses\php\Models
     Class Sharepassword {
 
         //method to get all the shared password from the shared password table 
-        public function getSharedpassword($dbconnection){
-            $sql = "SELECT * FROM shared_passwords";
+        public function getSharedpassword($db){
+            $sql = "SELECT * FROM shared_passwords, users, url";
     
-            $pdostm = $dbconnection->prepare($sql);
+            $pdostm = $db->prepare($sql);
             $pdostm->execute();
     
             //getting back an ARRAY of shared passwords as an object 
@@ -17,7 +17,7 @@ namespace Codesses\php\Models
         }
 
         //READ::function to list all urls shared by a logged in user
-        //*******should add in logged in user as a parameter...
+        //*******should add in logged in user as a parameter...session variable 
         public function listSharedPasswordByUser($db, $user_id){
             //query to list all urls shared and who it was shared to
             $sql = "SELECT users.user_name, url.url, users.first_name FROM users
@@ -25,7 +25,7 @@ namespace Codesses\php\Models
             JOIN url ON url.url = sp.url_id WHERE sp.owner_id =:user_id";
 
             $pdostm = $db->prepare($sql);
-            $pdostm->bindValue(':user_id', $user_id, \PDO::PARAM_STR);
+            $pdostm->bindValue(':user_id', $user_id);
             $pdostm->execute();
     
             //below is creating a variable and using the PDO statement to fetch all the data as associative arrays 
@@ -34,6 +34,8 @@ namespace Codesses\php\Models
 
         }
 
+        //take the var for the logged in session user*****
+        //take the value of the url_id uer has clicked on
         //CREATE::function to share a password
         public function shareApassword($db, $url_id, $owner_id, $recipient_id){
             //add sql query
@@ -55,7 +57,7 @@ namespace Codesses\php\Models
             
 
         }
-
+        //recipitentid
         //UPDATE::function to update the user this password is shared to
         //first get shared password id
         public function getSharedPasswordById($sp_id, $db) {
@@ -92,6 +94,19 @@ namespace Codesses\php\Models
             return $deleteSharedPass;
 
         }
+
+        //new list function
+        public function listallsharepass($db)
+        {
+            $sql = "SELECT users.user_name, url.url, users.first_name FROM users
+            JOIN shared_passwords sp ON users.user_name = sp.owner_id && users.first_name = sp.recipient_id 
+            JOIN url ON url.url = sp.url_id";
+            $pdostm = $db->prepare($sql);
+            $pdostm->execute();
+
+            $sharepass = $pdostm->fetchAll(\PDO::FETCH_OBJ);
+            return $sharepass;
+        } 
 
 
 

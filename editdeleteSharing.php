@@ -31,8 +31,7 @@ require_once "./php/Models/DatabaseTwo.php";
                 <div class="contentBox">
                     <div class="cBox">
                         <h5>User 1</h5>
-                        <a class="editSP" href="#">Edit</a> ||
-                        <a class="deleteSP" href="#">Delete</a>
+                        <a class="editSP" href="<?php echo 'editdeleteSharing.php'; ?>">Edit</a> ||
                     </div>
                     <div class="cBox">
                         <h5>User 2</h5>
