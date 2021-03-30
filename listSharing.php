@@ -11,7 +11,7 @@ $sp = new Sharepassword();
 $allspass = $sp->listallsharepass(DatabaseTwo::getDb());
 //list shared password under that username
 //$allshared = $listSharedPass->listSharedPasswordByUser(DatabaseTwo::getDb(), $_GET['user_id']);
-
+var_dump($allspass);
 
 
 ?>
@@ -41,9 +41,9 @@ $allspass = $sp->listallsharepass(DatabaseTwo::getDb());
                     <!-- list not working -->
                     <?php foreach ($allspass as $shared) { ?>
                     <div class="cBox">
-                        <h5><?= $shared['owner_id'] ?></h5>
-                        <p><?= $shared['url_id'] ?></p>
-                        <p><?= $shared['recipient_id'] ?></p>
+                        <h5><?= $shared['user_name']; ?></h5>
+                        <p><?= $shared['first_name']; ?></p>
+                        <p><?= $shared['url']; ?></p>
                     </div>
                     <form action="./editdeleteSharing.php" method="post">
                         <input type="hidden" name="sp_id" value="<?= $shared->$sp_id; ?>"/>

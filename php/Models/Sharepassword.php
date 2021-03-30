@@ -96,12 +96,11 @@ namespace Codesses\php\Models
         }
 
         //new list function
-        public function listallsharepass($db)
+        public function listallsharepass($dbcon)
         {
-            $sql = "SELECT users.user_name, url.url, users.first_name FROM users
-            JOIN shared_passwords sp ON users.user_name = sp.owner_id && users.first_name = sp.recipient_id 
-            JOIN url ON url.url = sp.url_id";
-            $pdostm = $db->prepare($sql);
+            $sql = "SELECT users.user_name, users.first_name, url.url 
+                from users inner join url on users.user_id = url.user_id inner join shared_passwords sp on sp.url_id = url.url_id";
+            $pdostm = $dbcon->prepare($sql);
             $pdostm->execute();
 
             $sharepass = $pdostm->fetchAll(\PDO::FETCH_OBJ);
