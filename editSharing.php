@@ -4,6 +4,8 @@ use Codesses\php\Models\{DatabaseTwo, Sharepassword};
 require_once "./php/Models/Sharepassword.php";
 require_once "./php/Models/DatabaseTwo.php";
 
+//makesure get post id -> url id userid 
+//get all the users and create a drop down looping through all the users 
 
 
 ?>
