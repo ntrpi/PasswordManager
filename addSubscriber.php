@@ -8,31 +8,31 @@ require_once './php/Models/Subscriber.php';
 
 $s = new Subscriber(); 
 //  $users = $s->getUsers(Database::getDb());
-
-if(isset($_POST['addSubscriber'])){
-    $user = $_POST['user'];
-    $frequency = $_POST['frequency'];
-
-    $db = DatabaseTwo::getDb();
-    $s = new Subscriber();       
-    $b = $s->addSubscriber($user, $frequency, $db);
-
-    if($b){
-      header("Location: subscribe.php");
-    } else {
-      echo "problem adding a subscriber";
-    }
-}
-
-//No validation for user_id field because it is temporary
 $frequency = '';
 
 if(isset($_POST['addSubscriber'])){
+    $user = $_POST['user'];
     $frequency = $_POST['frequency'] ?? '';
-if(isset($_POST['frequency'])){
-    $radionov = "Please fill the radio button";    
+    
+    if($frequency == ''){
+      $radionov = "Please fill radio button";
+    } else {
+      $db = DatabaseTwo::getDb();
+      $s = new Subscriber();       
+      $b = $s->addSubscriber($user, $frequency, $db);
+
+      if($b){
+        header("Location: subscribe.php");
+      } else {
+        echo "problem adding a subscriber";
+      }
     }
+    
 }
+
+//No validation for user_id field because it is temporary
+
+
 
 ?>
 <!DOCTYPE html>
