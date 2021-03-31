@@ -14,6 +14,9 @@ $owners = $sp->getAllusers($dbcon);
 $recipients = $sp->getAllusers($dbcon);
 $urls = $sp->getAllurl($dbcon);
 
+$successMsg = "";
+$invalidMsg = "";
+
 //sharing a password
 if(isset($_POST['addSharing'])){
     $owner_id = $_POST['owner'];
@@ -23,13 +26,13 @@ if(isset($_POST['addSharing'])){
     $sp = new Sharepassword();
     $addShare= $sp->sharePassword($url_id, $owner_id, $recipient_id, $dbcon);
 
-    //Final copy fix share message....
+
     if($addShare){
-        $successMsg = '<div style="display: block">
+        $successMsg = '<div style="display: block;">
         <h4>Password has been shared!</h4>
         </div>';
     } else {
-        $invalidMsg = '<div style="display: block">
+        $invalidMsg = '<div style="display: block;">
         <h4>Please try again!</h4>
         </div>';
     }
