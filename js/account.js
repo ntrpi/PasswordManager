@@ -23,6 +23,7 @@ window.onload = function () {
 
         // Get the input element and set its on click function.
         const formField = document.getElementById( fieldName );
+
         if( formField == null ) {
             continue;
         }

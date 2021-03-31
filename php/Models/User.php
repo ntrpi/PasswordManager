@@ -3,8 +3,9 @@
 
 namespace Codesses\php\Models
 {
-    use Codesses\php\Models\Model;
+    use Codesses\php\Models\{Model, RH};
     require_once "Model.php";
+    require_once "RoutingHelper.php";
 
     class User extends Model
     {
@@ -64,6 +65,7 @@ namespace Codesses\php\Models
             return parent::getRowObjectsWithValue( $columnName, $value );
         }
 
+        // TODO: refactor with RH actions.
         // Syntactic sugar.
         public function getUser( $id )
         {
@@ -92,16 +94,30 @@ namespace Codesses\php\Models
         {
             // This params object will likely be from the form processor, so make sure you add in values for the columns
             // that don't have input fields and unset value that don't correspond to a column, 
-            // or call fixParams( $params, "create" ) first.
+            // or call fixParams( $params, RH::$actionCreate ) first.
 
             return parent::addRow( $params );
         }
 
+        public function doAction( $action, $params ) 
+        {
+            switch( $action ) {
+                case RH::$actionCreate: 
+                    return parent::addRow( $params );
+                case RH::$actionUpdate: 
+                    return parent::updateRow( $params );
+                case RH::$actionDelete: 
+                    return parent::deleteRow( $params );
+                case RH::$actionView: 
+                    return parent::getRowObject( $params );
+            }            
+        }
+
         // Make sure that the $params are appropriate for creating a new user.
-        // $action: One of "create" or "update".
+        // $action: One of routing values in RoutingHelper.php.
         public function fixParams( $params, $action )
         {
-            if( $action == "create" ) {
+            if( RH::isCreate( $action ) ) {
                 unset( $params->user_id );
             }
 
@@ -132,7 +148,7 @@ namespace Codesses\php\Models
                 // Check that the user name is unique.
                 return strlen( $value ) > 0 && sizeof( $this->getUsersWhere( $columnName, $value ) ) == 0;
             }
-            return false;
+            return true;
         }
 
         // Validate all of the key/value pairs in the $params object.
@@ -140,12 +156,12 @@ namespace Codesses\php\Models
         // invalid input.
         public function validateInput( $params, $action )
         {
-            foreach( self::$inputNames as $key ) {
-                if( $key == $this->idName && $action == "create" ) {
+            foreach( $params as $key=>$value ) {
+                if( $key == $this->idName && RH::isCreate( $action ) ) {
                     continue;
                 }
                 if( $key == "password2" ) {
-                    if( strcmp( $params->login_password, $params->$key ) != 0 ) {
+                    if( strcmp( $params->login_password, $value ) != 0 ) {
                         return $key;
                     }
                     continue;
@@ -178,9 +194,9 @@ namespace Codesses\php\Models
 
         public function getRowForUser( $user, $getActions )
         {
-            $edit = $this->submitEdit;
-            $delete = $this->submitDelete;
             $user_id = $user->user_id;
+            $edit = RH::getActionUpdate( $user_id );
+            $delete = RH::getActionDelete( $user_id );
             $rows = "
             <tr>
                 <th>{$user_id}</th>
@@ -188,21 +204,22 @@ namespace Codesses\php\Models
                 <td>{$user->user_name}</td>
                 <td>{$user->email}</td>";
 
+            // TODO: refactor.
             if( $getActions ) {
                 $rows .= "            
             <td>
-                <form action=\"./account.php?action=update&user_id={$user_id}\" method=\"POST\">
+                <form action=\"./account.php?{$edit}\" method=\"POST\">
                     <div class=\"inputDiv\">
                         <input type=\"hidden\" id=\"user_id\" name=\"user_id\" value=\"{$user_id}\">
-                        <input type=\"submit\" value=\"Edit\" name=\"{$edit}\">
+                        <input type=\"submit\" value=\"Edit\">
                     </div>
                 </form>
             </td>
             <td class=\"formTd\">
-                <form action=\"./account.php?action=delete&user_id={$user_id}\" method=\"POST\">
+                <form action=\"./account.php?{$delete}\" method=\"POST\">
                     <div class=\"inputDiv\">
                         <input type=\"hidden\" id=\"user_id\" name=\"user_id\" value=\"{$user_id}\">
-                        <input type=\"submit\" value=\"Delete\" name=\"{$delete}\">
+                        <input type=\"submit\" value=\"Delete\">
                     </div>
                 </form>
             </td>";

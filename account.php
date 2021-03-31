@@ -1,40 +1,50 @@
 <?php
 
-use Codesses\php\Models\{FormProcessor, User};
+use Codesses\php\Models\{FormProcessor, User, RH};
 
 require_once "./php/Models/User.php";
 require_once "./php/Models/FormProcessor.php";
 
+// Create a helper object.
 $userDbHelper = new User;
 
+// See if this is a GET or POST request.
+$isPost = FormProcessor::isPost( $userDbHelper->getSubmitName() );
+
+// Set up the error messages array for use later in the html.
 $errorMessages = array();
 foreach( User::$inputNames as $input ) {
   $errorMessages[$input] = "";
 }
 
-$params = User::getParams( User::$inputNames );
+// $params are used in the html below.
+$params = null;
 
-// Use the FormProcessor to check if the form has been submitted.
-// The name of the submit button in the form (see the html below)
-// was set using $userDbHelper->getSubmitAdd(), so we know it will
-// be the same and we don't have to worry about typos.
-if( FormProcessor::isPost( $userDbHelper->getSubmitAdd() ) ) {
+// This might be set.
+$user_id = RH::getValue( RH::$id );
+
+// Get the action from the routing into.
+$action = RH::getValue( RH::$action );
+
+if( $isPost ) {
 
   // Use the FormProcessor to retrieve the values from the form.
   $params = FormProcessor::getValuesObject( User::$inputNames );
-  // Database::prettyPrintObj( $params );
 
   // Validate the input. This will reflect what the js validate does,
   // but we can do a bit more because we have access to the database.
-  $result = $userDbHelper->validateInput( $params, "create" );
-
+  $result = $userDbHelper->validateInput( $params, $action );
   if( $result != null ) {
 
     // Setting the error message here will cause it to show up in the html.
     // See the divs with class="errorDiv" below.
     $errorMessages[$result] = User::$errorMessages[$result];
-  
+
   } else {
+    if( !RH::isCreate( $action ) ) {
+      $params->user_id = $user_id;
+    }
+
     // Sometimes we don't get useful return values from the database.
     // The best way to check that a new user has been added is to check
     // that the number of users after adding the user has increased.
@@ -43,28 +53,46 @@ if( FormProcessor::isPost( $userDbHelper->getSubmitAdd() ) ) {
     // yours. But it will do for now.
 
     // Adjust the params for the database.
-    $params = $userDbHelper->fixParams( $params, "create" );
-    // Database::prettyPrintObj( $params );
-  
-    // Get the current number of users.
-    $numUsers = $userDbHelper->getNumUsers();
+    $params = $userDbHelper->fixParams( $params, $action );
 
-    // Add the new user.
-    $userDbHelper->createUser( $params );
+    $userDbHelper->doAction( $action, $params );
 
-    // Make sure that the number of users has changed.
-    if( $numUsers != $userDbHelper->getNumUsers() ) {
-      // Success! 
-      // TODO: go to account page.
-      header("Location: passwords.php");
-
-    } else {
-      // Failed.
-      // TODO: go to error message.
-      echo "Unable to create account.";
+    // Check that the values in the database match what we updated.
+    $user = $userDbHelper->getUsersWhere( "user_name", $params->user_name )[0];
+    
+    $isSuccess = true;
+    foreach( $params as $key=>$value ) {
+        if( $params->$key != $user->$key ) {
+        $isSuccess = false;
+        break;
+        }
     }
+
+    if( $isSuccess ) {
+      if( RH::isCreate( $action ) ) {
+        header( "Location: passwords.php?" );
+      } else {
+        header( "Location: accounts.php?" );
+      }
+    } else {
+        // Failed.
+        // TODO: go to error message.
+        echo "Unable to update settings.";
+        exit();
+    }
+
+  }
+
+} else {
+  if( RH::isCreate( $action ) ) {
+    $params = $userDbHelper->getParams( User::$createInputNames );
+  } else {
+    $params = $userDbHelper->getUser( $user_id );
+    unset( $params->login_password );
+    unset( $params->password2 );
   }
 }
+
 ?>
 
 <html>
@@ -128,7 +156,7 @@ if( FormProcessor::isPost( $userDbHelper->getSubmitAdd() ) ) {
 
               <!-- Note that I am setting the name of the submit input to be the same as what the
                   FormProcessor is checking for. -->
-                <input type="submit"  name="<?php echo $userDbHelper->getSubmitAdd(); ?>" value="Sign Up">
+                <input type="submit"  name="<?php echo $userDbHelper->getSubmitName(); ?>" value="Sign Up">
               </div>  
             </form>
           </div>
