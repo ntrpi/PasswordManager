@@ -1,46 +1,40 @@
 <?php
+// File created by Barbara Cam 2021/03.
 
- use Codesses\php\Models\{DatabaseTwo, Subscriber};
-// require_once 'vendor/autoload.php';
+use Codesses\php\Models\{DatabaseTwo, Subscriber};
 
 require_once './php/Models/DatabaseTwo.php';
 require_once './php/Models/Subscriber.php';
 
 $user = $frequency2 = "";
 $s2 = new subscriber();
-// $users = $s2->getUsers(DatabaseTwo::getDb());
+//$users = $s2->getUsers(DatabaseTwo::getDb());
 
 if(isset($_POST['updateSubscriber'])){
-    $id= $_POST['subscriber_id'];
+  $id= $_POST['subscriber_id'];
     
     $db = DatabaseTwo::getDb();
-
     $s = new subscriber();
     $subscriber = $s->getSubscriberById($id, $db);
-
+      
     $user =  $subscriber->user;
     $frequency2 = $subscriber->frequency;
-     
-
 }
 if(isset($_POST['updSubscriber'])){
     $id= $_POST['sid'];
     $user = $_POST['user'];
-    $frequency = $_POST['frequency'];
-    
+    $frequency = $_POST['frequency'];    
 
-    $db = DatabaseTwo::getDb();
+    $db = DatabaseTwo::getDb();    
     $s = new subscriber();
     $count = $s->updateSubscriber($id, $user, $frequency, $db);
-
-    if($count){
-       header('Location: subscribe.php');
-    } else {
-        echo "problem";
-    }
+      if($count){
+        header('Location: subscribe.php');
+      } else {
+        echo "Updating failing";
+      }
 }
-
-// No validatioon for user_id field because it is temporary
+// No validation for user_id field because it is temporary
 
 ?>
 <!DOCTYPE html>
@@ -65,28 +59,21 @@ if(isset($_POST['updSubscriber'])){
             <h2 class="hidden">Subscribe</h2>
             <div class="formDiv">
               <form action="" method="POST">
-              <input type="hidden" name="sid" value="<?= $id ?>"/>
+                <input type="hidden" name="sid" value="<?= $id ?>"/>
                 <fieldset>
                   <legend>Do you want to join the mailing list?</legend>
-                  
-                    <!-- <div class="inputDiv">
-                      <input type="radio" id="subscribeYes" name="subscribeYesNo" value="yes">
-                      <label for="yes">Yes</label>
-                      <input type="radio" id="subscribeNo" name="subscribeYesNo" value="no">
-                      <label for=no>No</label>
-                    </div>                   -->
-                     <div class="inputDiv">
-                      <label for="user">User_ID</label>
-                      <input type="text" name="user" id="user" value="<?= $user; ?>" />
-                    </div>
-                    <div class="inputDiv">
-                      <input type="radio" id="subscribew" name="frequency" value="weekly" <?= ($frequency2 == 'weekly') ? 'checked' : ''; ?> />
-                      <label for="weekly">Weekly</label>
-                      <input type="radio" id="subscribem" name="frequency" value="monthly" <?= ($frequency2 == 'monthly') ? 'checked' : ''; ?>/>
-                      <label for="monthly">Monthly</label>
-                      <input type="radio" id="subscribes" name="frequency" value="special" <?= ($frequency2 == 'special') ? 'checked' : ''; ?>/>
-                      <label for="specials">Specials</label>                      
-                    </div> 
+                  <div class="inputDiv">
+                    <label for="user">User_ID</label>
+                    <input type="text" name="user" id="user" value="<?= $user; ?>" />
+                  </div>
+                  <div class="inputDiv">
+                    <input type="radio" id="subscribew" name="frequency" value="weekly" <?= ($frequency2 == 'weekly') ? 'checked' : ''; ?> />
+                    <label for="weekly">Weekly</label>
+                    <input type="radio" id="subscribem" name="frequency" value="monthly" <?= ($frequency2 == 'monthly') ? 'checked' : ''; ?>/>
+                    <label for="monthly">Monthly</label>
+                    <input type="radio" id="subscribes" name="frequency" value="special" <?= ($frequency2 == 'special') ? 'checked' : ''; ?>/>
+                    <label for="specials">Specials</label>                      
+                  </div> 
                 </fieldset>
                 <div class="bt">
                   <a href="./subscribe.php" id="btn_back" class="backLink">Back</a>

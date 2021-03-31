@@ -1,5 +1,5 @@
 <?php
-//namespace
+
 use Codesses\php\Models\{DatabaseTwo, Contact};
 
 // require_once 'vendor/autoload.php';
@@ -7,8 +7,6 @@ use Codesses\php\Models\{DatabaseTwo, Contact};
 
 require_once './php/Models/DatabaseTwo.php';
 require_once './php/Models/Contact.php';
-
-
 
 $dbconnection = DatabaseTwo::getDb();
 $s = new Contact();

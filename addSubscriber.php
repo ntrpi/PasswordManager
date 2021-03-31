@@ -1,40 +1,38 @@
 <?php
+// File created by Barbara Cam 2021/03.
 
- use Codesses\php\Models\{DatabaseTwo, Subscriber};
-// require_once 'vendor/autoload.php';
+use Codesses\php\Models\{DatabaseTwo, Subscriber};
 
 require_once './php/Models/DatabaseTwo.php';
 require_once './php/Models/Subscriber.php';
 
- $s = new Subscriber();
- 
+$s = new Subscriber(); 
 //  $users = $s->getUsers(Database::getDb());
 
-    if(isset($_POST['addSubscriber'])){
-       $user = $_POST['user'];
-       $frequency = $_POST['frequency'];
+if(isset($_POST['addSubscriber'])){
+    $user = $_POST['user'];
+    $frequency = $_POST['frequency'];
 
-       $db = DatabaseTwo::getDb();
-       $s = new Subscriber();       
-       $b = $s->addSubscriber($user, $frequency, $db);
+    $db = DatabaseTwo::getDb();
+    $s = new Subscriber();       
+    $b = $s->addSubscriber($user, $frequency, $db);
 
-
-       if($b){
-          header("Location: subscribe.php");
-       } else {
-           echo "problem adding a subscriber";
-       }
+    if($b){
+      header("Location: subscribe.php");
+    } else {
+      echo "problem adding a subscriber";
     }
+}
 
-    $frequency = '';
+//No validation for user_id field because it is temporary
+$frequency = '';
 
-    if(isset($_POST['addSubscriber'])){
-      $frequency = $_POST['frequency'] ?? '';
-      if(isset($_POST['frequency'])){
-        $radionov = "Please fill the radio button";    
-      }
-
+if(isset($_POST['addSubscriber'])){
+    $frequency = $_POST['frequency'] ?? '';
+if(isset($_POST['frequency'])){
+    $radionov = "Please fill the radio button";    
     }
+}
 
 ?>
 <!DOCTYPE html>
@@ -61,13 +59,7 @@ require_once './php/Models/Subscriber.php';
               <form action="" method="POST">
                 <fieldset>
                   <legend>Do you want to join the mailing list?</legend>
-                    <!-- <div class="inputDiv">
-                      <input type="radio" id="subscribeYes" name="subscribeYesNo" value="yes">
-                      <label for="yes">Yes</label>
-                      <input type="radio" id="subscribeNo" name="subscribeYesNo" value="no">
-                      <label for=no>No</label>
-                    </div>                   -->
-                     <div class="inputDiv">
+                   <div class="inputDiv">
                       <label for="user">User_ID</label>
                       <input type="text" name="user" id="user" value="" placeholder="Temporary Field"/>
                     </div>

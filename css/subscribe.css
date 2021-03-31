@@ -6,43 +6,40 @@ fieldset {
  }
  legend {
   font-size: 1.2em;
-  font-weight:500;  
+  font-weight: 500;  
 }
 .inputDiv {
   display: inline-block;
   text-align: center;
   margin: 1em auto;  
 }
-th {
-  color:var(--orange); 
-  padding:auto;
-}  
-.backLink {
+.basicTable th {
+  color: var(--orange); 
+  padding: auto;
+  font-size: 1em;
+} 
+.backLink, #btnAddSubscriber {
   border-radius: 10px;
-  margin: .5em;
-  padding: .45em 1em;
+  font-weight:500; 
   font-size: .8em;
-  font-weight:500;
-  height: unset;
+  color: black;
   background-color: var( --orange );
-  color: black !important;
   text-decoration: none;
+  border: var(--lightGrey) solid 0.03em;   
+}
+.backLink {  
+  margin: .5em;
+  padding: .45em 1em; 
+  text-decoration: none;
+}
+#btnAddSubscriber {
+  margin-left: 447px;
+  padding: .45em 1.81em;   
 }
 .bt {
-  padding-top: 20px;
-}
-#btn_addSubscriber {
-  margin-left: 614px;  
-  background-color: var( --orange );
-  color: black;
-  text-decoration: none;
-  border: black solid 0.02em;
-  border-radius: 10px;  
-  padding: .45em 2em;
-  font-size: .8em;
-  font-weight:500;  
+  padding-top: 15px;
 }
 #addDiv {
-  margin-top: 20px;
-}
+  margin-top: 15px;
+} 
 
