@@ -3,7 +3,38 @@ use Codesses\php\Models\{DatabaseTwo, Sharepassword};
 
 require_once "./php/Models/Sharepassword.php";
 require_once "./php/Models/DatabaseTwo.php";
+require_once "./library/share-functions.php";
 
+$dbcon = DatabaseTwo::getDb();
+$sp = new Sharepassword();
+
+//add in if block for your session variable in drop down function!!
+//for now added a user drop down to insure shared_passwords table is getting updated
+$owners = $sp->getAllusers($dbcon);
+$recipients = $sp->getAllusers($dbcon);
+$urls = $sp->getAllurl($dbcon);
+
+//sharing a password
+if(isset($_POST['addSharing'])){
+    $owner_id = $_POST['owner'];
+    $recipient_id = $_POST['recipient'];
+    $url_id = $_POST['url'];
+
+    $sp = new Sharepassword();
+    $addShare= $sp->sharePassword($url_id, $owner_id, $recipient_id, $dbcon);
+
+    //Final copy fix share message....
+    if($addShare){
+        $successMsg = '<div style="display: block">
+        <h4>Password has been shared!</h4>
+        </div>';
+    } else {
+        $invalidMsg = '<div style="display: block">
+        <h4>Please try again!</h4>
+        </div>';
+    }
+
+ }
 
 
 ?>
@@ -14,7 +45,7 @@ require_once "./php/Models/DatabaseTwo.php";
     <!--global head.php-->
     <?php include "php/head.php" ?>
     <title>Pass**** Manager Create Sharepassword</title>
-    <link rel="stylesheet" href="./css/sharePass.css">
+    <link rel="stylesheet" href="./css/sharing.css">
     <script src="./js/script.js" async defer></script>
   </head>
   <body>
@@ -27,20 +58,39 @@ require_once "./php/Models/DatabaseTwo.php";
             <!--Share Password-->
             <div class="content">
                 <h2>Share Password </h2>
-                <form action="" method="POST">
-                    <div class="shareDiv">
-                        <label for="shareName">Name</label>
-                        <input type="text" name="shareName" id="shareName" />
-                        <label for="shareEmail">Email</label>
-                        <input type="text" name="shareEmail" id="shareEmail" />
-                        <div>
-                        <input type="submit" value="Share Password">
-                        </div>
+                <div class="cBox2">
+                    <div class="cBox">
+                        <form action="" method="POST">
+                            <div class="form-group">
+                                <label for="owner">Owner :</label>
+                                <select  name="owner" class="form-control" id="owner" >
+                                    <!--php statment-->
+                                    <?php echo ownerDropdown($owners) ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient">Recipient :</label>
+                                <select  name="recipient" class="form-control" id="recipient" >
+                                    <!--php statment-->
+                                    <?php echo userDropdown($recipients) ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="url">Url :</label>
+                                <select  name="url" class="form-control" id="url" >
+                                    <!--php statment-->
+                                    <?php echo urlDropdown($urls) ?>
+                                </select>
+                            </div>
+                            <button type="submit" name="addSharing" class="submitBtn" id="submitBtn">
+                                Share Password
+                            </button>
+                        </form>
                     </div>
-                </form>
-                <div id="shareSuccess" style="display: none">
-                    <p>Password has been shared!</p>
                 </div>
+                <!--onsubmit message-->
+                <?php echo $successMsg; ?>
+                <?php echo $invalidMsg; ?>
             </div>
         </div>
     </main>

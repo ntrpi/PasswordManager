@@ -9,13 +9,12 @@ $dbcon = DatabaseTwo::getDb();
 $sp = new Sharepassword();
 //connection to databse to access all shared password 
 $allspass = $sp->listallsharepass(DatabaseTwo::getDb());
-//list shared password under that username
+//list shared password under that username **will need session varible 
 
 //var_dump($allspass);
 
 
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -23,7 +22,7 @@ $allspass = $sp->listallsharepass(DatabaseTwo::getDb());
     <!--global head.php-->
     <?php include "php/head.php" ?>
     <title>Pass**** Manager List Sharing</title>
-    <link rel="stylesheet" href="./css/RUDSharing.css">
+    <link rel="stylesheet" href="./css/sharing.css">
     <script src="./js/script.js" async defer></script>
   </head>
   <body>
@@ -43,7 +42,7 @@ $allspass = $sp->listallsharepass(DatabaseTwo::getDb());
                         <h5><?= $shared->user_name; ?></h5>
                         <?= $shared->first_name; ?><br />
                         <?= $shared->url; ?>: <?= $shared->password; ?>
-                        <form action="./editdeleteSharing.php" method="post">
+                        <form action="./editSharing.php" method="post">
                             <input type="hidden" name="sp_id" value="<?= $shared->$sp_id; ?>"/>
                             <input type="submit" class="editSP" name="updateSharedPassword" value="Edit"/>
                         </form>
