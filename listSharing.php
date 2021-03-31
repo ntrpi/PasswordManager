@@ -4,14 +4,12 @@ use Codesses\php\Models\{DatabaseTwo, Sharepassword};
 require_once "./php/Models/Sharepassword.php";
 require_once "./php/Models/DatabaseTwo.php";
 
-$dbcon = DatabaseTwo::getDb();
+
 //list the shared password
 $sp = new Sharepassword();
 //connection to databse to access all shared password 
-$allspass = $sp->listallsharepass(DatabaseTwo::getDb());
+$allspass = $sp->listSharedpassword(DatabaseTwo::getDb());
 //list shared password under that username **will need session varible 
-
-//var_dump($allspass);
 
 
 ?>
@@ -31,8 +29,8 @@ $allspass = $sp->listallsharepass(DatabaseTwo::getDb());
     <main>
         <div class="mainDiv">
             <!--side nav-->
-        <?php include 'php/sideNav.php' ?>
-        <!-- YOUR STUFF GOES HERE-->
+            <?php include 'php/sideNav.php' ?>
+            <!-- YOUR STUFF GOES HERE-->
             <div class="content">
                 <h2>Pass**** Sharing</h2>
                 <div class="contentBox">
@@ -42,13 +40,19 @@ $allspass = $sp->listallsharepass(DatabaseTwo::getDb());
                         <h5><?= $shared->user_name; ?></h5>
                         <?= $shared->first_name; ?><br />
                         <?= $shared->url; ?>: <?= $shared->password; ?>
+                        <br/>
                         <form action="./editSharing.php" method="post">
-                            <input type="hidden" name="sp_id" value="<?= $shared->$sp_id; ?>"/>
-                            <input type="submit" class="editSP" name="updateSharedPassword" value="Edit"/>
+                            <input type="hidden" name="sp_id" value="<?= $shared->sp_id; ?>"/>
+                            <input type="submit" class="formEdit" name="updateSharedPassword" value="Update"/>
+                        </form>
+                        <form action="./deleteSharing.php" method="post">
+                            <input type="hidden" name="sp_id" value="<?= $shared->sp_id; ?>"/>
+                            <input type="submit" class="formDelete" name="deleteSharedPassword" value="Delete"/>
                         </form>
                     </div>
                     <!--closing php tag-->
                     <?php } ?>
+                </div>
             </div>
         </div>
     </main>
