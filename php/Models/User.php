@@ -27,6 +27,20 @@ namespace Codesses\php\Models
             "password2" => "Please enter a matching password."
         );
 
+        // Label text that correspond 1-to-1 with the input fields.
+        public static array $labels = array(
+            "user_id" => "User ID",
+            "first_name" => "First name",
+            "last_name" => "Last name",
+            "user_name" => "User name",
+            "email" => "Email",
+            "login_password" => "Password",
+            "password2" => "Repeat password"
+        );
+
+        public static array $updateInputNames = array( "first_name", "last_name", "user_name", "email" );
+        public static array $createInputNames = array( "first_name", "last_name", "user_name", "email", "login_password", "password2" );
+
         public function __construct()
         {
             parent::__construct( "users", "user_id", self::$columnNames );
@@ -214,6 +228,19 @@ namespace Codesses\php\Models
             }
         }
 
+        public function getInputElements( $inputName, $params, $errorMessages )
+        {
+            $showHide = $inputName == "login_password" || $inputName == "password2" ? "Show" : "";
+            $labels = self::$labels;
+            echo "
+            <div id=\"{$inputName}Error\" class=\"errorDiv\">{$errorMessages[$inputName]}</div>
+            <div class=\"inputDiv\">
+              <label for=\"{$inputName}\">{$labels[$inputName]}</label>
+              <input type=\"text\" name=\"{$inputName}\" id=\"{$inputName}\" value=\"{$params->$inputName}\" />
+              <span class=\"showHideSpan\">{$showHide}</span>
+            </div>
+            ";
+        }
     }
 }
 ?>

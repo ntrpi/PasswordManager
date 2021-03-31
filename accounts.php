@@ -19,9 +19,8 @@ $users = $userDbHelper->getUsers();
 
     <?php include "php/head.php" ?>
 
-    <title>Pass**** Manager Accounts</title>
+    <title>Pass**** Manage Accounts</title>
     <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/createAccount.js"></script>
   </head>
   <body>
 

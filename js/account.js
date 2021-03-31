@@ -23,6 +23,9 @@ window.onload = function () {
 
         // Get the input element and set its on click function.
         const formField = document.getElementById( fieldName );
+        if( formField == null ) {
+            continue;
+        }
         formField.onclick = function() {
             formField.style.border = formFieldBorder;
             const errorDiv = errorDivs[fieldName];
@@ -85,6 +88,9 @@ window.onload = function () {
         let login_password = "";
         for( let i = 0; i < formFieldNames.length; i++ ) {
             const fieldName = formFieldNames[i];
+            if( !formFields.hasOwnProperty( fieldName ) ) {
+                continue;
+            }
             const value = formFields[fieldName].value;
 
             // Set this value for comparison later.

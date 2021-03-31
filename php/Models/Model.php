@@ -31,6 +31,10 @@ namespace Codesses\php\Models
         // The sql to delete a row from the table with the given primary key.
         protected $deleteSql;
 
+        // The sql to update a row from the table with the given primary key.
+        protected $updateSql1;
+        protected $updateSql2;
+
         // This will be the name if the submit input for the create form for this table.
         // Use getSubmitAdd() to get this name.
         public $submitAdd;
@@ -57,6 +61,8 @@ namespace Codesses\php\Models
             $this->listSql = "SELECT * FROM " . $tableName;
             $this->findSql = "SELECT * FROM " . $tableName . " WHERE " . $idName . " = :" . $idName;
             $this->deleteSql = "DELETE FROM " . $tableName . " WHERE " . $idName . " = :" . $idName;
+            $this->updateSql1 = "UPDATE " . $tableName . " SET ";
+            $this->updateSql2 = " WHERE " . $idName . " = :" . $idName;
 
             $this->submitAdd = "add" . $tableName;
             $this->submitEdit = "edit" . $tableName;
@@ -154,7 +160,7 @@ namespace Codesses\php\Models
         protected function updateRow( $params )
         {
             // Set up the sql.
-            $sql = "UPDATE " . $this->tableName . " SET ";
+            $sql = $this->updateSql1;
             foreach( $params as $key=>$value ) {
                 if( $key == $this->idName ) {
                     continue;
@@ -166,8 +172,10 @@ namespace Codesses\php\Models
             $sql = substr( $sql, 0, strlen( $sql ) - 2 );
 
             // Finish sql.
-            $sql .= " WHERE " . $this->idName . " = :" . $this->idName . ";";
+            $sql .= $this->updateSql2;
 
+            wl( $sql );
+            Database::prettyPrintObj( $params );
             return Database::getDbResultWithParams( $sql, $params );
         }
 
