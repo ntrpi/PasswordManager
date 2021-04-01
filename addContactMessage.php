@@ -1,4 +1,5 @@
 <?php
+//Elle's Page
 //namespace
 use Codesses\php\Models\{DatabaseTwo, Contact};
 
@@ -81,7 +82,7 @@ $users = $s->getUsers(DatabaseTwo::getDb());
     <!-- Head -->
     <?php include "php/head.php" ?>
     <title>Pass**** Manager Home</title>
-    <link rel="stylesheet" href="#">
+    <link rel="stylesheet" href="./css/contact.css">
     <script src="./js/script.js" async defer></script>
 </head>
 
@@ -89,56 +90,45 @@ $users = $s->getUsers(DatabaseTwo::getDb());
     <!-- Header -->
     <?php include "php/header.php" ?>
 <main>
-<h1 class="h1 text-center">Add Contact Message</h1>
+<h2 style="margin:0;background-color:#562f56;text-align:center;padding:1em;font-size:2em;">Add Contact Message</h2>
 <div>
     <!--    Form to Add  Contact Message -->
     <form action="" method="post">
 
-        <div class="form-group">
+        <div class="content">
             <label for="user">User :</label>
-            <input type="text" class="form-control" name="user" id="user" value=""
-                   placeholder="Enter User">
-            <span style="color: red">
-            </span>
+            <input type="text" class="form-control" id="user" name="user" value=""
+            placeholder="Enter User">
         </div>
-        <div class="form-group">
+        <div class="content">
             <label for="timestamp">Time :</label>
             <input type="text" class="form-control" id="timestamp" name="timestamp"
-                   value="" placeholder="Enter timestamp">
-            <span style="color: red">
-            </span>
+            value="" placeholder="Enter timestamp">
         </div>
-        <div class="form-group">
+        <div class="content">
             <label for="first_name">First Name :</label>
             <input type="text" name="first_name" value="" class="form-control"
-                   id="first_name" placeholder="Enter first_name">
-            <span style="color: red">
-            </span>
+            id="first_name" placeholder="Enter first name">
         </div>
-        <div class="form-group">
+        <div class="content">
             <label for="last_name">Last Name :</label>
             <input type="text" name="last_name" value="" class="form-control"
-                   id="last_name" placeholder="Enter last_name">
-            <span style="color: red">
-            </span>
+            id="last_name" placeholder="Enter last name">
         </div>
-        <div class="form-group">
+        <div class="content">
             <label for="email">Email :</label>
             <input type="text" name="email" value="" class="form-control"
-                   id="email" placeholder="Enter email">
+            id="email" placeholder="Enter email">
             <span style="color: red">
             </span>
         </div>
-        <div class="form-group">
+        <div class="content">
             <label for="message">Message :</label>
-            <input type="text" name="message" value="" class="form-control"
-                   id="message" placeholder="Enter message">
-            <span style="color: red">
-            </span>
+            <input type="text" name="message" id="message1" placeholder="Enter message">
         </div>
-        <a href="./listContactMessages.php" id="btn_back" class="btn btn-success float-left">Back</a>
-        <button type="submit" name="addContactMessage"
-                class="btn btn-primary float-right" id="btn-submit">
+        <a href="./listContactMessages.php" class="inputDiv cBox">Back</a>
+        <button type="submit" name="addContactMessage" id="listCm"
+        class="inputDiv cBox">
             Add Contact Message
         </button>
     </form>
