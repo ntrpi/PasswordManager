@@ -3,6 +3,12 @@
     margin-bottom: 0;
 }
 
+.cBox2{
+    display: flex;
+    align-items: center;
+    margin-left: 11em;
+}
+
 .cBox{
     padding: 0.5em;
     font-weight: normal;
@@ -39,6 +45,43 @@
     color: var( --darkPurple )  
 }
 
+form{
+    display: inline-block;
+    width: 100px;
+    margin-block-end: 0;
+    margin-right: 0;
+}
+
+.formEdit {
+    border-radius: 10px;
+    margin: .5em;
+    padding: .5em 1em;
+    font-size: .8em;
+    font-weight: 500;
+    height: unset;
+    background-color: var( --lightGrey );
+}
+
+.formDelete {
+    border-radius: 10px;
+    margin: .5em;
+    padding: .5em 1em;
+    font-size: .8em;
+    font-weight: 500;
+    height: unset;
+    background-color: var( --lightGrey );
+}
+
+.submitBtn {
+    border-radius: 10px;
+    margin: .5em;
+    padding: .5em 1em;
+    font-size: .8em;
+    font-weight: 500;
+    height: unset;
+    background-color: var( --lightGrey );
+}
+
 
 /***** Tablet Landscape View ******/
 @media screen and (max-width: 957px) {
@@ -55,6 +98,10 @@
 
     .content h4{
         font-size: 1.5em;
+    }
+
+    .cBox2 {
+        margin-left: 6em;
     }
 
 }
@@ -80,6 +127,10 @@
         font-size: 1em;
     }
 
+    .cBox2 {
+        margin-left: 7.5em;
+    }
+
 }
   
   /***** Phone Landscape View ******/
@@ -101,6 +152,9 @@
 
     .content p{
         font-size: 0.7em;
+    }
+    .cBox2 {
+        margin-left: 2em;
     }
 
 }

@@ -1,4 +1,5 @@
 <?php
+// File created by Sandra Kupfer 2021/03.
 
 namespace Codesses\php\Models
 {
@@ -30,17 +31,13 @@ namespace Codesses\php\Models
         // The sql to delete a row from the table with the given primary key.
         protected $deleteSql;
 
-        // This will be the name if the submit input for the create form for this table.
+        // The sql to update a row from the table with the given primary key.
+        protected $updateSql1;
+        protected $updateSql2;
+
+        // This will be the name if the submit input for any form for this table.
         // Use getSubmitAdd() to get this name.
-        public $submitAdd;
-
-        // This will be the name if the submit input for the edit form for this table.
-        // Use getSubmitEdit() to get this name.
-        public $submitEdit;
-
-        // This will be the name if the submit input for the delete form for this table.
-        // Use getSubmitDelete() to get this name.
-        public $submitDelete;
+        public $submitName;
 
         // This is protected because this class can't be instantiated, only extended.
         // $tableName: The name of the database table.
@@ -56,10 +53,10 @@ namespace Codesses\php\Models
             $this->listSql = "SELECT * FROM " . $tableName;
             $this->findSql = "SELECT * FROM " . $tableName . " WHERE " . $idName . " = :" . $idName;
             $this->deleteSql = "DELETE FROM " . $tableName . " WHERE " . $idName . " = :" . $idName;
+            $this->updateSql1 = "UPDATE " . $tableName . " SET ";
+            $this->updateSql2 = " WHERE " . $idName . " = :" . $idName;
 
-            $this->submitAdd = "add" . $tableName;
-            $this->submitEdit = "edit" . $tableName;
-            $this->submitDelete = "delete" . $tableName;
+            $this->submitName = "submit" . $tableName;
         }
 
         // Given an array of key names to use as keys and an associated array to use as values,
@@ -88,22 +85,10 @@ namespace Codesses\php\Models
             return $this->columns;
         }
 
-        // Return the name of the submit input field for the create form.
-        public function getSubmitAdd()
+        // Return the name of the submit input field.
+        public function getSubmitName()
         {
-            return $this->submitAdd;
-        }
-
-        // Return the name of the submit input field for the edit form.
-        public function getSubmitEdit()
-        {
-            return $this->submitEdit;
-        }
-
-        // Return the name of the submit input field for the delete form.
-        public function getSubmitDelete()
-        {
-            return $this->submitDelete;
+            return $this->submitName;
         }
 
         // Return the number of rows for this table in the database.
@@ -153,7 +138,7 @@ namespace Codesses\php\Models
         protected function updateRow( $params )
         {
             // Set up the sql.
-            $sql = "UPDATE " . $this->tableName . " SET ";
+            $sql = $this->updateSql1;
             foreach( $params as $key=>$value ) {
                 if( $key == $this->idName ) {
                     continue;
@@ -165,7 +150,10 @@ namespace Codesses\php\Models
             $sql = substr( $sql, 0, strlen( $sql ) - 2 );
 
             // Finish sql.
-            $sql .= " WHERE " . $this->idName . " = :" . $this->idName . ";";
+            $sql .= $this->updateSql2;
+
+            wl( $sql );
+            Database::prettyPrintObj( $params );
 
             return Database::getDbResultWithParams( $sql, $params );
         }

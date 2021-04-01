@@ -1,6 +1,10 @@
 <?php
+<<<<<<< HEAD
 //Elle's Page
 //namespace
+=======
+
+>>>>>>> a10c879208a39061f7d48454d891fa6541e9323b
 use Codesses\php\Models\{DatabaseTwo, Contact};
 
 // require_once 'vendor/autoload.php';
@@ -8,8 +12,6 @@ use Codesses\php\Models\{DatabaseTwo, Contact};
 
 require_once './php/Models/DatabaseTwo.php';
 require_once './php/Models/Contact.php';
-
-
 
 $dbconnection = DatabaseTwo::getDb();
 $s = new Contact();

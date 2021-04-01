@@ -11,7 +11,7 @@
         <ul>
             <li><a href="<?php echo 'index.php'; ?>">Home</a></li>
             <li><a href="<?php echo 'login.php'; ?>">Log In</a></li>
-            <li><a href="<?php echo 'createAccount.php'; ?>">Sign Up</a></li>
+            <li><a href="<?php echo 'account.php?a=a1'; ?>">Sign Up</a></li>
             <li><a href="<?php echo 'subscribe.php'; ?>">Subscribe</a></li>
         </ul>
     </nav>
