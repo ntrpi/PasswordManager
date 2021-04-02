@@ -49,10 +49,9 @@
     border-radius: 10px;
     background-color: #ff980c;
 }
-#listCm {
-    padding: 2em 0;
-    margin: 0;
-    background-color: #562f56;
+#table {
+    border: inset;
+    padding: 0;
 }
 
 @media screen and (max-width: 530px) {

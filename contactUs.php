@@ -12,9 +12,8 @@
       <?php include 'php/header.php' ?>
         <main>
         <div class="mainDiv">
-  
-        <!-- YOUR STUFF GOES HERE-->
-        <div class="content">
+
+          <div class="content">
             <h2>Contact Us</h2>
             <p>If you have any questions about the Password Manager, feel free to contact us!</p>
             <div class="formDiv" id="contactForm">
@@ -39,7 +38,7 @@
               </div>
               </form>
             </div>
-        </div>
+          </div>
       </div>
     </main>
 <!--global footer-->
