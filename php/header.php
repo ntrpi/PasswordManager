@@ -1,5 +1,6 @@
 <?php
 use Codesses\php\Models;
+require_once "Models/utl.php";
 
 $loginMenuHref = "login.php";
 $loginMenuText = "Log In";
