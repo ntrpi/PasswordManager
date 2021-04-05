@@ -114,49 +114,49 @@ if( $isPost ) {
           <h2 class="hidden">Create Account</h2>
           <div id="signUpForm" class="formDiv">
             <form name="accountForm" action="" method="POST">
-              <div id="first_nameError" class="errorDiv"><?php echo $errorMessages["first_name"]; ?></div>
+              <div id="first_nameError" class="errorDiv"><?= $errorMessages["first_name"]; ?></div>
               <div class="inputDiv">
                 <label for="first_name">First name</label>
-                <input type="text" name="first_name" id="first_name" value="<?php echo $params->first_name; ?>" />
+                <input type="text" name="first_name" id="first_name" value="<?= $params->first_name; ?>" />
                 <span class="showHideSpan"></span>
               </div>
-              <div id="last_nameError" class="errorDiv"><?php echo $errorMessages["last_name"]; ?></div>
+              <div id="last_nameError" class="errorDiv"><?= $errorMessages["last_name"]; ?></div>
               <div class="inputDiv">
                 <label for="last_name">Last name</label>
-                <input type="text" name="last_name" id="last_name" value="<?php echo $params->last_name; ?>"/>
+                <input type="text" name="last_name" id="last_name" value="<?= $params->last_name; ?>"/>
                 <span class="showHideSpan"></span>
               </div>
-              <div id="user_nameError" class="errorDiv"><?php echo $errorMessages["user_name"]; ?></div>
+              <div id="user_nameError" class="errorDiv"><?= $errorMessages["user_name"]; ?></div>
               <div class="inputDiv">
                 <label for="user_name">Create a user name</label>
-                <input type="text" name="user_name" id="user_name" value="<?php echo $params->user_name; ?>"/>
+                <input type="text" name="user_name" id="user_name" value="<?= $params->user_name; ?>"/>
                 <span class="showHideSpan"></span>
               </div>
-              <div id="emailError" class="errorDiv"><?php echo $errorMessages["email"]; ?></div>
+              <div id="emailError" class="errorDiv"><?= $errorMessages["email"]; ?></div>
               <div class="inputDiv">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" value="<?php echo $params->email; ?>" />
+                <input type="email" name="email" id="email" value="<?= $params->email; ?>" />
                 <span class="showHideSpan"></span>
               </div>
-              <div id="login_passwordError" class="errorDiv"><?php echo $errorMessages["login_password"]; ?></div>
+              <div id="login_passwordError" class="errorDiv"><?= $errorMessages["login_password"]; ?></div>
               <div class="inputDiv">
                 <label for="login_password">Password</label>
-                <input type="password" name="login_password" id="login_password" value="<?php echo $params->login_password; ?>" />
+                <input type="password" name="login_password" id="login_password" value="<?= $params->login_password; ?>" />
                 <span class="showHideSpan">Show</span>
               </div>
 
               <!-- This div will only show up if the error message is set above. -->
-              <div id="password2Error" class="errorDiv"><?php echo $errorMessages["password2"]; ?></div>
+              <div id="password2Error" class="errorDiv"><?= $errorMessages["password2"]; ?></div>
               <div class="inputDiv">
                 <label for="password2">Repeat password</label>
-                <input type="password" name="password2" id="password2" value="<?php echo $params->password2; ?>"/>
+                <input type="password" name="password2" id="password2" value="<?= $params->password2; ?>"/>
                 <span class="showHideSpan">Show</span>
               </div>
               <div class="inputDiv">
 
               <!-- Note that I am setting the name of the submit input to be the same as what the
                   FormProcessor is checking for. -->
-                <input type="submit"  name="<?php echo $userDbHelper->getSubmitName(); ?>" value="Sign Up">
+                <input type="submit"  name="<?= $userDbHelper->getSubmitName(); ?>" value="Sign Up">
               </div>  
             </form>
           </div>
