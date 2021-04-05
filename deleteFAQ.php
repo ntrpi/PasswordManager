@@ -12,7 +12,7 @@ if (isset($_POST['faq_id'])) {
     $s = new FAQ();
     $count = $s->deleteFAQ($id, $db);
     if ($count) {
-        header("Location: list-cars.php");
+        header("Location: listFAQ.php");
     } else {
         echo " problem deleting";
     }
