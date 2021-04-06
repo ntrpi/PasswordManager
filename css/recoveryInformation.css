@@ -1,0 +1,64 @@
+.sqa {
+    color: var(--orange);
+    background-color: var(--mediumPurple);
+    border-radius: 8px;
+    width: 6.5em;
+    font-weight: bold;
+} */
+.formDiv {
+    margin: 2em auto;    
+    width: 50em;     
+} 
+
+thead {
+    padding: 2em 0em; 
+}
+
+/* th {
+    color: var(--orange);
+    font-weight: bold; 
+    width: 20em; 
+    font-size: 1.2em;        
+} */
+
+.basicTable th {
+    color: var(--orange); 
+    padding: auto;
+    font-size: 1em;
+  } 
+
+tr {
+    color: var(--lightGrey);
+    font-size: 1.2em;  
+    
+}
+/* .tableDiv {
+    margin: 2em auto;
+    display: flex;
+    flex-direction: column;
+    width: 800px;    
+    color: var(--darkPurple);
+    border-radius: 8px;
+} */
+
+.backLink, #btnAddRecovery {
+    border-radius: 10px;
+    font-weight:500; 
+    font-size: .8em;
+    color: black;
+    background-color: var( --orange );
+    text-decoration: none;
+    border: var(--lightGrey) solid 0.03em;   
+  }
+  .backLink {  
+    margin: .5em;
+    padding: .45em 1em; 
+    text-decoration: none;
+  }
+  #btnAddRecovery {
+    margin-left: 447px;
+    padding: .45em 1.81em;   
+  }
+  #addDiv {
+    margin-top: 15px;
+  } 
