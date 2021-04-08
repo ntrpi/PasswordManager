@@ -34,7 +34,7 @@ if(isset($_POST['addRecovery'])){
     <!--global head.php-->
     <?php include "php/head.php" ?>
     <title>Pass**** Manager Recovery Create and update</title>
-    <link rel="stylesheet" href="./css/recoveryCU.css">
+    <link rel="stylesheet" href="./css/recoveryInformation.css">
     <script src="./js/script.js" async defer></script>
   </head>
   <body>

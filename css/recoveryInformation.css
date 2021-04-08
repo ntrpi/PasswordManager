@@ -4,7 +4,7 @@
     border-radius: 8px;
     width: 6.5em;
     font-weight: bold;
-} */
+}
 .formDiv {
     margin: 2em auto;    
     width: 50em;     
@@ -14,23 +14,19 @@ thead {
     padding: 2em 0em; 
 }
 
-/* th {
-    color: var(--orange);
-    font-weight: bold; 
-    width: 20em; 
-    font-size: 1.2em;        
-} */
-
 .basicTable th {
     color: var(--orange); 
     padding: auto;
     font-size: 1em;
   } 
 
+  .inputDiv {
+    margin-right: 280px;
+  }
+
 tr {
     color: var(--lightGrey);
-    font-size: 1.2em;  
-    
+    font-size: 1.2em;      
 }
 /* .tableDiv {
     margin: 2em auto;
@@ -40,7 +36,6 @@ tr {
     color: var(--darkPurple);
     border-radius: 8px;
 } */
-
 .backLink, #btnAddRecovery {
     border-radius: 10px;
     font-weight:500; 
@@ -56,9 +51,35 @@ tr {
     text-decoration: none;
   }
   #btnAddRecovery {
-    margin-left: 447px;
-    padding: .45em 1.81em;   
+    margin-left: 678px;
+    padding: .45em 1.81em;    
   }
   #addDiv {
-    margin-top: 15px;
+    margin-top: 25px;
   } 
+
+  /* Update and Add */
+
+  #title{
+    font-weight: Bold;
+    font-family: var(--generalFont);
+    color: var(--orange);
+    font-size: 1.35em;
+}
+legend, .inputDiv {
+    font-family: var(--generalFont);    
+    font-size: 0.95em;
+    font-weight:500;      
+}
+legend {
+  margin: .5em 0; 
+}
+select {
+    border-radius: 8em;
+    height: 2.5em;
+    background-color: var(--orange);
+    color: var(--darkPurple);
+    font-weight: bold;
+    font-size: .60em;    
+}
+ 
