@@ -19,6 +19,7 @@ $invalidMsg = "";
 
 //sharing a password
 if(isset($_POST['addSharing'])){
+    var_dump($_POST);
     $owner_id = $_POST['owner'];
     $recipient_id = $_POST['recipient'];
     $url_id = $_POST['url'];

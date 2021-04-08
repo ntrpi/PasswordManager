@@ -1,3 +1,19 @@
+<?php
+use Codesses\php\Models;
+require_once "Models/utl.php";
+
+$loginMenuHref = "login.php";
+$loginMenuText = "Log In";
+$accountMenuHref = "account.php?a=a1";
+$accountMenuText = "Sign Up";
+if( isUserLoggedIn() ) {
+    $loginMenuHref = "logout.php";
+    $loginMenuText = "Log Out";
+    $accountMenuHref = "listFAQ.php";
+    $accountMenuText = "FAQ";
+}
+?>
+
 <header>
     <div class="banner">
         <div class="logo">
@@ -9,12 +25,11 @@
     <div class="borderDiv"></div>
     <nav>
         <ul>
-            <li><a href="<?php echo 'index.php'; ?>">Home</a></li>
-            <li><a href="<?php echo 'login.php'; ?>">Log In</a></li>
-            <li><a href="<?php echo 'account.php?a=a1'; ?>">Sign Up</a></li>
-            <li><a href="<?php echo 'subscribe.php'; ?>">Subscribe</a></li>
+            <li><a href="<?= 'index.php'; ?>">Home</a></li>
+            <li><a href="<?= $loginMenuHref; ?>"><?= $loginMenuText ?></a></li>
+            <li><a href="<?= $accountMenuHref; ?>"><?= $accountMenuText ?></a></li>
+            <li><a href="<?= 'subscribe.php'; ?>">Subscribe</a></li>
         </ul>
     </nav>
     <div class="borderDiv"></div>
-
 </header>

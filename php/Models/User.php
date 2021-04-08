@@ -17,6 +17,8 @@ namespace Codesses\php\Models
         // you will need to deal with that manually. See createUser( $params ) below.
         public static array $inputNames = array( "user_id", "first_name", "last_name", "user_name", "email", "login_password", "password2" );
 
+        public static array $loginNames = array( "user_name", "login_password" );
+
         // Error messages that correspond 1-to-1 with the input fields.
         public static array $errorMessages = array(
             "user_id" => "Please enter a valid user ID.",
@@ -26,6 +28,12 @@ namespace Codesses\php\Models
             "email" => "Please enter a valid email address.",
             "login_password" => "Please enter a password that is at least 8 characters long and contains at least one upper case letter, one number, and one special character.",
             "password2" => "Please enter a matching password."
+        );
+
+        // Error messages that correspond 1-1 with input fields for login.
+        public static array $loginErrorMessages = array (
+            "user_name" => "We were unable to find a user with that user name.",
+            "login_password" => "That password does not match what we have for that user name.",
         );
 
         // Label text that correspond 1-to-1 with the input fields.

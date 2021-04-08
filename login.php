@@ -1,3 +1,48 @@
+<?php
+
+use Codesses\php\Models\{FormProcessor, User, RH};
+
+require_once "./php/Models/User.php";
+require_once "./php/Models/FormProcessor.php";
+
+// Create a helper object.
+$userDbHelper = new User;
+
+// Set up the error messages array for use later in the html.
+$errorMessages = array();
+foreach( User::$loginNames as $input ) {
+  $errorMessages[$input] = "";
+}
+
+// See if this is a GET or POST request.
+$isPost = FormProcessor::isPost( $userDbHelper->getSubmitName() );
+
+if( $isPost ) {
+
+  // Use the FormProcessor to retrieve the values from the form.
+  $params = FormProcessor::getValuesObject( User::$loginNames );
+
+  // See if we can find the user name.
+  $users = $userDbHelper->getUsersWhere( "user_name", $params->user_name );
+  if( $users == null || sizeof( $users) == 0 ) {
+    $errorMessages[ "user_name" ] = User::$loginErrorMessages[ "user_name" ];
+
+  } else {
+    // There should be only one.
+    $user = $users[0];
+    if( $user->login_password != password_hash( $params->login_password, PASSWORD_DEFAULT ) ) {
+      $errorMessages[ "login_password" ] = User::$loginErrorMessages[ "login_password" ];
+    
+    } else {
+      setUserLoggedIn();
+      header( "Location: passwords.php?" );
+    }
+  }
+}
+
+?>
+
+
 <html>
   <head>
     <!--global head.php-->
@@ -11,17 +56,13 @@
     <?php include 'php/header.php' ?>
     <main>
       <div class="mainDiv">
-        <!-- YOUR STUFF GOES HERE-->
         <div class="content">
           <div>
-            <h2 class="hidden">Log In</h2>
-            <!-- <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut<strong>Wafa made some changes her
-              </strong> labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p> -->
+            <h2>Log In</h2>
             <div class="formDiv">
               <form action="" method="POST">
                 <div class="inputDiv">
+                  <div id="user_nameError" class="errorDiv"><?php echo $errorMessages["user_name"]; ?></div>
                   <label for="userName">User name</label>
                   <input type="text" name="userName" id="userName" />
                 </div>
@@ -35,7 +76,7 @@
               </form>
             </div>
             <div>
-              <p>Not a user yet? <a href="signUp.html">Create an account here.</a></p>
+              <p>Not a user yet? <a href="<?php echo 'account.php?a=a1'; ?>">Create an account here.</a></p>
             </div>
           </div>
           <div>

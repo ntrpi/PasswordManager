@@ -26,7 +26,7 @@ function startSession(
     string|null $domain = null , 
     bool|null $secure = null , 
     bool|null $httponly = null,
-    string|null $samesite )
+    string|null $samesite = null )
 {
     $cookieParams = array(
         'lifetime' => $lifetime_or_options
@@ -56,6 +56,52 @@ function startSession(
 
     if( !isSessionStarted() ) {
         session_start();
+    }
+}
+
+function isSessionSet( $name )
+{
+    return isset( $_SESSION[ $name ] );
+}
+
+function getSessionVar( $name ) 
+{
+    if( !isSessionSet( $name ) ) {
+        return null;
+    }
+    return $_SESSION[ $name ];
+}
+
+$loggedInVar = "is_user_logged_in";
+function setUserLoggedIn()
+{
+    global $loggedInVar;
+    startSession( 1800 );
+    $_SESSION[ $loggedInVar ] = true;
+}
+
+function isUserLoggedIn()
+{
+    global $loggedInVar;
+    return isSessionSet( $loggedInVar ) && $_SESSION[ $loggedInVar ] == true;
+}
+
+function setUserLoggedOut()
+{
+    $_SESSION = array();
+    session_destroy()();
+}
+
+function checkSecure()
+{
+    // make sure the page uses a secure connection
+    $https = filter_input(INPUT_SERVER, 'HTTPS');
+    if (!$https) {
+        $host = filter_input(INPUT_SERVER, 'HTTP_HOST');
+        $uri = filter_input(INPUT_SERVER, 'REQUEST_URI');
+        $url = 'https://' . $host . $uri;
+        header("Location: " . $url);
+        exit();
     }
 }
 

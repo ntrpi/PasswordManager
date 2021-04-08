@@ -25,7 +25,7 @@ class Subscriber
         return $s;
     }
 
-public function getSubscriberById($id, $db)
+    public function getSubscriberById($id, $db)
     {
         $sql = "SELECT users.user_name as uname, users.first_name as fname, users.last_name as lname, subscribers.frequency, subscribers.user_id as user FROM users, subscribers WHERE subscribers.user_id = users.user_id AND subscribers.subscriber_id = :id";
         $pst = $db->prepare($sql);
@@ -36,7 +36,7 @@ public function getSubscriberById($id, $db)
     }
 
 
-public function getAllSubscribers($dbconnection)
+    public function getAllSubscribers($dbconnection)
     {
         $sql = "SELECT users.user_name as uname, users.first_name as fname, users.last_name as lname, subscribers.subscriber_id, subscribers.frequency, subscribers.user_id as user FROM users, subscribers where users.user_id = subscribers.user_id ";
         $pdostm = $dbconnection->prepare($sql);
@@ -45,7 +45,7 @@ public function getAllSubscribers($dbconnection)
         return $subscribers;
     }   
 
-public function addSubscriber($user, $frequency, $db)
+    public function addSubscriber($user, $frequency, $db)
     {
     $sql = "INSERT INTO subscribers(user_id, frequency) values (:user, :frequency)";
 
@@ -56,7 +56,7 @@ public function addSubscriber($user, $frequency, $db)
         return $count;
     }
 
-public function deleteSubscriber($id, $db)
+    public function deleteSubscriber($id, $db)
     {
         $sql = "DELETE FROM subscribers WHERE subscriber_id = :id";
         $pst = $db->prepare($sql);
@@ -64,7 +64,7 @@ public function deleteSubscriber($id, $db)
         $count = $pst->execute();
         return $count;
     }
-public function updateSubscriber($id, $user, $frequency, $db)
+    public function updateSubscriber($id, $user, $frequency, $db)
     {
         $sql = "UPDATE subscribers
                 set user_id = :user,

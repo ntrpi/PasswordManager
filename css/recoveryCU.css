@@ -13,8 +13,9 @@ legend {
 
 select {
     border-radius: 8em;
-    height: 1.7em;
+    height: 2.5em;
     background-color: var(--orange);
     color: var(--darkPurple);
     font-weight: bold;
+    
 }
