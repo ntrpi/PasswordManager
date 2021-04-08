@@ -20,8 +20,17 @@ namespace Codesses\php\Models
         //change url user id to session variable
         public function listSharedpassword($dbcon)
         {
-            $sql = "SELECT sp_id, users.user_name, users.first_name, url.url, url.password FROM shared_passwords sp
-            inner join url on sp.url_id = url.url_id inner join users on url.user_id = users.user_id";
+            $sql = "select a.first_name as from_user, b.first_name as to_user, sp_id, url.user_name, url.url, url.password FROM shared_passwords sp
+
+            inner join url on sp.url_id = url.url_id 
+            
+            inner join users a
+            
+            on sp.owner_id = a.user_id
+            
+            inner join users b
+            
+            on sp.recipient_id = b.user_id";
             $pdostm = $dbcon->prepare($sql);
             $pdostm->execute();
 
