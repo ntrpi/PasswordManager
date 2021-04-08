@@ -12,7 +12,7 @@
 
     $dbconnection = DatabaseTwo::getDb();
     $s = new LoginHistory();
-    $contactMessages =  $s->getAllLoginHistory(DatabaseTwo::getDb());
+    $loginHistory =  $s->getAllLoginHistory(DatabaseTwo::getDb());
 
 ?>
 <!DOCTYPE html>
@@ -37,32 +37,25 @@
         <div class="content">
           <div>
             <h2 class="title">Login History</h2>                   
-            <div class="formDiv" id="history">            
+            <div class="formDiv" id="history" style="background-color: var(--darkPurple); color:var(--lightGrey);">            
               <table>
                 <thead>
                   <tr>
+                      <th class="tableHead">User</th>
                       <th class="tableHead">Action</th>
                       <th class="tableHead">Date and Time</th>
-                      <th class="tableHead">Duration</th>
                   </tr>
                 </thead>
                 <tbody>
                 <?php foreach ($loginHistory as $loginHistory) { ?>
                   <tr>
-                      <th><?= $loginHistory->lh_id; ?></th>
+                      <td><?= $loginHistory->user; ?></td>
                       <td><?= $loginHistory->action; ?></td>
                       <td><?= $loginHistory->timestamp; ?></td>
-                      <td><?= $loginHistory->user; ?></td>
                       <td>
-                          <form action="./updateContactMessage.php" method="post" style="margin:0;background-color:#562f56;text-align:center;padding:1em;font-size:2em;">
-                              <input type="hidden" name="cm_id" value="<?= $contactMessages->cm_id; ?>"/>
-                              <input type="submit" class="inputDiv cBox" name="updateContactMessage" value="Update" style="width:9em; height:4em;"/>
-                          </form>
-                      </td>
-                      <td>
-                          <form action="./deleteContactMessage.php" method="post" style="margin:0;background-color:#562f56;text-align:center;padding:1em;font-size:2em;">
-                              <input type="hidden" name="cm_id" value="<?=  $contactMessages->cm_id; ?>"/>
-                              <input type="submit" class="inputDiv cBox" name="deleteContactMessage" value="Delete" style="width:9em; height:4em;"/>
+                          <form action="./deleteLoginHistory.php" method="post">
+                              <input type="hidden" name="lh_id" value="<?=  $loginHistory->lh_id; ?>"/>
+                              <input type="submit" class="inputDiv cBox" name="deleteLoginHistory" value="Delete" style="width:9em; height:4em;"/>
                           </form>
                       </td>
                   </tr>
