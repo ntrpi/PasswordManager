@@ -19,7 +19,7 @@ $invalidMsg = "";
 
 //sharing a password
 if(isset($_POST['addSharing'])){
-    var_dump($_POST);
+    //var_dump($_POST);
     $owner_id = $_POST['owner'];
     $recipient_id = $_POST['recipient'];
     $url_id = $_POST['url'];
@@ -50,7 +50,7 @@ if(isset($_POST['addSharing'])){
     <?php include "php/head.php" ?>
     <title>Pass**** Manager Create Sharepassword</title>
     <link rel="stylesheet" href="./css/sharing.css">
-    <script src="./js/script.js" async defer></script>
+    <!--<script src="./js/script.js" async defer></script>-->
   </head>
   <body>
     <!--main nav-->
@@ -62,33 +62,29 @@ if(isset($_POST['addSharing'])){
             <!--Share Password-->
             <div class="content">
                 <h2>Share Password </h2>
-                <div class="cBox2">
+                <div class="contentBox">
                     <div class="cBox">
                         <form action="" method="POST">
-                            <div class="form-group">
-                                <label for="owner">Owner :</label>
+                            <div class="formAdd">
+                                <label for="owner">Owner:</label>
                                 <select  name="owner" class="form-control" id="owner" >
-                                    <!--php statment-->
+                                    <!--php statment I would like to change this to the logged in user-->
                                     <?php echo ownerDropdown($owners) ?>
                                 </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="recipient">Recipient :</label>
+                                <label for="recipient">Recipient:</label>
                                 <select  name="recipient" class="form-control" id="recipient" >
                                     <!--php statment-->
                                     <?php echo userDropdown($recipients) ?>
                                 </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="url">Url :</label>
+                                <label for="url">Url:</label>
                                 <select  name="url" class="form-control" id="url" >
                                     <!--php statment-->
                                     <?php echo urlDropdown($urls) ?>
                                 </select>
+                                <button type="submit" name="addSharing" class="submitBtn" id="submitBtn">
+                                    Share Password
+                                </button>
                             </div>
-                            <button type="submit" name="addSharing" class="submitBtn" id="submitBtn">
-                                Share Password
-                            </button>
                         </form>
                     </div>
                 </div>

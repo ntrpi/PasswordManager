@@ -6,17 +6,18 @@ require_once "./php/Models/DatabaseTwo.php";
 require_once "./library/share-functions.php";
 
 $sp = new Sharepassword();
-$allSharedPass = $sp->getSharedpassword(DatabaseTwo::getDb());
+// $allSharedPass = $sp->getSharedpassword(DatabaseTwo::getDb());
+
+$urls = $sp->getAllurl(DatabaseTwo::getDb());
 
 if(isset($_POST['updateSharedPassword'])){
-    $sp_id= $_POST['sp_id'];
+    $sp_id = $_POST['sp_id'];
+    $url_id = $_POST['url']; //Warning: Undefined array key "url" in /Applications/XAMPP/xamppfiles/htdocs/php-class/Group7_Codesses_PasswordManager/updateSharing.php on line 15
 
     $db = DatabaseTwo::getDb();
     $sp = new Sharepassword();
     $shareByid = $sp->getSharedPasswordById($sp_id, $db);
-
-
-    var_dump($shareByid);
+    $updateShare = $sp->updateSharedPasswordByUrl($sp_id, $url_id, $db);
 
 }
 
@@ -44,11 +45,15 @@ if(isset($_POST['updateSharedPassword'])){
                     <h2>Update Shared Password</h2>
                     <div class="cBox2">
                         <div class="cBox">
-                            <h5><?= $shareByid->user_name; ?></h5>
-                            <?= $shareByid->first_name; ?><br />
-                            <?= $shareByid->url; ?>: <?= $shareByid->password; ?>
+                            <h5><?= $shareByid->from_user; ?></h5>
+                            <?= $shareByid->to_user; ?><br />
+                            <label for="url">Url:</label>
+                                <select  name="url" class="form-control" id="url" >
+                                    <!--php statment-->
+                                    <?php echo urlDropdown($urls) ?>
+                                </select>
                             <br/>
-                            <form action="./editSharing.php" method="post">
+                            <form action="./listSharing.php" method="post">
                                 <input type="hidden" name="sp_id" value="<?= $shareByid->sp_id; ?>"/>
                                 <input type="submit" class="formEdit" name="updateSharedPassword" value="Update"/>
                             </form>

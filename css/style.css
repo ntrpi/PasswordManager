@@ -145,7 +145,6 @@ header nav ul {
 .cBox{
   border-radius: 15px;
   width: 17em;
-  height:7em;
   opacity: 0.9; /*changed the opacity*/
   background-color: var(--orange);
   margin: 1em;

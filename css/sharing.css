@@ -47,9 +47,19 @@
 
 form{
     display: inline-block;
-    width: 100px;
+    width: 200px;
     margin-block-end: 0;
     margin-right: 0;
+}
+
+.formAdd {
+    border-radius: 10px;
+    margin: .5em;
+    padding: .5em 1em;
+    font-size: .8em;
+    font-weight: 500;
+    height: unset;
+    background-color: var( --lightGrey );
 }
 
 .formEdit {
