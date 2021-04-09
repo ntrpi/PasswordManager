@@ -40,12 +40,11 @@ class Aboutus {
 
     public function updateAboutus($au_id, $au_member, $au_msg, $img_path, $db)
     {
-        $sql = "UPDATE about_us set au_member = :member, au_msg = :message, img_path = :imgpath WHERE au_id = :au_id";
+        $sql = "UPDATE about_us set au_member = :member, au_msg = :message WHERE au_id = :au_id";
         $pst =   $db->prepare($sql);
         $pst->bindParam(':au_id', $au_id);
         $pst->bindParam(':member', $au_member);
         $pst->bindParam(':message', $au_msg);
-        $pst->bindParam(':imgpath', $img_path);
 
         $updateAu = $pst->execute();
         return $updateAu;

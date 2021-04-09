@@ -43,7 +43,7 @@ $aboutUs =  $a->getAboutus($dbcon);
                                     <input type="submit" id="updateAbout" name="updateAbout" value="Update" />
                                 </form>
                                 <form action="./deleteAboutUs.php" method="post">
-                                    <input type="hidden" name="au_id" value="<?= $qa['au_id']; ?>" />
+                                    <input type="hidden" name="au_id" value="<?= $about['au_id']; ?>" />
                                     <input type="submit" id="deleteAbout" name="deleteAbout" value="Delete" />
                                 </form>
                             </div>
