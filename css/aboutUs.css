@@ -28,8 +28,28 @@
     color: white;
 }
 
-.content h4{
-    font-size: 2em;
+#editAboutus {
+    border-radius: 5px;
+    margin-bottom: 1em;
+    padding: .5em;
+    font-size: .8em;
+    font-weight:500;
+    height: unset;
+    background-color: var( --orange );
+}
+
+#addAboutus {
+    border-radius: 5px;
+    margin-bottom: 1em;
+    padding: .5em;
+    font-size: .8em;
+    font-weight:500;
+    height: unset;
+    background-color: var( --orange );
+}
+
+.spacer {
+    margin-top:1em;
 }
 
 /***** Tablet Landscape View ******/

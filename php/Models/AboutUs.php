@@ -16,7 +16,7 @@ class Aboutus {
 
     public function getAboutusById($au_id, $db)
     {
-        $sql = "SELECT about_us.au_id, about_us.au_member, about_us.au_msg FROM about_us where about_us.au_id = :au_id";
+        $sql = "SELECT about_us.au_id, about_us.au_member, about_us.au_msg, about_us.img_path FROM about_us where about_us.au_id = :au_id";
         $pst = $db->prepare($sql);
         $pst->bindParam(':au_id', $au_id);
         $pst->execute();
@@ -24,26 +24,28 @@ class Aboutus {
         return $listAuid;
     }
 
-    public function addAboutus($au_member, $au_msg, $db)
+    public function addAboutus($au_member, $au_msg, $img_path, $db)
     {
-        $sql = "INSERT INTO about_us (au_member, au_msg)
-            VALUES (:member, :message)";
+        $sql = "INSERT INTO about_us (au_member, au_msg, img_path)
+            VALUES (:member, :message, :imgpath)";
         $pst = $db->prepare($sql);
 
         $pst->bindParam(':member', $au_member);
         $pst->bindParam(':message', $au_msg);
+        $pst->bindParam(':imgpath', $img_path);
 
         $addAu = $pst->execute();
         return $addAu;
     }
 
-    public function updateAboutus($au_id, $au_member, $au_msg, $db)
+    public function updateAboutus($au_id, $au_member, $au_msg, $img_path, $db)
     {
-        $sql = "UPDATE about_us set au_member = :member, au_msg = :message WHERE au_id = :au_id";
+        $sql = "UPDATE about_us set au_member = :member, au_msg = :message, img_path = :imgpath WHERE au_id = :au_id";
         $pst =   $db->prepare($sql);
         $pst->bindParam(':au_id', $au_id);
         $pst->bindParam(':member', $au_member);
         $pst->bindParam(':message', $au_msg);
+        $pst->bindParam(':imgpath', $img_path);
 
         $updateAu = $pst->execute();
         return $updateAu;
