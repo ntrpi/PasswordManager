@@ -14,6 +14,7 @@ use stdClass;
         public static $actionUpdate = "a2";
         public static $actionDelete = "a3";
         public static $actionView = "a4";
+        public static $actionLogOut = "a5";
 
         public static $id = 'i';
 

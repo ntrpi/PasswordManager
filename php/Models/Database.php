@@ -44,13 +44,6 @@ use PDOException;
             return self::$dataPdo;
         }
 
-        // This may not be the best place for this, but it's here now.
-        public static function prettyPrintObj( $obj )
-        {
-            $jsonData = json_encode( $obj, JSON_PRETTY_PRINT );
-            echo "<pre> {$jsonData} </pre>";
-        }
-    
         // Use the PDO to run the provided SQL string. Return the PDO statement that was run.
         public static function runSql( $sql )
         {

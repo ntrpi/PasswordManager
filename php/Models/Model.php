@@ -3,8 +3,9 @@
 
 namespace Codesses\php\Models
 {
-    use Codesses\php\Models\{Database};
+    use Codesses\php\Models\{Database, FP};
     require_once "Database.php";
+    require_once "FormProcessor.php";
     require_once "utl.php";
 
     // This class standardizes how Models interact with the database. 
@@ -36,8 +37,11 @@ namespace Codesses\php\Models
         protected $updateSql2;
 
         // This will be the name if the submit input for any form for this table.
-        // Use getSubmitAdd() to get this name.
+        // Use getSubmitName() to get this name.
         public $submitName;
+
+        // Use this to take advantage of the default validation functionality.
+        protected $columnValidationTypes = array ();
 
         // This is protected because this class can't be instantiated, only extended.
         // $tableName: The name of the database table.
@@ -57,6 +61,23 @@ namespace Codesses\php\Models
             $this->updateSql2 = " WHERE " . $idName . " = :" . $idName;
 
             $this->submitName = "submit" . $tableName;
+        }
+
+        protected function setValidationType( $columnName, $type )
+        {
+            if( array_key_exists( $this->columns, $columnName ) && FP::isValidationType( $type ) ) {
+                $this->columnValidationTypes[$columnName] = $type;
+            }
+        }
+
+        protected function hasValidationType( $inputName )
+        {
+            return array_key_exists( $this->columnValidationTypes, $inputName );
+        }
+
+        protected function isValidInput( $inputName, $value )
+        {
+            return $this->hasValidationType( $inputName ) && FP::isValid( $value, $this->columnValidationTypes[$inputName] );
         }
 
         // Given an array of key names to use as keys and an associated array to use as values,
@@ -94,7 +115,8 @@ namespace Codesses\php\Models
         // Return the number of rows for this table in the database.
         protected function getNumRows()
         {
-            return Database::getDbResult( $this->countSql );
+            $result = Database::getDbResult( $this->countSql );
+            return $result->rowCount();
         }
 
         // Return an array of objects, where each object is a row in the database,
@@ -153,7 +175,7 @@ namespace Codesses\php\Models
             $sql .= $this->updateSql2;
 
             wl( $sql );
-            Database::prettyPrintObj( $params );
+            pp( $params );
 
             return Database::getDbResultWithParams( $sql, $params );
         }

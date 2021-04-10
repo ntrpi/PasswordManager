@@ -1,15 +1,22 @@
 <?php
 
-use Codesses\php\Models\{FormProcessor, User, RH};
+use Codesses\php\Models\{FP, User, RH, Session};
 
+// Get the session object.
+require_once "./php/Models/Session.php";
+$session = Session::getInstance();
+
+// If the user is already logged in, load the account page.
+if( $session->isStarted() ) {
+  header( "Location: passwords.php" );
+}
+
+// Create a user helper object.
 require_once "./php/Models/User.php";
-require_once "./php/Models/FormProcessor.php";
-
-// Create a helper object.
 $userDbHelper = new User;
 
 // See if this is a GET or POST request.
-$isPost = FormProcessor::isPost( $userDbHelper->getSubmitName() );
+$isPost = FP::isPost( $userDbHelper->getSubmitName() );
 
 // Set up the error messages array for use later in the html.
 $errorMessages = array();
@@ -29,7 +36,15 @@ $action = RH::getValue( RH::$action );
 if( $isPost ) {
 
   // Use the FormProcessor to retrieve the values from the form.
-  $params = FormProcessor::getValuesObject( User::$inputNames );
+  $params = FP::getValuesObject( User::$inputNames );
+
+  // If we are updating but we don't want to reset the password, we don't have to.
+  if( property_exists( $params, "login_password" ) ) {
+    if( strlen( $params->login_password ) == 0 ) {
+      unset( $params->login_password );
+      unset( $params->password2 );
+    }
+  }
 
   // Validate the input. This will reflect what the js validate does,
   // but we can do a bit more because we have access to the database.
@@ -70,8 +85,13 @@ if( $isPost ) {
 
     if( $isSuccess ) {
       if( RH::isCreate( $action ) ) {
+
+        // Start the session and go to the account page.
+        $session->startSession();
         header( "Location: passwords.php?" );
+
       } else {
+        // TODO: set up admin stuff.
         header( "Location: accounts.php?" );
       }
     } else {
@@ -128,7 +148,7 @@ if( $isPost ) {
               </div>
               <div id="user_nameError" class="errorDiv"><?= $errorMessages["user_name"]; ?></div>
               <div class="inputDiv">
-                <label for="user_name">Create a user name</label>
+                <label for="user_name">User name</label>
                 <input type="text" name="user_name" id="user_name" value="<?= $params->user_name; ?>"/>
                 <span class="showHideSpan"></span>
               </div>
@@ -144,8 +164,6 @@ if( $isPost ) {
                 <input type="password" name="login_password" id="login_password" value="<?= $params->login_password; ?>" />
                 <span class="showHideSpan">Show</span>
               </div>
-
-              <!-- This div will only show up if the error message is set above. -->
               <div id="password2Error" class="errorDiv"><?= $errorMessages["password2"]; ?></div>
               <div class="inputDiv">
                 <label for="password2">Repeat password</label>
