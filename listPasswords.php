@@ -40,17 +40,17 @@ $password =  $p->getAllPasswords(DatabaseTwo::getDb());
             </div>
           </form>
           <table class="pwTable">
-            <thead class="tablehead">
+            <thead>
               <tr>
-                <th class="tablehead">URL</th>
-                <th class="tablehead">Password</th>
+                <th class="urlpassword">URL</th>
+                <th class="urlpassword">Password</th>
               </tr>
             </thead>
             <tbody>
             <?php foreach ($password as $pass) { ?>
               <tr class="pwTableRow">
-                <td><?= $pass['url'] ?></td>
-                <td><?= $pass['password'] ?></td>
+                <td class="urlpassword"><?= $pass->url?></td>
+                <td class="urlpassword"><?= $pass->password?></td>
                 <td class="pwButtonsTd">
                   <div class="inputDiv">
                     <input type="submit" class="updatebutton" name="updatebutton" value="Edit" />
@@ -59,7 +59,9 @@ $password =  $p->getAllPasswords(DatabaseTwo::getDb());
                     <input type="submit" class="deletebutton" name="deletebutton" value="Delete" />
                   </div>
                   <div class="inputDiv">
-                    <input type="submit" class="sharebutton" name="sharebutton" value="Share" />
+                  <form action="./passHints.php" method="post">
+                    <input type="submit" class="sharebutton" name="sharebutton" value="Password Hint" />
+                  </form>
                   </div>
                 </td>
               </tr>
@@ -70,6 +72,11 @@ $password =  $p->getAllPasswords(DatabaseTwo::getDb());
         <div class="inputDiv">
           <input type="submit" class="createbutton" name="createbutton" value="Create New" />
         </div>
+        <form action="./listSharing.php" method="post">
+        <div class="inputDiv">
+          <input type="submit" class="sharebutton" name="sharebutton" value="Share Passwords" />
+        </div>
+        </form>
       </div>
   </main>
   <!--global footer-->
