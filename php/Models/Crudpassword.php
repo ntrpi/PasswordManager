@@ -16,7 +16,7 @@ namespace Codesses\php\Models
         }
         public function getAllPasswords($db)
         {
-            $sql = "SELECT url.url, url.password, users.user_id FROM users, url where users.user_id = url.user_id  ";
+            $sql = "SELECT url.url, url.password, users.user_id, url.url_id FROM users, url where users.user_id = url.user_id  ";
             $pdostm = $db->prepare($sql);
             $pdostm->execute();
             $passwords = $pdostm->fetchAll(\PDO::FETCH_OBJ);

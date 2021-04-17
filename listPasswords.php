@@ -24,7 +24,7 @@ $password =  $p->getAllPasswords(DatabaseTwo::getDb());
 
 <body>
   <!--main nav-->
-    <?php include 'php/header.php' ?>
+  <?php include 'php/header.php' ?>
   <main>
     <div class="mainDiv">
       <!--side nav-->
@@ -47,40 +47,49 @@ $password =  $p->getAllPasswords(DatabaseTwo::getDb());
               </tr>
             </thead>
             <tbody>
-            <?php foreach ($password as $pass) { ?>
-              <tr class="pwTableRow">
-                <td class="urlpassword"><?= $pass->url?></td>
-                <td class="urlpassword"><?= $pass->password?></td>
-                <td class="pwButtonsTd">
-                  <div class="inputDiv">
-                    <input type="submit" class="updatebutton" name="updatebutton" value="Edit" />
-                  </div>
-                  <div class="inputDiv">
-                    <input type="submit" class="deletebutton" name="deletebutton" value="Delete" />
-                  </div>
-                  <div class="inputDiv">
-                  <form action="./passHints.php" method="post">
-                    <input type="submit" class="sharebutton" name="sharebutton" value="Password Hint" />
-                  </form>
-                  </div>
-                </td>
-              </tr>
+              <?php foreach ($password as $pass) { ?>
+                <tr class="pwTableRow">
+                  <td class="urlpassword"><?= $pass->url ?></td>
+                  <td class="urlpassword"><?= $pass->password ?></td>
+                  <td class="pwButtonsTd">
+                    <div class="inputDiv">
+                      <form action="./updatePassword.php" method="post">
+                        <input type="hidden" name="url_id" value="<?= $pass->url_id ?>" />
+                        <input type="submit" class="updatebutton" name="updatebutton" value="Edit" />
+                    </div>
+                    <div class="inputDiv">
+                      <form action="./deletePassword.php" method="post">
+                        <input type="hidden" name="url_id" value="<?= $pass->url_id ?>" />
+                        <input type="submit" class="deletebutton" name="deletebutton" value="Delete" />
+                    </div>
+                    <div class="inputDiv">
+                      <form action="./passHints.php" method="post">
+                        <input type="hidden" name="url_id" value="<?= $pass->url_id ?>" />
+                        <input type="submit" class="hintbutton" name="hintbutton" value="Password Hint" />
+                      </form>
+                    </div>
+                  </td>
+                </tr>
               <?php } ?>
             </tbody>
           </table>
         </div>
-        <div class="inputDiv">
-          <input type="submit" class="createbutton" name="createbutton" value="Create New" />
+        <div class="formDiv">
+          <div class="inputDiv">
+            <form action="./createPassword.php" method="post">
+              <input type="hidden" name="url_id" value="<?= $pass->url_id ?>" />
+              <input type="submit" id="createPassword" name="createPassword" value="Create New Password" />
+            </form>
+          </div>
+          <form action="./listSharing.php" method="post">
+            <div class="inputDiv">
+              <input type="submit" class="sharebutton" name="sharebutton" value="Share Passwords" />
+            </div>
+          </form>
         </div>
-        <form action="./listSharing.php" method="post">
-        <div class="inputDiv">
-          <input type="submit" class="sharebutton" name="sharebutton" value="Share Passwords" />
-        </div>
-        </form>
-      </div>
   </main>
   <!--global footer-->
-  <?php include "php/footer.php"?>
+  <?php include "php/footer.php" ?>
 </body>
 
 </html>
