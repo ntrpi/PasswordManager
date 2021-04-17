@@ -61,7 +61,7 @@ if(isset($_POST['addSubscriber'])){
                   <legend>Do you want to join the mailing list?</legend>
                    <div class="inputDiv">
                       <label for="user">User_ID</label>
-                      <input type="text" name="user" id="user" value="" placeholder="Temporary Field"/>
+                      <input type="text" name="user" id="user" value="<?= $_SESSION['user_id'] ?>" placeholder="Temporary Field"/>
                     </div>
                     <div class="inputDiv">
                       <input type="radio" id="subscribew" name="frequency" value="weekly" <?= ($frequency == 'weekly') ? 'checked' : ''; ?> />
