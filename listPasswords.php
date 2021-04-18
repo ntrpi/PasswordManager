@@ -56,11 +56,13 @@ $password =  $p->getAllPasswords(DatabaseTwo::getDb());
                       <form action="./updatePassword.php" method="post">
                         <input type="hidden" name="url_id" value="<?= $pass->url_id ?>" />
                         <input type="submit" class="updatebutton" name="updatebutton" value="Edit" />
+                        </form>
                     </div>
                     <div class="inputDiv">
                       <form action="./deletePassword.php" method="post">
                         <input type="hidden" name="url_id" value="<?= $pass->url_id ?>" />
                         <input type="submit" class="deletebutton" name="deletebutton" value="Delete" />
+                        </form>
                     </div>
                     <div class="inputDiv">
                       <form action="./passHints.php" method="post">
