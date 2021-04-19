@@ -87,7 +87,7 @@ if( $isPost ) {
       if( RH::isCreate( $action ) ) {
 
         // Start the session and go to the account page.
-        $session->startSession();
+        $session->startSession( $user->user_id );
         header( "Location: passwords.php?" );
 
       } else {
