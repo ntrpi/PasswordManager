@@ -6,6 +6,17 @@ use Codesses\php\Models\{DatabaseTwo, Subscriber};
 require_once './php/Models/DatabaseTwo.php';
 require_once './php/Models/Subscriber.php';
 
+// use Codesses\php\Models\{Session};
+// require_once "./php/Models/Session.php";
+
+// // Get the session object.
+// $session = Session::getInstance();
+
+// // If the user is not logged in, redirect to the login page.
+// if( !$session->isStarted() ) {
+//   header( "Location: login.php" );
+// }
+
 $dbconnection = DatabaseTwo::getDb();
 $s = new subscriber();
 $subscribers =  $s->getAllSubscribers(DatabaseTwo::getDb());

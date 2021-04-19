@@ -129,6 +129,7 @@ namespace Codesses\php\Models
                 unset( $params->user_id );
             }
 
+
             // Hash the password no matter what.
             if( isset( $params->login_password ) ) {
                 $params->login_password = password_hash( $params->login_password, PASSWORD_DEFAULT );
@@ -140,41 +141,32 @@ namespace Codesses\php\Models
             return $params;
         }
 
-        // Validate the value for the given column.
-        public function isValid( $columnName, $value )
-        {
-            if( $columnName == "first_name" || $columnName == "last_name" ) {
-                return FormProcessor::isValidName( $value );
-            }
-            if( $columnName == "login_password" ) {
-                return FormProcessor::isValidPassword( $value, 8, true, true, true );
-            }
-            if( $columnName == "email" ) {
-                return FormProcessor::isValidEmail( $value );
-            }
-            if( $columnName == "user_name" ) {
-                // Check that the user name is unique.
-                return strlen( $value ) > 0 && sizeof( $this->getUsersWhere( $columnName, $value ) ) == 0;
-            }
-            return true;
-        }
-
         // Validate all of the key/value pairs in the $params object.
         // If everything is valid, return null. Otherwise, return the name of the 
         // invalid input.
         public function validateInput( $params, $action )
         {
             foreach( $params as $key=>$value ) {
-                if( $key == $this->idName && RH::isCreate( $action ) ) {
+                // Ignore the value for the id.
+                if( $key == $this->idName ) {
                     continue;
                 }
+
+                // Compare password2 against the login_password.
                 if( $key == "password2" ) {
                     if( strcmp( $params->login_password, $value ) != 0 ) {
                         return $key;
                     }
                     continue;
                 }
-                if( !$this->isValid( $key, $params->$key ) ) {
+                
+                // Use the default validation if applicable.
+                if( $this->hasValidationType( $key ) && !$this->isValidInput( $key, $value ) ) {
+                    return $key;
+                }
+
+                // Do some additional validation for the user name.
+                if( $key == "user_name" && sizeof( $this->getUsersWhere( $key, $value ) ) > 0 ) {
                     return $key;
                 }
             }

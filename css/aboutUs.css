@@ -1,3 +1,4 @@
+/*File created by Wafa 03/2021*/
 .content h2{
     font-size: 3em;
     margin-bottom: 0;
@@ -28,8 +29,28 @@
     color: white;
 }
 
-.content h4{
-    font-size: 2em;
+#editAboutus {
+    border-radius: 5px;
+    margin-bottom: 1em;
+    padding: .5em;
+    font-size: .8em;
+    font-weight:500;
+    height: unset;
+    background-color: var( --orange );
+}
+
+#addAboutus {
+    border-radius: 5px;
+    margin-bottom: 1em;
+    padding: .5em;
+    font-size: .8em;
+    font-weight:500;
+    height: unset;
+    background-color: var( --orange );
+}
+
+.spacer {
+    margin-top:1em;
 }
 
 /***** Tablet Landscape View ******/
@@ -48,6 +69,11 @@
     .content h4{
         font-size: 1.5em;
     }
+
+    .cBox{
+        margin-left: 20%;
+    }
+    
 
 }
   
@@ -71,6 +97,9 @@
     .content p{
         font-size: 1em;
     }
+    .cBox{
+        margin-left: 25%;
+    }
 
 }
   
@@ -93,6 +122,9 @@
 
     .content p{
         font-size: 0.7em;
+    }
+    .cBox{
+        margin-left: 12%;
     }
 
 }

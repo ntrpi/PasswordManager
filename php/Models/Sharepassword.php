@@ -1,4 +1,5 @@
 <?php
+//File created by Wafa 2021/03
 namespace Codesses\php\Models
 {
 
@@ -20,16 +21,11 @@ namespace Codesses\php\Models
         //change url user id to session variable
         public function listSharedpassword($dbcon)
         {
-            $sql = "select a.first_name as from_user, b.first_name as to_user, sp_id, url.user_name, url.url, url.password FROM shared_passwords sp
-
+            $sql = "SELECT a.first_name as from_user, b.first_name as to_user, sp_id, url.user_name, url.url, url.password FROM shared_passwords sp
             inner join url on sp.url_id = url.url_id 
-            
             inner join users a
-            
             on sp.owner_id = a.user_id
-            
             inner join users b
-            
             on sp.recipient_id = b.user_id";
             $pdostm = $dbcon->prepare($sql);
             $pdostm->execute();
@@ -89,8 +85,13 @@ namespace Codesses\php\Models
         //first get shared password id
         public function getSharedPasswordById($sp_id, $db) {
             //SQL query with the placeholder
-            $sql = "SELECT sp_id, users.user_name, users.first_name, url.url, url.password FROM shared_passwords sp
-            inner join url on sp.url_id = url.url_id inner join users on url.user_id = users.user_id WHERE sp_id =:sp_id";
+            $sql = "SELECT a.first_name as from_user, b.first_name as to_user, sp_id, url.user_name, url.url, url.password FROM shared_passwords sp
+            inner join url on sp.url_id = url.url_id 
+            inner join users a
+            on sp.owner_id = a.user_id
+            inner join users b
+            on sp.recipient_id = b.user_id 
+            WHERE sp_id =:sp_id";
             //we prepare and then execute..$psostm means a PDO statment object 
             $pdostm = $db->prepare($sql);
             //bind the id to pdo statment 
@@ -103,6 +104,24 @@ namespace Codesses\php\Models
     
         }
         //another function needed to update password
+        //only updating url to a shared user
+        public function updateSharedPasswordByUrl($sp_id, $url_id, $db){
+            //SQL query with the placeholder
+            $sql = "UPDATE shared_passwords
+            set url_id = :url             
+            WHERE sp_id = :sp_id";
+            //we prepare and then execute..$psostm means a PDO statment object 
+            $pdostm = $db->prepare($sql);
+            //bind the id to pdo statment 
+            $pdostm->bindParam(':url' , $url_id);
+            $pdostm->bindParam(':sp_id', $sp_id);
+            //to execute the query
+            $pdostm ->execute();
+            //because this is not Add or delete. rather getting the number of rows effected we want to fetch the data out
+            $updatePasswordUrl = $pdostm->fetch(\PDO::FETCH_OBJ);
+            return $updatePasswordUrl;
+
+        }
 
 
 

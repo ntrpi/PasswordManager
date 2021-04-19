@@ -1,4 +1,5 @@
 <?php
+//File created by Wafa 04/2021
 use Codesses\php\Models\{DatabaseTwo, Sharepassword};
 
 require_once "./php/Models/Sharepassword.php";
@@ -37,11 +38,11 @@ $allspass = $sp->listSharedpassword(DatabaseTwo::getDb());
                     <!--listing the shared password-->
                     <?php foreach ($allspass as $shared) { ?>
                     <div class="cBox">
-                        <h5><?= $shared->user_name; ?></h5>
-                        <?= $shared->first_name; ?><br />
+                        <h5><?= $shared->from_user; ?></h5>
+                        <?= $shared->to_user; ?><br />
                         <?= $shared->url; ?>: <?= $shared->password; ?>
                         <br/>
-                        <form action="./editSharing.php" method="post">
+                        <form action="./updateSharing.php" method="post">
                             <input type="hidden" name="sp_id" value="<?= $shared->sp_id; ?>"/>
                             <input type="submit" class="formEdit" name="updateSharedPassword" value="Update"/>
                         </form>

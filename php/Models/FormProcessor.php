@@ -5,6 +5,19 @@ namespace Codesses\php\Models
 {
     class FormProcessor 
     {
+        public const VALIDATION_NAME = 0;
+        public const VALIDATION_USER_NAME = 1;
+        public const VALIDATION_EMAIL = 2;
+        public const VALIDATION_PHONE = 3;
+        public const VALIDATION_PASSWORD = 4;
+
+        public const VALIDATION_TYPES = array (
+            self::VALIDATION_NAME,
+            self::VALIDATION_USER_NAME,
+            self::VALIDATION_EMAIL,
+            self::VALIDATION_PHONE,
+            self::VALIDATION_PASSWORD
+        );
 
         // Static class.
         private function __construct()
@@ -61,14 +74,40 @@ namespace Codesses\php\Models
             return preg_match( "/\d{10}/", $phone );
         }
 
-        // Use the paramaters to make the conditions more strict.
-        public static function isValidPassword( $password, $length = 8, $mustContainUpper = false, $mustContainNumber = false, $mustContainSpecial = false )
+        // Validating is string and length.
+        public static function isValidUserName( $name, $length = 5 )
+        {
+            return is_string( $name ) && strlen( $name ) >= $length;
+        }
+
+        // Use the paramaters to make the conditions less strict.
+        public static function isValidPassword( $password, $length = 8, $mustContainUpper = true, $mustContainNumber = true, $mustContainSpecial = true )
         {
             return strlen( $password ) >= $length
             && ( $mustContainUpper && preg_match( "/.*[A-Z].*/", $password ) )
             && ( $mustContainNumber && preg_match( "/.*[0-9].*/", $password ) )
             && ( $mustContainSpecial && preg_match( "/.*[^a-zA-Z0-9].*/", $password ) );
         }
+
+        // Syntactic sugar.
+        public static function isValid( $value, $type )
+        {
+            switch( $type ) {
+                case Self::VALIDATION_NAME: return Self::isValidName( $value );
+                case Self::VALIDATION_USER_NAME: return Self::isValidUserName( $value );
+                case Self::VALIDATION_EMAIL: return Self::isValidEmail( $value );
+                case Self::VALIDATION_PHONE: return Self::isValidPhone( $value );
+                case Self::VALIDATION_PASSWORD: return Self::isValidPassword( $value );
+            }
+        }
+ 
+        public static function isValidationType( $type )
+        {
+            return array_key_exists( self::VALIDATION_TYPES, $type );
+        }
     }
+
+    // Shorthand.
+    class FP extends FormProcessor {}
 }
 ?>

@@ -1,10 +1,28 @@
 <?php
 
-use Codesses\php\Models\{FormProcessor, User, RH};
+use Codesses\php\Models\{RH, FP, User, Session};
 
 require_once "./php/Models/User.php";
+<<<<<<< HEAD
 require_once "./php/Models/FormProcessor.php";
 require_once "./php/Models/loginHistory.php";
+=======
+require_once "./php/Models/Session.php";
+
+// Get the session object.
+$session = Session::getInstance();
+
+// Get the action from the routing into.
+$action = RH::getValue( RH::$action );
+if( $action == RH::$actionLogOut ) {
+  $session->destroy();
+}
+
+// If the user is already logged in, load the account page.
+if( $session->isStarted() ) {
+  header( "Location: passwords.php" );
+}
+>>>>>>> 99b4bf1059b75819863f59dddd767e07446872d0
 
 // Create a helper object.
 $userDbHelper = new User;
@@ -15,13 +33,16 @@ foreach( User::$loginNames as $input ) {
   $errorMessages[$input] = "";
 }
 
+// $params are used in the html below.
+$params = User::getParams( User::$loginNames );
+
 // See if this is a GET or POST request.
-$isPost = FormProcessor::isPost( $userDbHelper->getSubmitName() );
+$isPost = FP::isPost( $userDbHelper->getSubmitName() );
 
 if( $isPost ) {
 
-  // Use the FormProcessor to retrieve the values from the form.
-  $params = FormProcessor::getValuesObject( User::$loginNames );
+  // Use the FP to retrieve the values from the form.
+  $params = FP::getValuesObject( User::$loginNames );
 
   // See if we can find the user name.
   $users = $userDbHelper->getUsersWhere( "user_name", $params->user_name );
@@ -31,12 +52,29 @@ if( $isPost ) {
   } else {
     // There should be only one.
     $user = $users[0];
-    if( $user->login_password != password_hash( $params->login_password, PASSWORD_DEFAULT ) ) {
+
+    // Check the password.
+    if( !password_verify( $params->login_password, $user->login_password ) ) {
+
+      // Indicate that the password doesn't match.
       $errorMessages[ "login_password" ] = User::$loginErrorMessages[ "login_password" ];
     
     } else {
+<<<<<<< HEAD
       setUserLoggedIn();
       //addLoginHistory(session variable); *****
+=======
+
+      // Password match, do login and head to account page.
+      $session->startSession( $user->user_id);
+
+      // Get the user ID in one of the following ways:
+      // $session = Session::getInstance();
+      // $session->getUserId()
+      // or
+      // $_SESSION[ "user_id" ]
+
+>>>>>>> 99b4bf1059b75819863f59dddd767e07446872d0
       header( "Location: passwords.php?" );
     }
   }
@@ -51,7 +89,6 @@ if( $isPost ) {
     <?php include "php/head.php" ?>
     <title>Pass**** Manager Log In</title>
     <link rel="stylesheet" href="./css/login.css">
-    <script src="./js/script.js" async defer></script>
   </head>
   <body>
     <!--main nav-->
@@ -63,17 +100,22 @@ if( $isPost ) {
             <h2>Log In</h2>
             <div class="formDiv">
               <form action="" method="POST">
+              <div id="user_nameError" class="errorDiv"><?= $errorMessages["user_name"]; ?></div>
+              <div class="inputDiv">
+                <label for="user_name">User name</label>
+                <input type="text" name="user_name" id="user_name" value="<?= $params->user_name; ?>"/>
+                <span class="showHideSpan"></span>
+              </div>
+
+                <div id="login_passwordError" class="errorDiv"><?= $errorMessages["login_password"]; ?></div>
                 <div class="inputDiv">
-                  <div id="user_nameError" class="errorDiv"><?php echo $errorMessages["user_name"]; ?></div>
-                  <label for="userName">User name</label>
-                  <input type="text" name="userName" id="userName" />
+                  <label for="login_password">Password</label>
+                  <input type="password" name="login_password" id="login_password" value="<?= $params->login_password; ?>" />
+                  <span class="showHideSpan">Show</span>
                 </div>
+
                 <div class="inputDiv">
-                  <label for="password">Password</label>
-                  <input type="password" name="password" id="password" />
-                </div>
-                <div class="inputDiv">
-                  <input type="submit" value="Log In">
+                <input type="submit"  name="<?= $userDbHelper->getSubmitName(); ?>" value="Log In">
                 </div>  
               </form>
             </div>
