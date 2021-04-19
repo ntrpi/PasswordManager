@@ -72,7 +72,7 @@ namespace Codesses\php\Models
 
         protected function hasValidationType( $inputName )
         {
-            return array_key_exists( $this->columnValidationTypes, $inputName );
+            return array_key_exists( $inputName, $this->columnValidationTypes );
         }
 
         protected function isValidInput( $inputName, $value )
