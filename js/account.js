@@ -40,11 +40,11 @@ window.onload = function () {
     // Create an object to hold error messages that can be accessed by the 
     // corresponding input field name.
     const errorMessages = {
-        "first_name": "Please enter a first name at least 2 characters long.",
-        "last_name": "Please enter a last name at least 2 characters long.",
-        "user_name": "Please enter a user name at least 8 characters long.",
-        "email": "Please enter a valid email address.",
-        "login_password": "Please enter a password at least 8 characters long.",
+        "first_name" : "Please enter a name that is a least two characters long and has only letters, hyphens, and apostrophes.",
+        "last_name" : "Please enter a name that is a least two characters long and has only letters, hyphens, and apostrophes.",
+        "email" : "Please enter a valid email address.",
+        "user_name": "Please enter a user name at least 2 characters long.",
+        "login_password": "Please enter a password at least 8 characters long and contains one upper case letter, a number, and a special character.",
         "password2": "Please enter the same password twice."
     };
 

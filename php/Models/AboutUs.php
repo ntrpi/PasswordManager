@@ -38,7 +38,7 @@ class Aboutus {
         return $addAu;
     }
 
-    public function updateAboutus($au_id, $au_member, $au_msg, $img_path, $db)
+    public function updateAboutus($au_id, $au_member, $au_msg, $db)
     {
         $sql = "UPDATE about_us set au_member = :member, au_msg = :message WHERE au_id = :au_id";
         $pst =   $db->prepare($sql);
