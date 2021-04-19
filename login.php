@@ -65,7 +65,7 @@ if( $isPost ) {
       // or
       // $_SESSION[ "user_id" ]
 
-      header( "Location: passwords.php?" );
+      header( "Location: listPasswords.php?" );
     }
   }
 }
