@@ -57,7 +57,13 @@ if( $isPost ) {
     } else {
 
       // Password match, do login and head to account page.
-      $session->startSession();
+      $session->startSession( $user->user_id);
+
+      // Get the user ID in one of the following ways:
+      // $session = Session::getInstance();
+      // $session->getUserId()
+      // $_SESSION[ "user_id" ]
+
       header( "Location: passwords.php?" );
     }
   }

@@ -35,15 +35,21 @@ class Session
         return $this->sessionState;
     }
 
+    public function getUserId()
+    {
+        return $this->__get( "user_id" );
+    }
+
     /**
     *    (Re)starts the session.
     *   
     *    @return    bool    TRUE if the session has been initialized, else FALSE.
     **/
-    public function startSession()
+    public function startSession( $user_id )
     {
         if( $this->sessionState == self::SESSION_NOT_STARTED ) {
             $this->sessionState = session_start();
+            $this->__set( "user_id", $user_id );
         }
         return $this->sessionState;
     }
