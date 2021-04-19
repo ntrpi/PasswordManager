@@ -1,5 +1,18 @@
 <?php
 
+use Codesses\php\Models\{Session};
+require_once "./php/Models/Session.php";
+
+// Get the session object.
+$session = Session::getInstance();
+
+// If the user is not logged in, redirect to the login page.
+if( !$session->isStarted() ) {
+
+  header( "Location: login.php" );
+
+}
+
 use Codesses\php\Models\{DatabaseTwo, Password};
 
 require "./php/Models/CrudPassword.php";
@@ -9,13 +22,13 @@ $p = new Password();
 
 if (isset($_POST['addPassword'])) {
 
-  $user = $_POST['user'];
+  $user_id = $session->getUserId;
   $url = $_POST['url'];
   $password = $_POST['password'];
 
   $db = DatabaseTwo::getDb();
   $s = new Password();
-  $p = $s->addPassword($user, $url, $password, $db);
+  $p = $s->addPassword($user_id, $url, $password, $db);
 
   if ($p) {
     header("Location:listPasswords.php");
