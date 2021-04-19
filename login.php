@@ -4,6 +4,7 @@ use Codesses\php\Models\{FormProcessor, User, RH};
 
 require_once "./php/Models/User.php";
 require_once "./php/Models/FormProcessor.php";
+require_once "./php/Models/loginHistory.php";
 
 // Create a helper object.
 $userDbHelper = new User;
@@ -35,6 +36,7 @@ if( $isPost ) {
     
     } else {
       setUserLoggedIn();
+      //addLoginHistory(session variable); *****
       header( "Location: passwords.php?" );
     }
   }
