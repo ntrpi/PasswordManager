@@ -23,12 +23,12 @@ namespace Codesses\php\Models {
             $passwords = $pdostm->fetchAll(\PDO::FETCH_OBJ);
             return $passwords;
         }
-        public function addPassword($user, $url, $password, $db)
+        public function addPassword($user_id, $url, $password, $db)
         {
             $sql = "INSERT INTO url(user_id, url, password) values (:user, :url, :password)";
 
             $pst = $db->prepare($sql);
-            $pst->bindParam(':user', $user);
+            $pst->bindParam(':user', $user_id);
             $pst->bindParam(':url', $url);
             $pst->bindParam(':password', $password);
             $count = $pst->execute();
