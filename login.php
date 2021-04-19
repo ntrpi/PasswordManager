@@ -62,6 +62,7 @@ if( $isPost ) {
       // Get the user ID in one of the following ways:
       // $session = Session::getInstance();
       // $session->getUserId()
+      // or
       // $_SESSION[ "user_id" ]
 
       header( "Location: passwords.php?" );

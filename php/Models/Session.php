@@ -4,7 +4,7 @@ namespace Codesses\php\Models
 {
     require_once "utl.php";
 
-// Copied from https://www.php.net/manual/en/function.session-start.php
+// Copied and modified from https://www.php.net/manual/en/function.session-start.php
 // on 2021/04/10
 class Session
 {
@@ -17,14 +17,10 @@ class Session
     // Make the class a singleton.
     private static $instance;
     private function __construct() {}
-    public static function getInstance( bool|null $start = false )
+    public static function getInstance()
     {
         if( !isset( self::$instance ) ) {
             self::$instance = new self;
-        }
-
-        if( isset( $start ) && $start == true ) {
-            self::$instance->startSession();
         }
         return self::$instance;
     }
@@ -37,7 +33,7 @@ class Session
 
     public function getUserId()
     {
-        return $this->__get( "user_id" );
+        return $this->isStarted() ? $this->__get( "user_id" ) : null;
     }
 
     /**
