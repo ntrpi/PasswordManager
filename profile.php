@@ -53,6 +53,11 @@ $profileUsers = $pu->getAllUsers($user_id, DatabaseTwo::getDb());
                 <p>Member since 2005</p>
               </div>
             </div>
+            <div>
+              <form action="./recoveryInformation.php" method="post">                        
+                <input type="submit" name="recoveryInformation" class="backLink" value="Recovery Questions"/>
+              </form>
+            </div>
           </div>
         </div>
       </div>
