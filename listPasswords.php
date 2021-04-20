@@ -63,7 +63,7 @@ $password =  $p->getAllPasswords(DatabaseTwo::getDb());
               <?php foreach ($password as $pass) { ?>
                 <tr class="pwTableRow">
                   <td class="urlpassword"><?= $pass->url ?></td>
-                  <td class="urlpassword"><?= $pass->username ?></td>
+                  <td class="urlpassword"><?= $pass->user_name ?></td>
                   <td class="urlpassword"><?= $pass->password ?></td>
                   <td class="pwButtonsTd">
                     <div class="inputDiv">
