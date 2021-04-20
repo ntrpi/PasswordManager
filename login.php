@@ -3,10 +3,6 @@
 use Codesses\php\Models\{RH, FP, User, Session};
 
 require_once "./php/Models/User.php";
-<<<<<<< HEAD
-require_once "./php/Models/FormProcessor.php";
-require_once "./php/Models/loginHistory.php";
-=======
 require_once "./php/Models/Session.php";
 
 // Get the session object.
@@ -25,7 +21,6 @@ if( $session->hasUser() ) {
   header( "Location: passwords.php" );
   exit;
 }
->>>>>>> 99b4bf1059b75819863f59dddd767e07446872d0
 
 // Create a helper object.
 $userDbHelper = new User;
