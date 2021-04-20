@@ -1,17 +1,6 @@
 <?php
 
-use Codesses\php\Models\{Session};
-require_once "./php/Models/Session.php";
 
-// Get the session object.
-$session = Session::getInstance();
-
-// If the user is not logged in, redirect to the login page.
-if( !$session->isStarted() ) {
-
-  header( "Location: login.php" );
-
-}
 
 use Codesses\php\Models\{DatabaseTwo, Password};
 
@@ -64,7 +53,7 @@ $password =  $p->getAllPasswords(DatabaseTwo::getDb());
               <?php foreach ($password as $pass) { ?>
                 <tr class="pwTableRow">
                   <td class="urlpassword"><?= $pass->url ?></td>
-                  <td class="urlpassword"><?= $pass->username ?></td>
+                  <td class="urlpassword"><?= $pass->user_name ?></td>
                   <td class="urlpassword"><?= $pass->password ?></td>
                   <td class="pwButtonsTd">
                     <div class="inputDiv">
