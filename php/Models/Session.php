@@ -21,7 +21,6 @@ class Session
         }
 
         self::doStart();
-        pp( $_SESSION );
         return self::$instance;
     }
 
@@ -112,7 +111,6 @@ class Session
     **/
     public function destroy()
     {
-        wl( "destroying session" );
         if( self::$instance->isStarted() ) {
             session_destroy();
             unset( $_SESSION );
