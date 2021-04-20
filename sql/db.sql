@@ -26,6 +26,7 @@ CREATE TABLE `url` (
 CREATE TABLE `password_history` (
   `ph_id` int PRIMARY KEY AUTO_INCREMENT,
   `url_id` int,
+  `user_id` int,
   `timestamp` datetime,
   `action` ENUM ('insert', 'update', 'delete'),
   `old_password` varchar(255),
@@ -87,6 +88,8 @@ ALTER TABLE `login_history` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`use
 ALTER TABLE `url` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 ALTER TABLE `password_history` ADD FOREIGN KEY (`url_id`) REFERENCES `url` (`url_id`);
+
+ALTER TABLE `password_history` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 ALTER TABLE `shared_passwords` ADD FOREIGN KEY (`url_id`) REFERENCES `url` (`url_id`);
 
