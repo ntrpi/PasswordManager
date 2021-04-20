@@ -1,6 +1,17 @@
 <?php
 
+use Codesses\php\Models\{Session};
+require_once "./php/Models/Session.php";
 
+// Get the session object.
+$session = Session::getInstance();
+
+// If the user is not logged in, redirect to the login page.
+if( !$session->hasUser() ) {
+
+  header( "Location: login.php" );
+
+}
 
 use Codesses\php\Models\{DatabaseTwo, Password};
 
