@@ -21,7 +21,7 @@ $p = new Password();
 
 if (isset($_POST['addPassword'])) {
 
-  $user_id = $session->getUserId;
+  $user_id = $session->getUserId();
   $url = $_POST['url'];
   $password = $_POST['password'];
 
@@ -60,10 +60,6 @@ if (isset($_POST['addPassword'])) {
         <h2 class="hidden">Add Password</h2>
         <div id="passwordForm" class="formDiv2">
           <form name="addPasswordForm" action="" method="POST">
-          <div class="inputDiv">
-              <label for="user_id">User</label>
-              <input type="text" name="user" id="user" value="" />
-            </div>
             <div class="inputDiv">
               <label for="url">URL</label>
               <input type="text" name="url" id="url" value="" />
