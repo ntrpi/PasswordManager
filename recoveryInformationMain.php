@@ -20,7 +20,7 @@
                         <a href="./.php" id="btnGoRecovery" class="linkAsButton">Security Questions</a>                
                     </div>                  
                     <div class="options">
-                        <a href="./.php" id="btnGoTwoStep" class="linkAsButton">E-mail</a>
+                        <a href="twostep.php" id="btnGoTwoStep" class="linkAsButton">E-mail</a>
                     </div>
                 </div>
               </div>
