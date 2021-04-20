@@ -6,12 +6,12 @@ namespace Codesses\php\Models
     Class PasswordHints {
 
         //LIST 
-        public function getPasswordHintbyId($user_id, $url_id, $db)
+        public function getPasswordHintbyId($url_id, $db)
         {
-            $sql = "SELECT url.url, url.password, url.password_hint FROM url where url.url_id = :url_id AND url.user_id = :user_id";
+            $sql = "SELECT url.password_hint FROM url where url.url_id = :url_id";
             $pst = $db->prepare($sql);
             $pst->bindParam(':url_id', $url_id);
-            $pst->bindParam(':user_id', $user_id);
+
             $pst->execute();
             $count = $pst->fetch(\PDO::FETCH_OBJ);
             return $count;

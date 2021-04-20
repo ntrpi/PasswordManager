@@ -63,7 +63,8 @@ if(isset($_POST['updateSharedPassword'])){
                             <h5><?= $shareByid->from_user; ?></h5>
                             <?= $shareByid->to_user; ?><br />
                             <label for="url">Url:</label>
-                                <select  name="url_id" class="form-control" id="url_id" >
+                            <!--look into this-->
+                                <select  name="url_id" class="form-control" id="<?= $shareByid->url_id; ?>" >
                                     <!--php statment-->
                                     <?php echo urlDropdown($urls) ?>
                                 </select>

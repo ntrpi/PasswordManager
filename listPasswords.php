@@ -82,7 +82,7 @@ $password =  $p->getAllPasswords($user_id, DatabaseTwo::getDb());
                     <div class="inputDiv">
                       <form action="./passHints.php" method="post">
                         <input type="hidden" name="url_id" value="<?= $pass->url_id ?>" />
-                        <input type="submit" class="hintbutton" name="hintbutton" value="Password Hint" />
+                        <input type="submit" id="hintbutton" name="hintbutton" value="Password Hint" />
                       </form>
                     </div>
                   </td>
