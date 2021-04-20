@@ -1,6 +1,18 @@
 <?php
 // File created by Barbara Cam 2021/03.
 
+use Codesses\php\Models\{Session};
+require_once "./php/Models/Session.php";
+
+// Get the session.
+$session = Session::getInstance();
+
+// If the user is not logged in, redirect to the login page.
+if( !$session->hasUser() ) {
+  header( "Location: login.php" );
+  exit;
+}
+
 use Codesses\php\Models\{DatabaseTwo, Subscriber};
 
 require_once './php/Models/DatabaseTwo.php';

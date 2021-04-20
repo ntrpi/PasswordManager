@@ -21,11 +21,7 @@ require_once './php/Models/Subscriber.php';
 $dbconnection = DatabaseTwo::getDb();
 $s = new subscriber();
 $user_id = $session->getUserId();
-$subscribers =  $s->getAllSubscribers(DatabaseTwo::getDb());
-
-// $s = new Subscriber();
-// $users = $c->getUsers(DatabaseTwo::getDb());
-// $user = $_GET['make'] ?? "";
+$subscribers = $s->getAllSubscribers(DatabaseTwo::getDb());
 
 
 ?>

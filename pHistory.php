@@ -1,6 +1,19 @@
 <?php
 
 // File created by Barbara Cam 2021/04.
+
+use Codesses\php\Models\{Session};
+require_once "./php/Models/Session.php";
+
+// Get the session
+$session = Session::getInstance();
+
+// If the user is not logged in, redirect to the login page.
+if( !$session->hasUser() ) {
+  header( "Location: login.php" );
+  exit;
+}
+
 use Codesses\php\Models\{DatabaseTwo, PasswordHistory};
 
 require_once "./php/Models/PasswordHistory.php";
@@ -9,6 +22,7 @@ require_once "./php/Models/DatabaseTwo.php";
 //list the shared recovery information
 $dbconnection = DatabaseTwo::getDb();
 $ph = new passwordHistory();
+$user_id = $session->getUserId();
 $phistories = $ph->getAllPasswordHistory(DatabaseTwo::getDb());
 
 ?>
