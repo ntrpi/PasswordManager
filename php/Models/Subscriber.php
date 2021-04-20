@@ -33,14 +33,24 @@ class Subscriber
         $pst->execute();        
         $s = $pst->fetch(\PDO::FETCH_OBJ);
         return $s;
-    }
+    }    
 
+    // public function getAllSubscribers($dbconnection)
+    // {
+    //     $sql = "SELECT users.user_name as uname, users.first_name as fname, users.last_name as lname, subscribers.subscriber_id, subscribers.frequency, subscribers.user_id as user FROM users, subscribers where users.user_id = subscribers.user_id ";
+    //     $pdostm = $dbconnection->prepare($sql);
+    //     $pdostm->execute();
+    //     $subscribers = $pdostm->fetchAll(\PDO::FETCH_OBJ);
+    //     return $subscribers;
+    // }   
 
-    public function getAllSubscribers($dbconnection)
+    public function getAllSubscribers ($user_id, $dbconnection)
     {
-        $sql = "SELECT users.user_name as uname, users.first_name as fname, users.last_name as lname, subscribers.subscriber_id, subscribers.frequency, subscribers.user_id as user FROM users, subscribers where users.user_id = subscribers.user_id ";
+        $sql = "SELECT users.user_name as uname, users.first_name as fname, users.last_name as lname, subscribers.subscriber_id, subscribers.frequency, subscribers.user_id as user 
+        FROM subscribers inner join users on subscribers.user_id = users.user_id and subscribers.user_id = :user_id";
         $pdostm = $dbconnection->prepare($sql);
-        $pdostm->execute();
+        $pdostm->bindParam(':user_id', $user_id);
+        $pdostm->execute();        
         $subscribers = $pdostm->fetchAll(\PDO::FETCH_OBJ);
         return $subscribers;
     }   
