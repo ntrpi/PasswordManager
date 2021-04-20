@@ -27,14 +27,16 @@ if (isset($_POST['hintbutton'])){
     $pass_hint = $pHint->password_hint;  
 }
 
+$password_hint = "";
+
 //add or update password hints
 if (isset($_POST['addupdateHint'])){
-    $user_id = $session->getUserId();
-    $url_id = $_POST['url_id'];
-    $pass_hint = $POST['pass_hint'];
+   // $user_id = $session->getUserId();
+    $url_id = $_POST['url_id2'];
+    $password_hint = $POST['password_hint'];
 
     $ph = new PasswordHints();
-    $pAddupdate = $ph->addupdatePasswordHint($url_id, $pass_hint, DatabaseTwo::getDb());
+    $pAddupdate = $ph->addupdatePasswordHint($url_id, $password_hint, DatabaseTwo::getDb());
 
     if ($pAddupdate) {
         header('Location: listPasswords.php');
@@ -71,10 +73,10 @@ if (isset($_POST['addupdateHint'])){
                 <h2>Password Hints</h2>
                 <form action="" method="POST">
                     <div class="hintDiv">
-                        <input type="hidden" name="url_id" value="<?= $url_id; ?>" />
+                        <input type="hidden" name="url_id2" value="<?= $url_id; ?>" />
                         <!--Hint-->
                         <label for="phint">Hint</label>
-                        <input type="text" name="pass_hint" id="pass_hint" value="<?= $pass_hint; ?>"/>
+                        <input type="text" name="password_hint" id="pass_hint" value="<?= $password_hint; ?>"/>
                         <div>
                         <input type="submit" name="addupdateHint" value="Add">
                         <input type="submit" name="deleteHint" value="Delete">
