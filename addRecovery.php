@@ -22,6 +22,8 @@ if(isset($_POST['addRecovery'])){
 
       if($b){
         header("Location: recoveryInformation.php");
+        exit;
+
       } else {
         echo "problem adding recovery information";
       }      

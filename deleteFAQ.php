@@ -13,6 +13,7 @@ if (isset($_POST['faq_id'])) {
     $count = $s->deleteFAQ($id, $db);
     if ($count) {
         header("Location: listFAQ.php");
+        exit;
     } else {
         echo " problem deleting";
     }

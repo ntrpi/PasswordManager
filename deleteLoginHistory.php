@@ -17,6 +17,7 @@
         
         if($count){
             header("Location: listLoginHistory.php");
+            exit;
         }
         else {
             echo " problem deleting";

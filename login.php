@@ -12,11 +12,14 @@ $session = Session::getInstance();
 $action = RH::getValue( RH::$action );
 if( $action == RH::$actionLogOut ) {
   $session->destroy();
+  header( "Location: index.php" );
+  exit();
 }
 
 // If the user is already logged in, load the account page.
-if( $session->isStarted() ) {
+if( $session->hasUser() ) {
   header( "Location: passwords.php" );
+  exit;
 }
 
 // Create a helper object.
@@ -53,7 +56,7 @@ if( $isPost ) {
 
       // Indicate that the password doesn't match.
       $errorMessages[ "login_password" ] = User::$loginErrorMessages[ "login_password" ];
-    
+
     } else {
 
       // Password match, do login and head to account page.
@@ -65,7 +68,13 @@ if( $isPost ) {
       // or
       // $_SESSION[ "user_id" ]
 
-      header( "Location: passwords.php?" );
+      if( $session->getUserId() == $user->user_id ) {
+        wl( $session->getUserId() );
+        header( "Location: listPasswords.php?" );
+        exit;
+      } else {
+        wl( "no user" );        
+      }
     }
   }
 }

@@ -13,6 +13,7 @@ if (isset($_POST['au_id'])) {
     $deleteAbout = $au->deleteAboutus($au_id, $db);
     if ($deleteAbout) {
         header("Location:listAboutUs.php");
+        exit;
     } else {
         echo "There was an Issue Deleting the Member";
     }
