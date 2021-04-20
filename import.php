@@ -1,5 +1,24 @@
-<html>
+<?php
 
+use Codesses\php\Models\Session;
+require_once "./php/Models/Session.php";
+
+// Get the session object.
+$session = Session::getInstance();
+
+// If the user is not logged in, load the login page.
+if( !$session->hasUser() ) {
+  header( "Location: login.php" );
+  exit;
+}
+
+
+
+
+?>
+
+
+<html>
 <head>
   <!--global head.php-->
   <?php include "php/head.php" ?>
@@ -19,24 +38,6 @@
         <div>
           <h2>Import Passwords</h2>
 
-
-          <table width="600">
-            <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post" enctype="multipart/form-data">
-
-              <tr>
-                <td width="20%">Select file</td>
-                <td width="80%"><input type="file" name="file" id="file" /></td>
-              </tr>
-
-              <tr>
-                <td>Submit</td>
-                <td><input type="submit" name="submit" /></td>
-              </tr>
-
-            </form>
-          </table>
-
-
           <div class="formDiv">
             <form action="" method="POST">
               <div>
@@ -45,7 +46,7 @@
                 <input class="hidden" id="fileInput" name="fileInput" type="file" />
               </div>
               <div class="inputDiv">
-                <input type="submit" value="Upload">
+                <input type="submit" value="Upload" name="submit">
               </div>
             </form>
           </div>
