@@ -17,17 +17,19 @@ namespace Codesses\php\Models
             return $results;
         }
 
-        //LIST::function without session user id
+        //LIST
         //change url user id to session variable
-        public function listSharedpassword($dbcon)
+        public function listSharedpassword($user_id, $dbcon)
         {
             $sql = "SELECT a.first_name as from_user, b.first_name as to_user, sp_id, url.user_name, url.url, url.password FROM shared_passwords sp
             inner join url on sp.url_id = url.url_id 
             inner join users a
             on sp.owner_id = a.user_id
             inner join users b
-            on sp.recipient_id = b.user_id";
+            on sp.recipient_id = b.user_id 
+            where a.user_id = :user_id";
             $pdostm = $dbcon->prepare($sql);
+            $pdostm->bindParam(':user_id', $user_id);
             $pdostm->execute();
 
             $sharepass = $pdostm->fetchAll(\PDO::FETCH_OBJ);
@@ -35,7 +37,7 @@ namespace Codesses\php\Models
         }
 
         //ADD:: share a password 
-        //get all users
+        //get all users for reciepent_id
         public function getAllusers($db){
             $sql = "SELECT * FROM users";
 
@@ -47,21 +49,21 @@ namespace Codesses\php\Models
             return $allUsers;
 
         }
-        //get all url
-        public function getAllurl($db){
-            $sql = "SELECT * FROM url";
+        //get all urls by owner id 
+        public function getAllurlbyId($owner_id, $db){
+            $sql = "SELECT * FROM url where url.user_id = :owner";
 
             $pdostm = $db->prepare($sql);
+            $pdostm->bindParam(':owner', $owner_id);
             $pdostm->execute();
     
             //getting back an ARRAY of shared passwords as an object 
             $allUrl = $pdostm->fetchAll(\PDO::FETCH_OBJ);
             return $allUrl;
         }
-        //take the var for the logged in session user*****
         //function to share a password
         public function sharePassword($url_id, $owner_id, $recipient_id, $db){
-            //add sql query
+
             $sql = "INSERT INTO shared_passwords (url_id, owner_id, recipient_id)
                 VALUES (:url, :owner, :recipient)";
 
@@ -78,8 +80,8 @@ namespace Codesses\php\Models
 
             return $count;
             
-
         }
+
         
         //UPDATE::function to update the user this password is shared to
         //first get shared password id
@@ -103,17 +105,17 @@ namespace Codesses\php\Models
             return $sharedPasswordId;
     
         }
-        //another function needed to update password
+
         //only updating url to a shared user
         public function updateSharedPasswordByUrl($sp_id, $url_id, $db){
             //SQL query with the placeholder
             $sql = "UPDATE shared_passwords
-            set url_id = :url             
+            set url_id = :url_id             
             WHERE sp_id = :sp_id";
             //we prepare and then execute..$psostm means a PDO statment object 
             $pdostm = $db->prepare($sql);
             //bind the id to pdo statment 
-            $pdostm->bindParam(':url' , $url_id);
+            $pdostm->bindParam(':url_id' , $url_id);
             $pdostm->bindParam(':sp_id', $sp_id);
             //to execute the query
             $pdostm ->execute();

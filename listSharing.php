@@ -1,4 +1,18 @@
 <?php
+
+
+use Codesses\php\Models\{Session};
+require_once "./php/Models/Session.php";
+
+// Get the session object.
+$session = Session::getInstance();
+
+// If the user is not logged in, redirect to the login page.
+if( !$session->hasUser() ) {
+  header( "Location: login.php" );
+  exit;
+}
+
 //File created by Wafa 04/2021
 use Codesses\php\Models\{DatabaseTwo, Sharepassword};
 
@@ -9,8 +23,9 @@ require_once "./php/Models/DatabaseTwo.php";
 //list the shared password
 $sp = new Sharepassword();
 //connection to databse to access all shared password 
-$allspass = $sp->listSharedpassword(DatabaseTwo::getDb());
-//list shared password under that username **will need session varible 
+$user_id = $session->getUserId();
+$allspass = $sp->listSharedpassword($user_id, DatabaseTwo::getDb());
+
 
 
 ?>
