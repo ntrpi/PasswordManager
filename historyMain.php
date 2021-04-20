@@ -10,6 +10,7 @@ if( !$session->hasUser() ) {
   header( "Location: login.php" );
   exit;
 }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,10 +31,10 @@ if( !$session->hasUser() ) {
                 <div id="optionDiv">
                     <h3>How would you like to recover your personal information?</h3>
                     <div class="options">
-                        <a href="recoveryInformation.php" id="btnGoRecovery" class="linkAsButton">Security Questions</a>                
+                        <a href="listLoginHistory.php" id="btnGoLHistory" class="linkAsButton">Login History</a>                
                     </div>                  
                     <div class="options">
-                        <a href="twoStepEmail.php" id="btnGoTwoStep" class="linkAsButton">E-mail</a>
+                        <a href="pHistory.php" id="btnGoPHistory" class="linkAsButton">Password History</a>
                     </div>
                 </div>
               </div>
