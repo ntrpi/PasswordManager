@@ -3,6 +3,8 @@
 use Codesses\php\Models\{RH, FP, User, Session};
 
 require_once "./php/Models/Session.php";
+require_once "./php/Models/User.php";
+require_once "./php/Models/loginHistory.php";
 
 // Get the session object.
 $session = Session::getInstance();
@@ -19,8 +21,6 @@ if( $session->hasUser() ) {
   exit;
 }
 
-require_once "./php/Models/User.php";
-require_once "./php/Models/loginHistory.php";
 
 // Create a helper object.
 $userDbHelper = new User;
