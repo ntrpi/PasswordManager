@@ -15,20 +15,22 @@ namespace Codesses\php\Models {
             $results = $pdostm->fetchAll(\PDO::FETCH_OBJ);
             return $results;
         }
-        public function getAllPasswords($db)
+        public function getAllPasswords($user_id, $db)
         {
-            $sql = "SELECT url.url, url.password, users.user_id, users.user_name, url.url_id FROM users, url where users.user_id = url.user_id  ";
+            $sql = "SELECT url.url, url.password, url.user_id, url.user_name, url.url_id FROM url where url.user_id = :user_id; ";
             $pdostm = $db->prepare($sql);
+            $pdostm->bindParam(':user_id', $user_id);
             $pdostm->execute();
             $passwords = $pdostm->fetchAll(\PDO::FETCH_OBJ);
             return $passwords;
         }
-        public function addPassword($user_id, $url, $password, $db)
+        public function addPassword($user_id, $user_name, $url, $password, $db)
         {
-            $sql = "INSERT INTO url(user_id, url, password) values (:user, :url, :password)";
+            $sql = "INSERT INTO url(user_id, user_name, url, password) values (:user, :user_name, :url, :password)";
 
             $pst = $db->prepare($sql);
             $pst->bindParam(':user', $user_id);
+            $pst->bindParam(':user_name', $user_name);
             $pst->bindParam(':url', $url);
             $pst->bindParam(':password', $password);
             $count = $pst->execute();

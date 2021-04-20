@@ -22,12 +22,13 @@ $p = new Password();
 if (isset($_POST['addPassword'])) {
 
   $user_id = $session->getUserId();
+  $user_name = $_POST['user_name'];
   $url = $_POST['url'];
   $password = $_POST['password'];
 
   $db = DatabaseTwo::getDb();
   $s = new Password();
-  $p = $s->addPassword($user_id, $url, $password, $db);
+  $p = $s->addPassword($user_id, $user_name, $url, $password, $db);
 
   if ($p) {
     header("Location:listPasswords.php");
@@ -60,9 +61,17 @@ if (isset($_POST['addPassword'])) {
         <h2 class="hidden">Add Password</h2>
         <div id="passwordForm" class="formDiv2">
           <form name="addPasswordForm" action="" method="POST">
+          <div class="inputDiv">
+                      <label for="user" class="hidden">User_ID</label>
+                      <input type="text" name="user" id="user" class="hidden" value="<?= $_SESSION['user_id'] ?>" />
+                    </div>
             <div class="inputDiv">
               <label for="url">URL</label>
               <input type="text" name="url" id="url" value="" />
+            </div>
+            <div class="inputDiv">
+              <label for="user_name">Username</label>
+              <input type="text" name="user_name" id="user_name" value="" />
             </div>
             <div class="inputDiv">
               <label for="password">Password</label>
