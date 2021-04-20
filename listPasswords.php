@@ -7,10 +7,9 @@ require_once "./php/Models/Session.php";
 $session = Session::getInstance();
 
 // If the user is not logged in, redirect to the login page.
-if( !$session->isStarted() ) {
-
+if( !$session->hasUser() ) {
   header( "Location: login.php" );
-
+  exit;
 }
 
 use Codesses\php\Models\{DatabaseTwo, Password};
