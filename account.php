@@ -89,7 +89,7 @@ if( $isPost ) {
 
         // Start the session and go to the account page.
         $session->startSession( $user->user_id );
-        header( "Location: passwords.php?" );
+        header( "Location: listPasswords.php?" );
         exit;
 
       } else {
