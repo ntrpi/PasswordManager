@@ -23,7 +23,7 @@ require_once "./php/Models/DatabaseTwo.php";
 $dbconnection = DatabaseTwo::getDb();
 $ph = new passwordHistory();
 $user_id = $session->getUserId();
-$phistories = $ph->getAllPasswordHistory(DatabaseTwo::getDb());
+$phistories = $ph->getAllPasswordHistory($user_id, DatabaseTwo::getDb());
 
 ?>
 <!DOCTYPE html>
