@@ -4,7 +4,7 @@
     <!--global head.php-->
     <?php include "php/head.php" ?>
     <title>Pass**** Manager Home</title>
-    <link rel="stylesheet" href="./css/twostep.css">
+    <link rel="stylesheet" href="./css/twoStepEmail.css">
     <script src="./js/script.js" async defer></script>
   </head>
   <body>
@@ -19,12 +19,12 @@
           <div>
             <h2>Two Step Verification</h2>
             <div>
-                <p>Please enter the code was sent to your email</p>
+                <p>Please enter your email</p>
             </div>
             <form action="#" method="GET" class="twostepform">
               <div class="inputDiv">
               <input type="text" class="twostepbar" name="twostepbar">
-              <input type="submit" class="linkAsButton" name="searchbutton" value="Enter Code"/>
+              <input type="submit" class="linkAsButton" name="searchbutton" value="Enter Email"/>
             </div>
             </form>
       </div>
