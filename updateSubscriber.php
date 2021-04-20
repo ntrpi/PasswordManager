@@ -76,8 +76,8 @@ if(isset($_POST['updSubscriber'])){
                 <fieldset>
                   <legend>Do you want to join the mailing list?</legend>
                   <div class="inputDiv">
-                    <label for="user">User_ID</label>
-                    <input type="text" name="user" id="user" value="<?= $user; ?>" />
+                    <label for="user" class="hidden">User_ID</label>
+                    <input type="text" class="hidden" name="user" id="user" value="<?= $user; ?>" />
                   </div>
                   <div class="inputDiv">
                     <input type="radio" id="subscribew" name="frequency" value="weekly" <?= ($frequency2 == 'weekly') ? 'checked' : ''; ?> />

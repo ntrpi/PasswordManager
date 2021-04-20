@@ -1,6 +1,18 @@
 <?php
 // File created by Barbara Cam 2021/04.
 
+use Codesses\php\Models\{Session};
+require_once "./php/Models/Session.php";
+
+// Get session
+$session = Session::getInstance();
+
+// If the user is not logged in, redirect to the login page.
+if( !$session->hasUser() ) {
+  header( "Location: login.php" );
+  exit;
+}
+
 use Codesses\php\Models\{DatabaseTwo, Recovery};
 
 require_once './php/Models/DatabaseTwo.php';
@@ -77,8 +89,8 @@ if(isset($_POST['updRecovery'])){
                   <input type="text" name="answer" id="answer" value= "<?= $answer; ?>"/>
                 </div>
                 <div class="inputDiv">
-                  <label for="user">User_ID</label>
-                  <input type="text" name="user" id="user" value= "<?= $user; ?>" />
+                  <label for="user" class="hidden">User_ID</label>
+                  <input type="text" class="hidden" name="user" id="user" value= "<?= $user; ?>" />
                 </div>                            
                 <div class='bt'>
                   <a href="./recoveryInformation.php" id="btn_back" class="backLink">Back</a>
