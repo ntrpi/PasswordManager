@@ -1,36 +1,33 @@
 <?php
 // File created by Barbara Cam 2021/03.
 
+use Codesses\php\Models\{Session};
+require_once "./php/Models/Session.php";
+
+// Get session
+$session = Session::getInstance();
+
+// If the user is not logged in, redirect to the login page.
+if( !$session->hasUser() ) {
+  header( "Location: login.php" );
+  exit;
+}
+
 use Codesses\php\Models\{DatabaseTwo, Subscriber};
 
 require_once './php/Models/DatabaseTwo.php';
 require_once './php/Models/Subscriber.php';
 
-// use Codesses\php\Models\{Session};
-// require_once "./php/Models/Session.php";
-
-// // Get the session object.
-// $session = Session::getInstance();
-
-// // If the user is not logged in, redirect to the login page.
-// if( !$session->hasUser() ) {
-//   header( "Location: login.php" );
-//   exit;
-// }
-
 $dbconnection = DatabaseTwo::getDb();
 $s = new subscriber();
+$user_id = $session->getUserId();
 $subscribers =  $s->getAllSubscribers(DatabaseTwo::getDb());
 
 // $s = new Subscriber();
 // $users = $c->getUsers(DatabaseTwo::getDb());
 // $user = $_GET['make'] ?? "";
 
-// if(isset($_GET['make'])){
-//    $cars = $c->getCarsInMake(Database::getDb(), $_GET['make']);
-// } else {
-//     $cars = $c->getAllCars(Database::getDb());
-// }
+
 ?>
 <!DOCTYPE html>
 <html>
