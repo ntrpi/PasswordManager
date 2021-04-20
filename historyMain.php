@@ -29,7 +29,7 @@ if( !$session->hasUser() ) {
               <!-- YOUR STUFF GOES HERE-->
               <div class="content">
                 <div id="optionDiv">
-                    <h3>How would you like to recover your personal information?</h3>
+                    <!--<h3>How would you like to recover your personal information?</h3>-->
                     <div class="options">
                         <a href="listLoginHistory.php" id="btnGoLHistory" class="linkAsButton">Login History</a>                
                     </div>                  
