@@ -31,6 +31,7 @@ if(isset($_POST['updRecovery'])){
     $count = $r->updateRecovery($id, $sq_id, $answer, $user, $db);
       if($count){
         header('Location: recoveryInformation.php');
+        exit;
       } else {
         echo "Updating failing";
       }

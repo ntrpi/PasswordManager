@@ -14,6 +14,7 @@ if(isset($_POST['deleteSharedPassword'])){
     $count = $s->deleteSharedPassword($sp_id, $db);
     if($count){
         header("Location: listSharing.php");
+        exit;
     }
     else {
         echo " problem deleting";

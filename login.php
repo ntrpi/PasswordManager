@@ -16,11 +16,14 @@ $session = Session::getInstance();
 $action = RH::getValue( RH::$action );
 if( $action == RH::$actionLogOut ) {
   $session->destroy();
+  header( "Location: index.php" );
+  exit();
 }
 
 // If the user is already logged in, load the account page.
-if( $session->isStarted() ) {
+if( $session->hasUser() ) {
   header( "Location: passwords.php" );
+  exit;
 }
 >>>>>>> 99b4bf1059b75819863f59dddd767e07446872d0
 
@@ -58,7 +61,7 @@ if( $isPost ) {
 
       // Indicate that the password doesn't match.
       $errorMessages[ "login_password" ] = User::$loginErrorMessages[ "login_password" ];
-    
+
     } else {
 <<<<<<< HEAD
       setUserLoggedIn();
@@ -74,8 +77,18 @@ if( $isPost ) {
       // or
       // $_SESSION[ "user_id" ]
 
+<<<<<<< HEAD
 >>>>>>> 99b4bf1059b75819863f59dddd767e07446872d0
       header( "Location: passwords.php?" );
+=======
+      if( $session->getUserId() == $user->user_id ) {
+        wl( $session->getUserId() );
+        header( "Location: listPasswords.php?" );
+        exit;
+      } else {
+        wl( "no user" );        
+      }
+>>>>>>> 7e153ee5dbf32aca71b97ef9df8315d56132dcd3
     }
   }
 }

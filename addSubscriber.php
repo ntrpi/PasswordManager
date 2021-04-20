@@ -23,6 +23,8 @@ if(isset($_POST['addSubscriber'])){
 
       if($b){
         header("Location: subscribe.php");
+        exit;
+
       } else {
         echo "problem adding a subscriber";
       }

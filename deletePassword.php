@@ -13,6 +13,7 @@ if (isset($_POST['deletebutton'])) {
     $count = $s->deletePassword($id, $db);
     if ($count) {
         header("Location: listPasswords.php");
+        exit;
     } else {
         echo " problem deleting";
     }

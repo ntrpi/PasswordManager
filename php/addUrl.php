@@ -57,6 +57,7 @@ if( FormProcessor::isPost( $urlDbHelper->getSubmitAdd() ) ) {
       // Success! 
       // TODO: go to account page.
       header("Location: passwords.php");
+      exit;
 
     } else {
       // Failed.

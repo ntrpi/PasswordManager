@@ -30,6 +30,7 @@ if(isset($_POST['updSubscriber'])){
     $count = $s->updateSubscriber($id, $user, $frequency, $db);
       if($count){
         header('Location: subscribe.php');
+        exit;
       } else {
         echo "Updating failing";
       }

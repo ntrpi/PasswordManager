@@ -14,7 +14,7 @@ if(isset($_POST['sa_id'])){
     $count = $r->deleteRecovery($id, $db);
     if($count){
         header("Location: recoveryInformation.php");
-        return false;
+        exit;
     }
     else {
         // echo " problem deleting recovering ";

@@ -17,6 +17,7 @@
         
         if($count){
             header("Location: listContactMessages.php");
+            exit;
         }
         else {
             echo " problem deleting";

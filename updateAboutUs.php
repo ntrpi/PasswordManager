@@ -31,6 +31,7 @@ if (isset($_POST['updMember'])) {
 
     if ($updateAbout) {
         header('Location:listAboutUs.php');
+        exit;
     } else {
         echo "problem";
     }

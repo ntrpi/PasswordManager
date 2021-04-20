@@ -18,6 +18,8 @@ if (isset($_POST['addFAQ'])) {
 
   if ($f) {
     header("Location:listFAQ.php");
+    exit;
+
   } else {
     echo "Problem adding FAQ";
   }

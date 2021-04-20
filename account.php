@@ -7,8 +7,9 @@ require_once "./php/Models/Session.php";
 $session = Session::getInstance();
 
 // If the user is already logged in, load the account page.
-if( $session->isStarted() ) {
+if( $session->hasUser() ) {
   header( "Location: passwords.php" );
+  exit;
 }
 
 // Create a user helper object.
@@ -89,10 +90,12 @@ if( $isPost ) {
         // Start the session and go to the account page.
         $session->startSession( $user->user_id );
         header( "Location: passwords.php?" );
+        exit;
 
       } else {
         // TODO: set up admin stuff.
         header( "Location: accounts.php?" );
+        exit;
       }
     } else {
         // Failed.
