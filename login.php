@@ -3,6 +3,10 @@
 use Codesses\php\Models\{RH, FP, User, Session};
 
 require_once "./php/Models/User.php";
+<<<<<<< HEAD
+require_once "./php/Models/FormProcessor.php";
+require_once "./php/Models/loginHistory.php";
+=======
 require_once "./php/Models/Session.php";
 
 // Get the session object.
@@ -21,6 +25,7 @@ if( $session->hasUser() ) {
   header( "Location: passwords.php" );
   exit;
 }
+>>>>>>> 99b4bf1059b75819863f59dddd767e07446872d0
 
 // Create a helper object.
 $userDbHelper = new User;
@@ -58,6 +63,10 @@ if( $isPost ) {
       $errorMessages[ "login_password" ] = User::$loginErrorMessages[ "login_password" ];
 
     } else {
+<<<<<<< HEAD
+      setUserLoggedIn();
+      //addLoginHistory(session variable); *****
+=======
 
       // Password match, do login and head to account page.
       $session->startSession( $user->user_id);
@@ -68,6 +77,10 @@ if( $isPost ) {
       // or
       // $_SESSION[ "user_id" ]
 
+<<<<<<< HEAD
+>>>>>>> 99b4bf1059b75819863f59dddd767e07446872d0
+      header( "Location: passwords.php?" );
+=======
       if( $session->getUserId() == $user->user_id ) {
         wl( $session->getUserId() );
         header( "Location: listPasswords.php?" );
@@ -75,6 +88,7 @@ if( $isPost ) {
       } else {
         wl( "no user" );        
       }
+>>>>>>> 7e153ee5dbf32aca71b97ef9df8315d56132dcd3
     }
   }
 }
