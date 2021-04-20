@@ -4,16 +4,14 @@ namespace Codesses\php\Models {
 
     class Password
     {
-
-        public function getPassword($db)
+        public function getPasswordbyId($id, $db)
         {
-            $sql = "SELECT * FROM url";
-
-            $pdostm = $db->prepare($sql);
-            $pdostm->execute();
-
-            $results = $pdostm->fetchAll(\PDO::FETCH_OBJ);
-            return $results;
+            $sql = "SELECT url.url_id, url.url, url.password, url.user_name FROM url where url.url_id = :url_id";
+            $pst = $db->prepare($sql);
+            $pst->bindParam(':url_id', $id);
+            $pst->execute();
+            $s = $pst->fetch(\PDO::FETCH_OBJ);
+            return $s;
         }
         public function getAllPasswords($user_id, $db)
         {
@@ -41,6 +39,18 @@ namespace Codesses\php\Models {
             $sql = "DELETE FROM url WHERE url_id = :id";
             $pst = $db->prepare($sql);
             $pst->bindParam(':id', $id);
+            $count = $pst->execute();
+            return $count;
+        }
+        public function updatePassword($id, $user_name, $url, $password, $db)
+        {
+            $sql = "UPDATE url set user_name = :user_name, url = :url, password = :password WHERE url_id = :url_id";
+    
+            $pst = $db->prepare($sql);
+            $pst->bindParam(':url_id', $id);
+            $pst->bindParam(':user_name', $user_name);
+            $pst->bindParam(':url', $url);
+            $pst->bindParam(':password', $password);
             $count = $pst->execute();
             return $count;
         }
