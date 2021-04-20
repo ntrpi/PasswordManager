@@ -9,7 +9,7 @@ require_once "./php/Models/DatabaseTwo.php";
 //list the shared recovery information
 $dbconnection = DatabaseTwo::getDb();
 $r = new recovery();
-$recoveries =  $r->getAllRecoveries(DatabaseTwo::getDb());
+$recoveries = $r->getAllRecoveries(DatabaseTwo::getDb());
 
 ?>
 <!DOCTYPE html>
