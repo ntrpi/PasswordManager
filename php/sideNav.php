@@ -7,5 +7,6 @@
     <li><a href="<?php echo 'import.php'; ?>">Import</a></li>
     <li><a href="<?php echo 'export.php'; ?>">Export</a></li>
     <li><a href="<?php echo 'historyMain.php'; ?>">History</a></li>
+    <li><a href="<?php echo 'recoveryInformation.php'; ?>">Recovery</a></li>
     </ul>
 </nav>
