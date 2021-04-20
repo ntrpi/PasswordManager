@@ -20,7 +20,7 @@ namespace Codesses\php\Models
         //CREATE or UPDATE
         public function addupdatePasswordHint($url_id, $pass_hint, $db)
         {
-            $sql = "UPDATE url set password_hint = :pass_hint  where url_id = :url_id";
+            $sql = "UPDATE url set password_hint = :pass_hint where url_id = :url_id";
     
             $pst = $db->prepare($sql);
             $pst->bindParam(':url_id', $url_id);

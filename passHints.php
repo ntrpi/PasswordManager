@@ -16,7 +16,7 @@ use Codesses\php\Models\{DatabaseTwo, PasswordHints};
 require_once "./php/Models/PasswordHints.php";
 require_once "./php/Models/DatabaseTwo.php";
 
-//list the password hint in the input box.. if the [assword hint is none show empty input box 
+//list the password hint in the input box.. if the password hint is none show empty input box 
 if (isset($_POST['hintbutton'])){
     $user_id = $session->getUserId();
     $url_id = $_POST['url_id'];
@@ -31,9 +31,8 @@ $password_hint = "";
 
 //add or update password hints
 if (isset($_POST['addupdateHint'])){
-   // $user_id = $session->getUserId();
-    $url_id = $_POST['url_id2'];
-    $password_hint = $POST['password_hint'];
+    $url_id = $_POST['url_id'];
+    $pass_hint = $POST['pass_hint'];
 
     $ph = new PasswordHints();
     $pAddupdate = $ph->addupdatePasswordHint($url_id, $password_hint, DatabaseTwo::getDb());
@@ -46,6 +45,24 @@ if (isset($_POST['addupdateHint'])){
       }
     
 }
+
+//delete or change the value to NULL
+if (isset($_POST['deleteHint'])){
+    $url_id = $_POST['url_id'];
+
+    $ph = new PasswordHints();
+    $phDelete = $ph->deletePasswordHint($url_id, DatabaseTwo::getDb());
+
+    if ($phDelete) {
+        header('Location: listPasswords.php');
+        exit;
+      } else {
+        echo "There was an issue updating";
+      }
+    
+}
+
+
 
 
 
