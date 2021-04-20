@@ -10,13 +10,17 @@ namespace Codesses\php\Models
         public const VALIDATION_EMAIL = 2;
         public const VALIDATION_PHONE = 3;
         public const VALIDATION_PASSWORD = 4;
+        public const VALIDATION_FILE = 5;
+        public const VALIDATION_CSV = 6;
 
         public const VALIDATION_TYPES = array (
             self::VALIDATION_NAME,
             self::VALIDATION_USER_NAME,
             self::VALIDATION_EMAIL,
             self::VALIDATION_PHONE,
-            self::VALIDATION_PASSWORD
+            self::VALIDATION_PASSWORD,
+            self::VALIDATION_FILE,
+            self::VALIDATION_CSV
         );
 
         // Static class.
@@ -98,12 +102,78 @@ namespace Codesses\php\Models
                 case Self::VALIDATION_EMAIL: return Self::isValidEmail( $value );
                 case Self::VALIDATION_PHONE: return Self::isValidPhone( $value );
                 case Self::VALIDATION_PASSWORD: return Self::isValidPassword( $value );
+                case Self::VALIDATION_FILE: return Self::isFile( $value );
+                case Self::VALIDATION_CSV: return Self::isCsv( $value );
             }
         }
  
         public static function isValidationType( $type )
         {
             return array_key_exists( self::VALIDATION_TYPES, $type );
+        }
+
+        // File and csv stuff from 
+        // https://stackoverflow.com/questions/6654351/check-file-uploaded-is-in-csv-format
+        // https://stackoverflow.com/questions/5593473/how-to-upload-and-parse-a-csv-file-in-php/27863772
+        // on 2021/04/19
+        public static function isFile( $name )
+        {
+            if( !isset( $_FILES[ $name ] ) ) {
+                return false;
+            }
+
+            if( isset( $_FILES[ $name ][ "error" ] ) && $_FILES[ $name ][ "error" ] > 0 ) {
+                wl( "File upload error code: " . $_FILES[ $name ][ "error" ] );
+                return false;
+            }
+
+            return true;
+        }
+
+        public static function isCsv( $name )
+        {
+            if( !self::isFile( $name ) ) {
+                return false;
+            }
+
+            $mimes = array(
+                'application/vnd.ms-excel', 
+                'text/plain', 
+                'text/csv', 
+                'text/tsv', 
+                'application/octet-stream'
+            );
+
+            return in_array( $_FILES[ $name ]['type'], $mimes ) == true;
+        }
+
+        public static function getUploadedFile( $name )
+        {
+            if( !self::isFile( $name ) ) {
+                return null;
+            }
+
+            $fileName = "upload/" . $_FILES[ $name ][ "name" ];
+            if( file_exists( $fileName ) ) {
+                return $fileName;
+            }
+
+            move_uploaded_file( $_FILES[ $name ][ "tmp_name" ], $fileName );
+            return $fileName;
+        }
+
+        public static function getUploadedCsv( $name )
+        {
+            if( !self::isCsv( $name ) ) {
+                return null;
+            }
+
+            $fileName = self::getUploadedFile( $name );
+            if( $fileName == null ) {
+                return null;
+            }
+
+            return array_map( 'str_getcsv', file( $fileName ) );
         }
     }
 

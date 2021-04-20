@@ -17,10 +17,10 @@
                 <div id="optionDiv">
                     <h3>How would you like to recover your personal information?</h3>
                     <div class="options">
-                        <a href="./.php" id="btnGoRecovery" class="linkAsButton">Security Questions</a>                
+                        <a href="recoveryInformation.php" id="btnGoRecovery" class="linkAsButton">Security Questions</a>                
                     </div>                  
                     <div class="options">
-                        <a href="./.php" id="btnGoTwoStep" class="linkAsButton">E-mail</a>
+                        <a href="twoStepEmail.php" id="btnGoTwoStep" class="linkAsButton">E-mail</a>
                     </div>
                 </div>
               </div>

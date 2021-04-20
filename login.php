@@ -121,7 +121,7 @@ if( $isPost ) {
             </div>
           </div>
           <div>
-            <a href="recovery.html">Forgot your password?</a>
+            <a href="recoveryInformationMain.php">Forgot your password?</a>
           </div>
         </div>
       </div>

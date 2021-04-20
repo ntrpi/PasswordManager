@@ -19,7 +19,8 @@ require "./php/Models/DatabaseTwo.php";
 
 $dbcon = DatabaseTwo::getDb();
 $p = new Password();
-$password =  $p->getAllPasswords(DatabaseTwo::getDb());
+$user_id = $session->getUserId();
+$password =  $p->getAllPasswords($user_id, DatabaseTwo::getDb());
 
 ?>
 
@@ -97,7 +98,7 @@ $password =  $p->getAllPasswords(DatabaseTwo::getDb());
               <input type="submit" id="createPassword" name="createPassword" value="Create New Password" />
             </form>
           </div>
-          <form action="./listSharing.php" method="post">
+          <form action="./addSharing.php" method="post">
             <div class="inputDiv">
               <input type="submit" class="sharebutton" name="sharebutton" value="Share Passwords" />
             </div>
@@ -105,6 +106,7 @@ $password =  $p->getAllPasswords(DatabaseTwo::getDb());
         </div>
   </main>
   <!--global footer-->
+  <!--to see if barb can see changes-->
   <?php include "php/footer.php" ?>
 </body>
 

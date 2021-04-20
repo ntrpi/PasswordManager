@@ -1,5 +1,6 @@
 <?php
 
+//// File created by Barbara Cam 2021/04.
 use Codesses\php\Models\{DatabaseTwo, Recovery};
 
 require_once "./php/Models/Recovery.php";
@@ -8,7 +9,7 @@ require_once "./php/Models/DatabaseTwo.php";
 //list the shared recovery information
 $dbconnection = DatabaseTwo::getDb();
 $r = new recovery();
-$recoveries =  $r->getAllRecoveries(DatabaseTwo::getDb());
+$recoveries = $r->getAllRecoveries(DatabaseTwo::getDb());
 
 ?>
 <!DOCTYPE html>
