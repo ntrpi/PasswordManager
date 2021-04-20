@@ -20,6 +20,7 @@ if (isset($_POST['addMember'])) {
 
     if ($newAbout) {
         header("Location:listAboutUs.php");
+        exit;
     } else {
         echo "Problem adding Member";
     }

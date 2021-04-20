@@ -44,7 +44,8 @@
         $count = $s->updateContactMessage($id, $user, $timestamp, $first_name, $last_name, $email, $message, $db);
 
         if($count){
-        header('Location:  listContactMessages.php');
+            header('Location:  listContactMessages.php');
+            exit;
         } else {
             echo "problem";
         }

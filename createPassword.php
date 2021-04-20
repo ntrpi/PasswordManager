@@ -7,10 +7,9 @@ require_once "./php/Models/Session.php";
 $session = Session::getInstance();
 
 // If the user is not logged in, redirect to the login page.
-if( !$session->isStarted() ) {
-
+if( !$session->hasUser() ) {
   header( "Location: login.php" );
-
+  exit;
 }
 
 use Codesses\php\Models\{DatabaseTwo, Password};
@@ -22,7 +21,7 @@ $p = new Password();
 
 if (isset($_POST['addPassword'])) {
 
-  $user_id = $session->getUserId;
+  $user_id = $session->getUserId();
   $url = $_POST['url'];
   $password = $_POST['password'];
 
@@ -32,6 +31,7 @@ if (isset($_POST['addPassword'])) {
 
   if ($p) {
     header("Location:listPasswords.php");
+    exit;
   } else {
     echo "Problem adding Password";
   }
@@ -60,10 +60,6 @@ if (isset($_POST['addPassword'])) {
         <h2 class="hidden">Add Password</h2>
         <div id="passwordForm" class="formDiv2">
           <form name="addPasswordForm" action="" method="POST">
-          <div class="inputDiv">
-              <label for="user_id">User</label>
-              <input type="text" name="user" id="user" value="" />
-            </div>
             <div class="inputDiv">
               <label for="url">URL</label>
               <input type="text" name="url" id="url" value="" />

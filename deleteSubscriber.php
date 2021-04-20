@@ -13,7 +13,7 @@ if(isset($_POST['subscriber_id'])){
     $count = $s->deleteSubscriber($id, $db);
     if($count){
         header("Location: subscribe.php");
-        return false;
+        exit;
     }
     else {
         // echo " problem deleting a subscriber ";

@@ -28,6 +28,7 @@ if (isset($_POST['updFAQ'])) {
 
   if ($count) {
     header('Location:  listFAQ.php');
+    exit;
   } else {
     echo "problem";
   }

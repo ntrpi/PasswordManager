@@ -1,13 +1,14 @@
 <?php
+
 use Codesses\php\Models\Session;
 require_once "Models/Session.php";
+$session = Session::getInstance();
 
 $loginMenuHref = "login.php";
 $loginMenuText = "Log In";
 $accountMenuHref = "account.php?a=a1";
 $accountMenuText = "Sign Up";
-$session = Session::getInstance();
-if( $session->isStarted() ) {
+if( $session->hasUser() ) {
     $loginMenuHref .= "?a=a5";
     $loginMenuText = "Log Out";
     $accountMenuHref = "listFAQ.php";
