@@ -16,8 +16,7 @@ use Codesses\php\Models\{DatabaseTwo, PasswordHints};
 require_once "./php/Models/PasswordHints.php";
 require_once "./php/Models/DatabaseTwo.php";
 
-
-
+//list the password hint in the input box.. if the [assword hint is none show empty input box 
 if (isset($_POST['hintbutton'])){
     $user_id = $session->getUserId();
     $url_id = $_POST['url_id'];
@@ -25,12 +24,27 @@ if (isset($_POST['hintbutton'])){
     $ph = new PasswordHints();
     $pHint = $ph->getPasswordHintbyId($url_id, DatabaseTwo::getDb());
 
-    $passHint = $pHint->password_hint;
+    $pass_hint = $pHint->password_hint;  
+}
+
+//add or update password hints
+if (isset($_POST['addupdateHint'])){
+    $user_id = $session->getUserId();
+    $url_id = $_POST['url_id'];
+    $pass_hint = $POST['pass_hint'];
+
+    $ph = new PasswordHints();
+    $pAddupdate = $ph->addupdatePasswordHint($url_id, $pass_hint, DatabaseTwo::getDb());
+
+    if ($pAddupdate) {
+        header('Location: listPasswords.php');
+        exit;
+      } else {
+        echo "There was an issue updating";
+      }
     
 }
 
-$ph = new PasswordHints();
-$passHint = $ph->getPasswordHintbyId($user_id, $url_id, DatabaseTwo::getDb());
 
 
 
@@ -60,10 +74,9 @@ $passHint = $ph->getPasswordHintbyId($user_id, $url_id, DatabaseTwo::getDb());
                         <input type="hidden" name="url_id" value="<?= $url_id; ?>" />
                         <!--Hint-->
                         <label for="phint">Hint</label>
-                        <input type="text" name="phint" id="phint" value="<?= $passHint; ?>"/>
+                        <input type="text" name="pass_hint" id="pass_hint" value="<?= $pass_hint; ?>"/>
                         <div>
-                        <input type="submit" name="addHint" value="Add">
-                        <input type="submit" name="updateHint" value="Update">
+                        <input type="submit" name="addupdateHint" value="Add">
                         <input type="submit" name="deleteHint" value="Delete">
                         </div>
                     </div>
