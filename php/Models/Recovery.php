@@ -30,7 +30,7 @@ class Recovery
 
     public function getRecoveryByUser($db, $user)
     {
-        $query = "SELECT sa.sa_id as id, us.user_name as uname, sq.question as question, sa.answer as answer FROM security_answers sa inner join security_questions sq on sq.sq_id = sa.sq_id inner join users us on sa.user_id = us.user_id AND sa.user_id = :user";
+        $query = "SELECT sa.sa_id as id, sa.sq_id as sq_id, sa.user_id as user, us.user_name as uname, sq.question as question, sa.answer as answer FROM security_answers sa inner join security_questions sq on sq.sq_id = sa.sq_id inner join users us on sa.user_id = us.user_id AND sa.user_id = :user";
         
         $pdostm = $db->prepare($query);
         $pdostm->bindValue(':user', $user, \PDO::PARAM_STR);

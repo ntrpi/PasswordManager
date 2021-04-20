@@ -1,3 +1,17 @@
+<?php
+
+// File created by Barbara Cam 2021/04.
+use Codesses\php\Models\{DatabaseTwo, PasswordHistory};
+
+require_once "./php/Models/PasswordHistory.php";
+require_once "./php/Models/DatabaseTwo.php";
+
+//list the shared recovery information
+$dbconnection = DatabaseTwo::getDb();
+$ph = new passwordHistory();
+$phistories = $ph->getAllPasswordHistory(DatabaseTwo::getDb());
+
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -30,22 +44,23 @@
                         <th>TimeStamp</th>
                       </thead>
                      <tbody>
+                     <?php foreach($phistories as $phistory) { ?>
                         <tr>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-
+                          <td><?= $phistory->url; ?></td>
+                          <td><?= $phistory->action; ?></td>
+                          <td><?= $phistory->old_password; ?></td>
+                          <td><?= $phistory->new_password; ?></td>
+                          <td><?= $phistory->old_password_hint; ?></td>
+                          <td><?= $phistory->new_password_hint; ?></td>
+                          <td><?= $phistory->timestamp; ?></td>
                           <td>
-                            <form action="" method="post">
-                              <input type="hidden" name="id" value=""/>
-                              <input type="submit" class="phDelete" name="deleteHistory" value="delete"/>
+                            <form action="./deletePHistory.php" method="post">
+                              <input type="hidden" name="ph_id" value="<?= $phistory->id; ?>"/>
+                              <input type="submit" class="phDelete" name="deletePHistory" value="Delete"/>
                             </form>
                          </td>
                         </tr>
+                        <?php } ?>
                       </tbody>
                     </table>
                   </div>                
