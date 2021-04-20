@@ -2,8 +2,24 @@
 
 use Codesses\php\Models\{RH, FP, User, Session};
 
+require_once "./php/Models/Session.php";
+
+// Get the session object.
+$session = Session::getInstance();
+
+// Get the action from the routing into.
+$action = RH::getValue( RH::$action );
+if( $action == RH::$actionLogOut ) {
+  $session->destroy();
+}
+
+// If the user is already logged in, load the account page.
+if( $session->hasUser() ) {
+  header( "Location: passwords.php" );
+  exit;
+}
+
 require_once "./php/Models/User.php";
-require_once "./php/Models/FormProcessor.php";
 require_once "./php/Models/loginHistory.php";
 
 // Create a helper object.
