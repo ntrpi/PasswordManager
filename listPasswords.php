@@ -106,6 +106,7 @@ $password =  $p->getAllPasswords($user_id, DatabaseTwo::getDb());
         </div>
   </main>
   <!--global footer-->
+  <!--to see if barb can see changes-->
   <?php include "php/footer.php" ?>
 </body>
 
