@@ -1,19 +1,4 @@
-<?php
 
-/* File created by Barbara Cam 2021/04. */
-
-use Codesses\php\Models\{Session};
-require_once "./php/Models/Session.php";
-
-// Get the session object.
-$session = Session::getInstance();
-
-// If the user is not logged in, redirect to the login page.
-if( !$session->hasUser() ) {
-  header( "Location: login.php" );
-  exit;
-}
-?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -28,8 +13,7 @@ if( !$session->hasUser() ) {
     <?php include 'php/header.php' ?>
         <main>
             <div class="mainDiv"> 
-              <!--side nav-->
-              <?php include 'php/sideNav.php' ?>       
+              <!--side nav-->   
               <!-- YOUR STUFF GOES HERE-->
               <div class="content">
                 <div id="optionDiv">
