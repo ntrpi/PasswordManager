@@ -35,10 +35,12 @@ if(isset($_POST['updateSharedPassword'])){
 if (isset($_POST['updateShared'])){
     $sp_id = $_POST['sp_id'];
     $url_id = $_POST['url_id']; 
-
+  // var_dump($url_id);
     $db = DatabaseTwo::getDb();
     $sp = new Sharepassword();
     $updateShare = $sp->updateSharedPasswordByUrl($sp_id, $url_id, $db);
+
+    header("Location: listSharing.php");
 
 
 }
@@ -67,12 +69,12 @@ if (isset($_POST['updateShared'])){
                     <h2>Update Shared Password</h2>
                     <div class="cBox2">
                         <div class="cBox">
-                            <form action="./listSharing.php" method="post">
+                            <form action="" method="post">
                                 <h5><?= $shareByid->from_user; ?></h5>
                                 <?= $shareByid->to_user; ?><br />
                                 <label for="url">Url:</label>
                                 <!--look into this-->
-                                <select  name="url_id" class="form-control" id="<?= $shareByid->url_id; ?>" >
+                                <select  name="url_id" class="form-control" id="url_id" >
                                     <!--php statment-->
                                     <?php echo urlDropdown($urls) ?>
                                 </select>
