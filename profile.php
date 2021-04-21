@@ -1,4 +1,5 @@
 <?php
+
 // File created by Wafa Mustafa 2021/04.
 // File edited by Barbara Cam 2021/04.
 
@@ -52,12 +53,7 @@ $profileUsers = $pu->getAllUsers($user_id, DatabaseTwo::getDb());
                 <?php } ?>
                 <p>Member since 2005</p>
               </div>
-            </div>
-            <div>
-              <form action="./recoveryInformation.php" method="post">                        
-                <input type="submit" name="recoveryInformation" class="backLink" value="Recovery Questions"/>
-              </form>
-            </div>
+            </div>            
           </div>
         </div>
       </div>

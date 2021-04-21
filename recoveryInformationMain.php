@@ -1,4 +1,7 @@
 <?php
+
+/* File created by Barbara Cam 2021/04. */
+
 use Codesses\php\Models\{Session};
 require_once "./php/Models/Session.php";
 
@@ -24,7 +27,9 @@ if( !$session->hasUser() ) {
     <!--main nav-->
     <?php include 'php/header.php' ?>
         <main>
-            <div class="mainDiv">        
+            <div class="mainDiv"> 
+              <!--side nav-->
+              <?php include 'php/sideNav.php' ?>       
               <!-- YOUR STUFF GOES HERE-->
               <div class="content">
                 <div id="optionDiv">
@@ -38,8 +43,8 @@ if( !$session->hasUser() ) {
                 </div>
               </div>
             </div>
-          </main>
-          <!--global footer-->
-           <?php include "php/footer.php"?>
-        </body>
-      </html>
+        </main>
+        <!--global footer-->
+        <?php include "php/footer.php"?>
+  </body>
+</html>

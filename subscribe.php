@@ -1,4 +1,5 @@
 <?php
+
 // File created by Barbara Cam 2021/03.
 
 use Codesses\php\Models\{Session};
@@ -83,25 +84,7 @@ $subscribers = $s->getAllSubscribers($user_id, DatabaseTwo::getDb());
               </table>          
               <div id="addDiv">
                 <a href="./addSubscriber.php" id="btnAddSubscriber" class="linkAsButton">Add</a>
-              </div>
-              <!-- <form action="" method="POST">
-                <fieldset>
-                  <legend>Do you want to join the mailing list?</legend>
-                    <div class="inputDiv">
-                      <input type="radio" id="subscribeYes" name="subscribeYesNo" value="yes">
-                      <label for="yes">Yes</label>
-                      <input type="radio" id="subscribeNo" name="subscribeYesNo" value="no">
-                      <label for=no>No</label>
-                    </div>                  
-                    <div class="inputDiv">
-                      <label for="email">E-mail</label>
-                      <input type="text" name="email" id="email" />
-                    </div>
-                </fieldset>
-                <div class="inputDiv" id="subscribe_b">
-                  <input type="submit" value="Subscribe" >
-                </div>  
-              </form> -->              
+              </div>                        
             </div>
           </div>
         </div>

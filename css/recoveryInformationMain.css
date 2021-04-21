@@ -1,5 +1,7 @@
+/* File created by Barbara Cam 2021/04. */
+
 #optionDiv{    
-   margin: 60px;    
+    margin: 60px;    
 }
 .options {
     padding: 20px;  
@@ -13,8 +15,7 @@
     color: black;  
     border: var(--lightGrey) solid 0.03em; 
 }
-
 h3 {    
     font-family: var(--generalFont);
-    color: var(--orange);   
+    color: var(--orange);  
 }

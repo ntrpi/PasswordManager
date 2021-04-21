@@ -1,4 +1,5 @@
 <?php
+
 // File created by Barbara Cam 2021/03.
 
 use Codesses\php\Models\{Session};

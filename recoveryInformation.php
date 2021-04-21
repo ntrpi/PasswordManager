@@ -39,8 +39,8 @@ $recoveries = $r->getAllRecoveries($user_id, DatabaseTwo::getDb());
     <?php include 'php/header.php' ?>
         <main>
             <div class="mainDiv"> 
-               <!--side nav-->
-          <?php include 'php/sideNav.php' ?>       
+              <!--side nav-->
+              <?php include 'php/sideNav.php' ?>       
               <!-- YOUR STUFF GOES HERE-->
               <div class="content">
                 <div>

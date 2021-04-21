@@ -1,3 +1,5 @@
+/* File created by Barbara Cam 2021/03. */
+
 .sqa {
     color: var(--orange);
     background-color: var(--mediumPurple);
@@ -7,23 +9,18 @@
 }
 .formDiv {
     margin: 2em auto;    
-    width: 50em;     
 } 
-
 thead {
     padding: 2em 0em; 
 }
-
 .basicTable th {
     color: var(--orange); 
     padding: auto;
     font-size: 1em;
-  } 
-
-  .inputDiv {
+} 
+.inputDiv {
     margin-right: 280px;
-  }
-
+}
 tr {
     color: var(--lightGrey);
     font-size: 1.2em;      
@@ -51,7 +48,7 @@ tr {
     text-decoration: none;
   }
   #btnAddRecovery {
-    margin-left: 678px;
+    margin-left: 458px;
     padding: .45em 1.81em;    
   }
   #addDiv {
@@ -60,7 +57,7 @@ tr {
 
   /* Update and Add */
 
-  #title{
+  #title {
     font-weight: Bold;
     font-family: var(--generalFont);
     color: var(--orange);

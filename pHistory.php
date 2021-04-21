@@ -41,13 +41,13 @@ $phistories = $ph->getAllPasswordHistory($user_id, DatabaseTwo::getDb());
         <main>
             <div class="mainDiv">
               <!--side nav-->
-        <?php include 'php/sideNav.php' ?>      
+              <?php include 'php/sideNav.php' ?>      
               <!-- YOUR STUFF GOES HERE-->
               <div class="content">
                 <div>
                   <h2 class="hidden">Password History</h2>                   
-                  <div class="formDiv">            
-                    <table>
+                  <!-- <div class="formDiv">             -->
+                    <table class="basicTable">
                       <thead>
                         <th>URL</th>
                         <th>Action</th>
@@ -55,7 +55,7 @@ $phistories = $ph->getAllPasswordHistory($user_id, DatabaseTwo::getDb());
                         <th>New Pass**</th>
                         <th>Old Hint</th>
                         <th>New Hint</th>
-                        <th>TimeStamp</th>
+                        <th>Date</th>
                       </thead>
                      <tbody>
                      <?php foreach($phistories as $phistory) { ?>
@@ -77,12 +77,12 @@ $phistories = $ph->getAllPasswordHistory($user_id, DatabaseTwo::getDb());
                         <?php } ?>
                       </tbody>
                     </table>
-                  </div>                
+                  <!-- </div>                 -->
                 </div>
               </div>
             </div>
           </main>
           <!--global footer-->
-    <?php include "php/footer.php"?>
+          <?php include "php/footer.php"?>
         </body>
       </html>

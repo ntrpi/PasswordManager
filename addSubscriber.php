@@ -1,5 +1,7 @@
 <?php
+
 // File created by Barbara Cam 2021/03.
+
 use Codesses\php\Models\{Session};
 require_once "./php/Models/Session.php";
 
@@ -42,10 +44,6 @@ if(isset($_POST['addSubscriber'])){
     }
     
 }
-
-//No validation for user_id field because it is temporary
-
-
 
 ?>
 <!DOCTYPE html>

@@ -33,16 +33,7 @@ class Subscriber
         $pst->execute();        
         $s = $pst->fetch(\PDO::FETCH_OBJ);
         return $s;
-    }    
-
-    // public function getAllSubscribers($dbconnection)
-    // {
-    //     $sql = "SELECT users.user_name as uname, users.first_name as fname, users.last_name as lname, subscribers.subscriber_id, subscribers.frequency, subscribers.user_id as user FROM users, subscribers where users.user_id = subscribers.user_id ";
-    //     $pdostm = $dbconnection->prepare($sql);
-    //     $pdostm->execute();
-    //     $subscribers = $pdostm->fetchAll(\PDO::FETCH_OBJ);
-    //     return $subscribers;
-    // }   
+    } 
 
     public function getAllSubscribers ($user_id, $dbconnection)
     {
@@ -74,6 +65,7 @@ class Subscriber
         $count = $pst->execute();
         return $count;
     }
+    
     public function updateSubscriber($id, $user, $frequency, $db)
     {
         $sql = "UPDATE subscribers
