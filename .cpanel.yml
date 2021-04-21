@@ -3,8 +3,10 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/skdssite/public_html/PasswordManager
     - /bin/cp -R *.php $DEPLOYPATH
+    - /bin/cp -R composer.* $DEPLOYPATH
     - /bin/cp -R css $DEPLOYPATH
     - /bin/cp -R img $DEPLOYPATH
     - /bin/cp -R js $DEPLOYPATH
     - /bin/cp -R library $DEPLOYPATH
-    - /bin/cp -R php $DEPLOYPATH    
+    - /bin/cp -R php $DEPLOYPATH
+    - /bin/cp -R vendor $DEPLOYPATH    
