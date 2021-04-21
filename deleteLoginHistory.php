@@ -12,8 +12,8 @@
 
         $id = $_POST['lh_id'];
         $db = DatabaseTwo::getDb();
-        $s = new LoginHistory();
-        $count = $s->deleteLoginHistory($id, $db);
+        $s = new LoginHistory($db);
+        $count = $s->deleteLoginHistory($id);
         
         if($count){
             header("Location: listLoginHistory.php");

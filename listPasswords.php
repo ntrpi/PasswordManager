@@ -22,6 +22,41 @@ $p = new Password();
 $user_id = $session->getUserId();
 $password =  $p->getAllPasswords($user_id, DatabaseTwo::getDb());
 
+// Elle making stuff up
+if (isset($_POST['searchButton'])) {
+  $searching = $_POST['searchBar'];
+  // $st = new Password();
+  // $lhs =  $st->getAllPasswords(DatabaseTwo::getDb());
+  // $sth = $dbconnection->prepare("SELECT * FROM urls WHERE * = '$str'");
+  // $sth->setFetchMode(\PDO:: FETCH_OBJ);
+  // $sth->execute();
+  $searchAccess = $dbcon->prepare("SELECT * FROM 'url' WHERE Name = '$searching'");
+  $searchAccess->setFetchMode(\PDO:: FETCH_OBJ);
+  $searchAccess->execute();
+
+  if($row = $searchAccess->fetch())
+  {
+    ?>
+    <br><br><br>
+    <table>
+      <tr>
+        <th>url</th>
+        <th>username</th>
+        <th>password</th>
+      </tr>
+      <tr>
+        <td><?php echo $row->url; ?></td>
+        <td><?php echo $row->user_name; ?></td>
+        <td><?php echo $row->password; ?></td>
+      </tr>
+    
+    </table>
+  <?php
+  }
+  else {
+    echo "Uh, Oh, we didn't find any results";
+  }
+} //End of Elle
 ?>
 
 <!DOCTYPE html>
