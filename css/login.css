@@ -12,6 +12,10 @@ a:link {
   color: var( --orange );
 }
 
+a:visited {
+  color: var( --orange );
+}
+
 a:hover {
   color: var( --lightGrey );
 }

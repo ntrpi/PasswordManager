@@ -120,7 +120,7 @@ if( $isPost ) {
               <p>Not a user yet? <a href="<?php echo 'account.php?a=a1'; ?>">Create an account here.</a></p>
             </div>
           </div>
-          <div>
+          <div style="padding-bottom: 2em;">
             <a href="recoveryInformationMain.php">Forgot your password?</a>
           </div>
         </div>

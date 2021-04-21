@@ -4,12 +4,13 @@
 }
 
 .cBox{
-  font-size: 32px;
+  font-size: 2rem;
   font-weight: bold;
   color: #301930;
   list-style: none;
   height: auto !important;
   width: auto !important;
+  padding: .2rem .8rem;
 }
 
 .questionanswersection{
