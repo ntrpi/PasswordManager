@@ -28,7 +28,7 @@ if( $session->hasUser() ) {
     <nav>
         <ul>
             <li><a href="<?= 'index.php'; ?>">Home</a></li>
-            <li><a href="<?= $loginMenuHref; ?>"><?= $loginMenuText ?></a></li>
+            <li><a href="/PasswordManager/<?= $loginMenuHref; ?>"><?= $loginMenuText ?></a></li>
             <li><a href="<?= $accountMenuHref; ?>"><?= $accountMenuText ?></a></li>
             <li><a href="<?= 'subscribe.php'; ?>">Subscribe</a></li>
         </ul>
