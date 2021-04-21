@@ -4,7 +4,7 @@ use PasswordManager\php\Models\{RH, FP, User, Session};
 
 require_once "./php/Models/Session.php";
 require_once "./php/Models/User.php";
-require_once "./php/Models/loginHistory.php";
+require_once "./php/Models/LoginHistory.php";
 
 // Get the session object.
 $session = Session::getInstance();
