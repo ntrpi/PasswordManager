@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/skdssite/public_html/
+    - export DEPLOYPATH=/home/skdssite/public_html/PasswordManager
     - /bin/cp -R * $DEPLOYPATH
