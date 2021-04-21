@@ -3,7 +3,7 @@
 // File created by Wafa Mustafa 2021/04.
 // File edited by Barbara Cam 2021/04.
 
-use Codesses\php\Models\{Session};
+use PasswordManager\php\Models\{Session};
 require_once "./php/Models/Session.php";
 
 // Get session
@@ -15,7 +15,7 @@ if( !$session->hasUser() ) {
   exit;
 }
 
-use Codesses\php\Models\{DatabaseTwo, profileUser};
+use PasswordManager\php\Models\{DatabaseTwo, profileUser};
 
 require_once './php/Models/DatabaseTwo.php';
 require_once './php/Models/profileUser.php';

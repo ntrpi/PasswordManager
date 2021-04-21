@@ -1,6 +1,6 @@
 <?php
 //File created by Wafa 04/2021
-use Codesses\php\Models\{DatabaseTwo, AboutUs};
+use PasswordManager\php\Models\{DatabaseTwo, AboutUs};
 
 require "./php/Models/AboutUs.php";
 require "./php/Models/DatabaseTwo.php";

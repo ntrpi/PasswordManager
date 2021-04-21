@@ -1,6 +1,6 @@
 <?php
     //Elle
-    use Codesses\php\Models\{DatabaseTwo, LoginHistory};
+    use PasswordManager\php\Models\{DatabaseTwo, LoginHistory};
 
     // require_once 'vendor/autoload.php';
     // require_once 'Library/form-functions.php';

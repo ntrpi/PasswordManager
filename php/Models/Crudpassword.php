@@ -1,6 +1,6 @@
 <?php
 
-namespace Codesses\php\Models {
+namespace PasswordManager\php\Models {
 
     class Password
     {

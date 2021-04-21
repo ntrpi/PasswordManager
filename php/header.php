@@ -1,6 +1,6 @@
 <?php
 
-use Codesses\php\Models\Session;
+use PasswordManager\php\Models\Session;
 require_once "Models/Session.php";
 $session = Session::getInstance();
 

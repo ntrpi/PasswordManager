@@ -1,8 +1,8 @@
 <?php
-namespace Codesses\php\Models
+namespace PasswordManager\php\Models
 // File created by Sandra Kupfer 2021/03.
 {
-    use Codesses\php\Models\Model;
+    use PasswordManager\php\Models\Model;
     require_once "Model.php";
 
     class Url extends Model

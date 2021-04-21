@@ -1,6 +1,6 @@
 <?php
 // File created by Barbara Cam 2021/03.
-namespace Codesses\php\Models;
+namespace PasswordManager\php\Models;
 
 class Subscriber 
 {

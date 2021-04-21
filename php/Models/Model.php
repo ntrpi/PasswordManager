@@ -1,9 +1,9 @@
 <?php
 // File created by Sandra Kupfer 2021/03.
 
-namespace Codesses\php\Models
+namespace PasswordManager\php\Models
 {
-    use Codesses\php\Models\{Database, FP};
+    use PasswordManager\php\Models\{Database, FP};
     require_once "Database.php";
     require_once "FormProcessor.php";
     require_once "utl.php";

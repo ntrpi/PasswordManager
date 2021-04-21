@@ -1,6 +1,6 @@
 <?php
 
-use Codesses\php\Models\Session;
+use PasswordManager\php\Models\Session;
 require_once "./php/Models/Session.php";
 
 // Get the session object.
@@ -12,7 +12,7 @@ if( !$session->hasUser() ) {
   exit;
 }
 
-use Codesses\php\Models\{FH,Url,FP};
+use PasswordManager\php\Models\{FH,Url,FP};
 require_once "./php/Models/FileHelper.php";
 require_once "./php/Models/Url.php";
 

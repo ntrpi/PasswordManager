@@ -11,7 +11,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/github_username/Group7_Codesses_PasswordManager">
+  <a href="https://github.com/ntrpi/PasswordManager">
     <img src="img/homepage.png" alt="Home page." height="200">
   </a>
 
@@ -21,11 +21,11 @@
     An app to help you manage your online passwords. In addition to managing your own passwords, this app allows you to share passwords with another user. 
     <br />
     <br />
-    <a href="https://github.com/github_username/Group7_Codesses_PasswordManager">View Demo</a>
+    <a href="https://github.com/ntrpi/PasswordManager">View Demo</a>
     ·
-    <a href="https://github.com/github_username/Group7_Codesses_PasswordManager/issues">Report Bug</a>
+    <a href="https://github.com/ntrpi/PasswordManager/issues">Report Bug</a>
     ·
-    <a href="https://github.com/github_username/Group7_Codesses_PasswordManager/issues">Request Feature</a>
+    <a href="https://github.com/ntrpi/PasswordManager/issues">Request Feature</a>
   </p>
 </p>
 
@@ -106,7 +106,7 @@ Once the account is created, the user is logged in. For subsequent logins, the u
 * Sandra - kupfer.sandra@gamil.com
 * Wafa
 
-Project Link: [https://github.com/github_username/Group7_Codesses_PasswordManager](https://github.com/github_username/Group7_Codesses_PasswordManager)
+Project Link: [https://github.com/ntrpi/PasswordManager](https://github.com/ntrpi/PasswordManager)
 
 
 

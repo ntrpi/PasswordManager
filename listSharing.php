@@ -1,7 +1,7 @@
 <?php
 
 
-use Codesses\php\Models\{Session};
+use PasswordManager\php\Models\{Session};
 require_once "./php/Models/Session.php";
 
 // Get the session object.
@@ -14,7 +14,7 @@ if( !$session->hasUser() ) {
 }
 
 //File created by Wafa 04/2021
-use Codesses\php\Models\{DatabaseTwo, Sharepassword};
+use PasswordManager\php\Models\{DatabaseTwo, Sharepassword};
 
 require_once "./php/Models/Sharepassword.php";
 require_once "./php/Models/DatabaseTwo.php";

@@ -2,7 +2,7 @@
 
 // File created by Barbara Cam 2021/03.
 
-use Codesses\php\Models\{Session};
+use PasswordManager\php\Models\{Session};
 require_once "./php/Models/Session.php";
 
 // Get the session object.
@@ -14,7 +14,7 @@ if( !$session->hasUser() ) {
   exit;
 }
 
-use Codesses\php\Models\{DatabaseTwo, Subscriber};
+use PasswordManager\php\Models\{DatabaseTwo, Subscriber};
 
 require_once './php/Models/DatabaseTwo.php';
 require_once './php/Models/Subscriber.php';

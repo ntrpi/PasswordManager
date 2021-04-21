@@ -1,7 +1,7 @@
 <?php
 // File created by Sandra Kupfer 2021/03.
 
-use Codesses\php\Models\{FormProcessor, User};
+use PasswordManager\php\Models\{FormProcessor, User};
 
 require_once "./php/Models/User.php";
 require_once "./php/Models/FormProcessor.php";
@@ -194,7 +194,7 @@ if( $action == "update" || $action == "create" ) {
 <?php
 // File created by Sandra Kupfer 2021/03.
 
-use Codesses\php\Models\{FormProcessor, User};
+use PasswordManager\php\Models\{FormProcessor, User};
 
 require_once "./php/Models/User.php";
 require_once "./php/Models/FormProcessor.php";

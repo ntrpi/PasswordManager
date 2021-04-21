@@ -1,6 +1,6 @@
 <?php
 
-use Codesses\php\Models\{FormProcessor, Url};
+use PasswordManager\php\Models\{FormProcessor, Url};
 
 require_once "./Models/Url.php";
 require_once "./Models/FormProcessor.php";

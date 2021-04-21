@@ -8,7 +8,7 @@
             "name": "Create Account",
             "request": "launch",
             "type": "pwa-chrome",
-            "url": "C:/xampp_x/htdocs/5202/Codesses/createAccount.html",
+            "url": "C:/xampp_x/htdocs/5202/PasswordManager/createAccount.html",
             "webRoot": "${workspaceFolder}"
         },
         {

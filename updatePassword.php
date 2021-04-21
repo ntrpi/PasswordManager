@@ -1,6 +1,6 @@
 <?php
 
-use Codesses\php\Models\{DatabaseTwo, Password};
+use PasswordManager\php\Models\{DatabaseTwo, Password};
 
 require "./php/Models/Crudpassword.php";
 require "./php/Models/DatabaseTwo.php";

@@ -1,6 +1,6 @@
 <?php
 
-use Codesses\php\Models\{DatabaseTwo, FAQ};
+use PasswordManager\php\Models\{DatabaseTwo, FAQ};
 
 require "./php/Models/FAQ.php";
 require "./php/Models/DatabaseTwo.php";

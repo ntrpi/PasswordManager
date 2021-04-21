@@ -1,6 +1,6 @@
 <?php
 // File created by Barbara Cam 2021/04.
-namespace Codesses\php\Models;
+namespace PasswordManager\php\Models;
 
 class PasswordHistory
 {

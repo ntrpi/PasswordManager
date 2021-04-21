@@ -1,6 +1,6 @@
 <?php
 
-use Codesses\php\Models\{FP, User, RH, Session};
+use PasswordManager\php\Models\{FP, User, RH, Session};
 
 // Get the session object.
 require_once "./php/Models/Session.php";

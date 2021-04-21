@@ -1,5 +1,5 @@
 <?php
-use Codesses\php\Models\{DatabaseTwo, LoginHistory, Session};
+use PasswordManager\php\Models\{DatabaseTwo, LoginHistory, Session};
 require_once "./php/Models/Session.php";
 require_once './php/Models/DatabaseTwo.php';
 require_once './php/Models/LoginHistory.php';

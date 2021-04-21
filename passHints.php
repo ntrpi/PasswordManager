@@ -1,6 +1,6 @@
 <?php
 //SESSION VARIABLE
-use Codesses\php\Models\{Session};
+use PasswordManager\php\Models\{Session};
 require_once "./php/Models/Session.php";
 
 // Get the session object.
@@ -12,7 +12,7 @@ if( !$session->hasUser() ) {
   exit;
 }
 //File created by Wafa 04/2021
-use Codesses\php\Models\{DatabaseTwo, PasswordHints};
+use PasswordManager\php\Models\{DatabaseTwo, PasswordHints};
 require_once "./php/Models/PasswordHints.php";
 require_once "./php/Models/DatabaseTwo.php";
 

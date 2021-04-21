@@ -1,7 +1,7 @@
 <?php
 //File created by Wafa 04/2021
 
-use Codesses\php\Models\{Aboutus, DatabaseTwo};
+use PasswordManager\php\Models\{Aboutus, DatabaseTwo};
 
 require "./php/Models/AboutUs.php";
 require "./php/Models/DatabaseTwo.php";

@@ -1,6 +1,6 @@
 <?php
 
-use Codesses\php\Models\{RH, FP, User, Session};
+use PasswordManager\php\Models\{RH, FP, User, Session};
 
 require_once "./php/Models/Session.php";
 require_once "./php/Models/User.php";

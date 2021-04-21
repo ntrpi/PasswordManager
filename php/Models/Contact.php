@@ -1,7 +1,7 @@
 <?php
     // Elle
     
-    namespace Codesses\php\Models;
+    namespace PasswordManager\php\Models;
 
     class Contact
     {

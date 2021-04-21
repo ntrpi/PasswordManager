@@ -1,7 +1,7 @@
 <?php
     //Elle
 
-    use Codesses\php\Models\{DatabaseTwo, Contact};
+    use PasswordManager\php\Models\{DatabaseTwo, Contact};
 
     // require_once 'vendor/autoload.php';
     // require_once 'Library/form-functions.php';

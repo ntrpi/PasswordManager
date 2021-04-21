@@ -1,8 +1,8 @@
 <?php
 
-namespace Codesses\php\Models
+namespace PasswordManager\php\Models
 {
-    use Codesses\php\Models\{FP,Url};
+    use PasswordManager\php\Models\{FP,Url};
     require_once "FormProcessor.php";
     require_once "Url.php";
     require_once "utl.php";
