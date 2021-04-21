@@ -21,7 +21,11 @@ img{
     height: 7.5em;
 }
 
-
+.backLink {  
+    margin: .5em;
+    padding: .45em 1em; 
+    text-decoration: none;
+  }
 
 /***** Tablet Landscape View ******/
 @media screen and (max-width: 957px) {

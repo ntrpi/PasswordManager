@@ -1,36 +1,29 @@
 <?php
+
 // File created by Barbara Cam 2021/03.
+
+use Codesses\php\Models\{Session};
+require_once "./php/Models/Session.php";
+
+// Get session
+$session = Session::getInstance();
+
+// If the user is not logged in, redirect to the login page.
+if( !$session->hasUser() ) {
+  header( "Location: login.php" );
+  exit;
+}
 
 use Codesses\php\Models\{DatabaseTwo, Subscriber};
 
 require_once './php/Models/DatabaseTwo.php';
 require_once './php/Models/Subscriber.php';
 
-// use Codesses\php\Models\{Session};
-// require_once "./php/Models/Session.php";
-
-// // Get the session object.
-// $session = Session::getInstance();
-
-// // If the user is not logged in, redirect to the login page.
-// if( !$session->hasUser() ) {
-//   header( "Location: login.php" );
-//   exit;
-// }
-
 $dbconnection = DatabaseTwo::getDb();
 $s = new subscriber();
-$subscribers =  $s->getAllSubscribers(DatabaseTwo::getDb());
+$user_id = $session->getUserId();
+$subscribers = $s->getAllSubscribers($user_id, DatabaseTwo::getDb());
 
-// $s = new Subscriber();
-// $users = $c->getUsers(DatabaseTwo::getDb());
-// $user = $_GET['make'] ?? "";
-
-// if(isset($_GET['make'])){
-//    $cars = $c->getCarsInMake(Database::getDb(), $_GET['make']);
-// } else {
-//     $cars = $c->getAllCars(Database::getDb());
-// }
 ?>
 <!DOCTYPE html>
 <html>
@@ -91,25 +84,7 @@ $subscribers =  $s->getAllSubscribers(DatabaseTwo::getDb());
               </table>          
               <div id="addDiv">
                 <a href="./addSubscriber.php" id="btnAddSubscriber" class="linkAsButton">Add</a>
-              </div>
-              <!-- <form action="" method="POST">
-                <fieldset>
-                  <legend>Do you want to join the mailing list?</legend>
-                    <div class="inputDiv">
-                      <input type="radio" id="subscribeYes" name="subscribeYesNo" value="yes">
-                      <label for="yes">Yes</label>
-                      <input type="radio" id="subscribeNo" name="subscribeYesNo" value="no">
-                      <label for=no>No</label>
-                    </div>                  
-                    <div class="inputDiv">
-                      <label for="email">E-mail</label>
-                      <input type="text" name="email" id="email" />
-                    </div>
-                </fieldset>
-                <div class="inputDiv" id="subscribe_b">
-                  <input type="submit" value="Subscribe" >
-                </div>  
-              </form> -->              
+              </div>                        
             </div>
           </div>
         </div>

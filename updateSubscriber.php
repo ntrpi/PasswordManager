@@ -1,6 +1,18 @@
 <?php
 // File created by Barbara Cam 2021/03.
 
+use Codesses\php\Models\{Session};
+require_once "./php/Models/Session.php";
+
+// Get session
+$session = Session::getInstance();
+
+// If the user is not logged in, redirect to the login page.
+if( !$session->hasUser() ) {
+  header( "Location: login.php" );
+  exit;
+}
+
 use Codesses\php\Models\{DatabaseTwo, Subscriber};
 
 require_once './php/Models/DatabaseTwo.php';
@@ -64,8 +76,8 @@ if(isset($_POST['updSubscriber'])){
                 <fieldset>
                   <legend>Do you want to join the mailing list?</legend>
                   <div class="inputDiv">
-                    <label for="user">User_ID</label>
-                    <input type="text" name="user" id="user" value="<?= $user; ?>" />
+                    <label for="user" class="hidden">User_ID</label>
+                    <input type="text" class="hidden" name="user" id="user" value="<?= $user; ?>" />
                   </div>
                   <div class="inputDiv">
                     <input type="radio" id="subscribew" name="frequency" value="weekly" <?= ($frequency2 == 'weekly') ? 'checked' : ''; ?> />

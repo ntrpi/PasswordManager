@@ -119,6 +119,8 @@ namespace Codesses\php\Models
         public static function isFile( $name )
         {
             if( !isset( $_FILES[ $name ] ) ) {
+                wl( "is not set FILES at " . $name );
+                pp( $_FILES );
                 return false;
             }
 
@@ -153,12 +155,12 @@ namespace Codesses\php\Models
                 return null;
             }
 
-            $fileName = "upload/" . $_FILES[ $name ][ "name" ];
+            $fileName = $_SERVER['DOCUMENT_ROOT'] . "/uploads/" . basename( $_FILES[ $name ]['name'] );
             if( file_exists( $fileName ) ) {
                 return $fileName;
             }
 
-            move_uploaded_file( $_FILES[ $name ][ "tmp_name" ], $fileName );
+            move_uploaded_file( $_FILES[ $name ]['tmp_name'], $fileName );
             return $fileName;
         }
 

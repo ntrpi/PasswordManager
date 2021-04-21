@@ -51,11 +51,12 @@ class Recovery
     }
 
 
-    public function getAllRecoveries($dbconnection)
-    {
-        $sql = "SELECT sa.sa_id as id, us.user_name as uname, sq.question as question, sa.answer FROM security_answers sa inner join security_questions sq on sq.sq_id = sa.sq_id inner join users us on sa.user_id = us.user_id ";
+    public function getAllRecoveries($user_id, $dbconnection)
+    { 
+        $sql = "SELECT sa.sa_id as id, us.user_name as uname, sq.question as question, sa.answer FROM security_answers sa inner join security_questions sq on sq.sq_id = sa.sq_id inner join users us on sa.user_id = us.user_id and sa.user_id = :user_id";
         
         $pdostm = $dbconnection->prepare($sql);
+        $pdostm->bindParam(':user_id', $user_id);
         $pdostm->execute();
         $recoveries = $pdostm->fetchAll(\PDO::FETCH_OBJ);
         return $recoveries;

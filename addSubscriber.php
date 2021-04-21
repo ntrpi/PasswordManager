@@ -1,5 +1,18 @@
 <?php
+
 // File created by Barbara Cam 2021/03.
+
+use Codesses\php\Models\{Session};
+require_once "./php/Models/Session.php";
+
+// Get the session object.
+$session = Session::getInstance();
+
+// If the user is not logged in, redirect to the login page.
+if( !$session->hasUser() ) {
+  header( "Location: login.php" );
+  exit;
+}
 
 use Codesses\php\Models\{DatabaseTwo, Subscriber};
 
@@ -32,10 +45,6 @@ if(isset($_POST['addSubscriber'])){
     
 }
 
-//No validation for user_id field because it is temporary
-
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -62,8 +71,8 @@ if(isset($_POST['addSubscriber'])){
                 <fieldset>
                   <legend>Do you want to join the mailing list?</legend>
                    <div class="inputDiv">
-                      <label for="user">User_ID</label>
-                      <input type="text" name="user" id="user" value="<?= $_SESSION['user_id'] ?>" placeholder="Temporary Field"/>
+                      <label for="user" class="hidden">User_ID</label>
+                      <input type="text" name="user" id="user" class="hidden" value="<?= $_SESSION['user_id'] ?>" />
                     </div>
                     <div class="inputDiv">
                       <input type="radio" id="subscribew" name="frequency" value="weekly" <?= ($frequency == 'weekly') ? 'checked' : ''; ?> />

@@ -1,4 +1,17 @@
 <?php
+//SESSION VARIABLE
+use Codesses\php\Models\{Session};
+require_once "./php/Models/Session.php";
+
+// Get the session object.
+$session = Session::getInstance();
+
+// If the user is not logged in, redirect to the login page.
+if( !$session->hasUser() ) {
+  header( "Location: login.php" );
+  exit;
+}
+
 //File created by Wafa 04/2021
 use Codesses\php\Models\{DatabaseTwo, Sharepassword};
 
@@ -9,23 +22,23 @@ require_once "./library/share-functions.php";
 $dbcon = DatabaseTwo::getDb();
 $sp = new Sharepassword();
 
-//add in if block for your session variable in drop down function!!
 //for now added a user drop down to insure shared_passwords table is getting updated
-$owners = $sp->getAllusers($dbcon);
+$owner_id = $session->getUserId();
 $recipients = $sp->getAllusers($dbcon);
-$urls = $sp->getAllurl($dbcon);
+$urls = $sp->getAllurlbyId($owner_id, $dbcon);
 
 $successMsg = "";
 $invalidMsg = "";
 
 //sharing a password
 if(isset($_POST['addSharing'])){
-    //var_dump($_POST);
+
     $owner_id = $_POST['owner'];
     $recipient_id = $_POST['recipient'];
     $url_id = $_POST['url'];
 
     $sp = new Sharepassword();
+    $owner_id = $session->getUserId();
     $addShare= $sp->sharePassword($url_id, $owner_id, $recipient_id, $dbcon);
 
 
@@ -66,26 +79,23 @@ if(isset($_POST['addSharing'])){
                 <div class="contentBox">
                     <div class="cBox">
                         <form action="" method="POST">
-                            <div class="formAdd">
-                                <label for="owner">Owner:</label>
-                                <select  name="owner" class="form-control" id="owner" >
-                                    <!--php statment I would like to change this to the logged in user-->
-                                    <?php echo ownerDropdown($owners) ?>
-                                </select>
-                                <label for="recipient">Recipient:</label>
-                                <select  name="recipient" class="form-control" id="recipient" >
-                                    <!--php statment-->
-                                    <?php echo userDropdown($recipients) ?>
-                                </select>
-                                <label for="url">Url:</label>
-                                <select  name="url" class="form-control" id="url" >
-                                    <!--php statment-->
-                                    <?php echo urlDropdown($urls) ?>
-                                </select>
-                                <button type="submit" name="addSharing" class="submitBtn" id="submitBtn">
-                                    Share Password
-                                </button>
+                            <div class="hidden">
+                                <label for="owner" class="hidden">Owner_ID</label>
+                                <input type="text" name="owner" id="owner" class="hidden" value="<?= $_SESSION['user_id'] ?>" />
                             </div>
+                            <label for="recipient">Recipient:</label>
+                            <select  name="recipient" class="form-control" id="recipient" >
+                                <!--php statment-->
+                                <?php echo userDropdown($recipients) ?>
+                            </select>
+                            <label for="url">Url:</label>
+                            <select  name="url" class="form-control" id="url" >
+                                <!--php statment-->
+                                <?php echo urlDropdown($urls) ?>
+                            </select>
+                            <button type="submit" name="addSharing" class="submitBtn" id="submitBtn">
+                                Share Password
+                            </button>
                         </form>
                     </div>
                 </div>

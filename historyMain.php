@@ -1,6 +1,6 @@
 <?php
 
-/* File created by Barbara Cam 2021/04. */
+// File created by Barbara Cam 2021/03.
 
 use Codesses\php\Models\{Session};
 require_once "./php/Models/Session.php";
@@ -13,6 +13,7 @@ if( !$session->hasUser() ) {
   header( "Location: login.php" );
   exit;
 }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,24 +28,24 @@ if( !$session->hasUser() ) {
     <!--main nav-->
     <?php include 'php/header.php' ?>
         <main>
-            <div class="mainDiv"> 
+          <div class="mainDiv"> 
               <!--side nav-->
               <?php include 'php/sideNav.php' ?>       
               <!-- YOUR STUFF GOES HERE-->
               <div class="content">
                 <div id="optionDiv">
-                    <h3>How would you like to recover your personal information?</h3>
+                    <!--<h3>How would you like to recover your personal information?</h3>-->
                     <div class="options">
-                        <a href="recoveryInformation.php" id="btnGoRecovery" class="linkAsButton">Security Questions</a>                
+                        <a href="listLoginHistory.php" id="btnGoLHistory" class="linkAsButton">Login History</a>                
                     </div>                  
                     <div class="options">
-                        <a href="twoStepEmail.php" id="btnGoTwoStep" class="linkAsButton">E-mail</a>
+                        <a href="pHistory.php" id="btnGoPHistory" class="linkAsButton">Password History</a>
                     </div>
                 </div>
               </div>
-            </div>
+          </div>
         </main>
         <!--global footer-->
         <?php include "php/footer.php"?>
-  </body>
-</html>
+    </body>
+  </html>

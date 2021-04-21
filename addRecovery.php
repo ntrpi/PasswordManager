@@ -1,6 +1,17 @@
 <?php
-
 // File created by Barbara Cam 2021/04.
+
+use Codesses\php\Models\{Session};
+require_once "./php/Models/Session.php";
+
+// Get session
+$session = Session::getInstance();
+
+// If the user is not logged in, redirect to the login page.
+if( !$session->hasUser() ) {
+  header( "Location: login.php" );
+  exit;
+}
 
 use Codesses\php\Models\{DatabaseTwo, Recovery};
 
@@ -44,6 +55,8 @@ if(isset($_POST['addRecovery'])){
     <?php include 'php/header.php' ?>
     <main>
       <div class="mainDiv">
+      <!--side nav-->
+        <?php include 'php/sideNav.php' ?> 
         <!-- YOUR STUFF GOES HERE-->
         <div class="content">
           <div>
@@ -68,8 +81,8 @@ if(isset($_POST['addRecovery'])){
                  <input type="text" name="answer" id="answer" />
                 </div>
                 <div class="inputDiv">
-                 <label for="user">User_ID</label>
-                 <input type="text" name="user" id="user" placeholder="temporary field" />
+                 <label for="user" class="hidden">User_ID</label>
+                 <input type="text"  class="hidden" name="user" id="user" value="<?= $_SESSION['user_id'] ?>" />
                 </div>
                  <!-- <legend>Select second recovery question</legend>
                  <select id="recoveryTwo" name="recoveryOne">

@@ -23,15 +23,3 @@ function urlDropdown($urls, $select = ""){
 
     return $html_urlsdropdown;
 }
-
-//get all users <--this will be replaced by an if block in the above two fuction to check for logged in user
-
-function ownerDropdown($owners, $select = ""){
-    $html_ownersdropdown = "";
-    foreach ($owners as $owner) {
-        $selected = $select == $owner->user_id ? "selected" : "";
-        $html_ownersdropdown .= "<option $selected value='$owner->user_id'>$owner->user_name</option>";
-    }
-
-    return $html_ownersdropdown;
-}

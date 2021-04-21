@@ -1,45 +1,46 @@
+/* File created by Barbara Cam 2021/04. */
 fieldset {
-  border: 1px solid var( --orange ) ;
-  border-radius: 8px;
-  box-shadow: 0 0 10px var( --orange ) ;
-  padding-bottom: 20px;
- }
+    border: 1px solid var( --orange ) ;
+    border-radius: 8px;
+    box-shadow: 0 0 10px var( --orange ) ;
+    padding-bottom: 20px;
+}
  legend {
-  font-size: 1.2em;
-  font-weight: 500;  
+    font-size: 1.2em;
+    font-weight: 500;  
 }
 .inputDiv {
-  display: inline-block;
-  text-align: center;
-  margin: 1em auto;  
+    display: inline-block;
+    text-align: center;
+    margin: 1em auto;  
 }
 .basicTable th {
-  color: var(--orange); 
-  padding: auto;
-  font-size: 1em;
+    color: var(--orange); 
+    padding: auto;
+    font-size: 1em;
 } 
 .backLink, #btnAddSubscriber {
-  border-radius: 10px;
-  font-weight:500; 
-  font-size: .8em;
-  color: black;
-  background-color: var( --orange );
-  text-decoration: none;
-  border: var(--lightGrey) solid 0.03em;   
+    border-radius: 10px;
+    font-weight:500; 
+    font-size: .8em;
+    color: black;
+    background-color: var( --orange );
+    text-decoration: none;
+    border: var(--lightGrey) solid 0.03em;   
 }
 .backLink {  
-  margin: .5em;
-  padding: .45em 1em; 
-  text-decoration: none;
+    margin: .5em;
+    padding: .45em 1em; 
+    text-decoration: none;
 }
 #btnAddSubscriber {
-  margin-left: 447px;
-  padding: .45em 1.81em;   
+    margin-left: 456px;
+    padding: .45em 1.81em;   
 }
 .bt {
-  padding-top: 15px;
+    padding-top: 15px;
 }
 #addDiv {
-  margin-top: 15px;
+    margin-top: 15px;
 } 
 

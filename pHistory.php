@@ -1,6 +1,19 @@
 <?php
 
 // File created by Barbara Cam 2021/04.
+
+use Codesses\php\Models\{Session};
+require_once "./php/Models/Session.php";
+
+// Get the session
+$session = Session::getInstance();
+
+// If the user is not logged in, redirect to the login page.
+if( !$session->hasUser() ) {
+  header( "Location: login.php" );
+  exit;
+}
+
 use Codesses\php\Models\{DatabaseTwo, PasswordHistory};
 
 require_once "./php/Models/PasswordHistory.php";
@@ -9,7 +22,8 @@ require_once "./php/Models/DatabaseTwo.php";
 //list the shared recovery information
 $dbconnection = DatabaseTwo::getDb();
 $ph = new passwordHistory();
-$phistories = $ph->getAllPasswordHistory(DatabaseTwo::getDb());
+$user_id = $session->getUserId();
+$phistories = $ph->getAllPasswordHistory($user_id, DatabaseTwo::getDb());
 
 ?>
 <!DOCTYPE html>
@@ -27,13 +41,13 @@ $phistories = $ph->getAllPasswordHistory(DatabaseTwo::getDb());
         <main>
             <div class="mainDiv">
               <!--side nav-->
-        <?php include 'php/sideNav.php' ?>      
+              <?php include 'php/sideNav.php' ?>      
               <!-- YOUR STUFF GOES HERE-->
               <div class="content">
                 <div>
                   <h2 class="hidden">Password History</h2>                   
-                  <div class="formDiv">            
-                    <table>
+                  <!-- <div class="formDiv">             -->
+                    <table class="basicTable">
                       <thead>
                         <th>URL</th>
                         <th>Action</th>
@@ -41,7 +55,7 @@ $phistories = $ph->getAllPasswordHistory(DatabaseTwo::getDb());
                         <th>New Pass**</th>
                         <th>Old Hint</th>
                         <th>New Hint</th>
-                        <th>TimeStamp</th>
+                        <th>Date</th>
                       </thead>
                      <tbody>
                      <?php foreach($phistories as $phistory) { ?>
@@ -63,12 +77,12 @@ $phistories = $ph->getAllPasswordHistory(DatabaseTwo::getDb());
                         <?php } ?>
                       </tbody>
                     </table>
-                  </div>                
+                  <!-- </div>                 -->
                 </div>
               </div>
             </div>
           </main>
           <!--global footer-->
-    <?php include "php/footer.php"?>
+          <?php include "php/footer.php"?>
         </body>
       </html>

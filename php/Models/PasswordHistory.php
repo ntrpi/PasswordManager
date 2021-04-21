@@ -36,12 +36,13 @@ class PasswordHistory
         $ph = $pst->fetch(\PDO::FETCH_OBJ);
         return $ph;
     }
-
-    public function getAllPasswordHistory($dbconnection)
+    
+     public function getAllPasswordHistory($user_id,$dbconnection)
     {
         $sql = "SELECT ph.ph_id as id, ur.url as url, ph.action as action, ph.old_password as old_password, ph.new_password as new_password, ph.old_password_hint as old_password_hint, ph.new_password_hint as new_password_hint, ph.timestamp as timestamp, ph.user_id as user_id
-        FROM password_history ph inner join users us on us.user_id = ph.user_id inner join url ur on ur.url_id = ph.url_id ";
+        FROM password_history ph inner join users us on us.user_id = ph.user_id inner join url ur on ur.url_id = ph.url_id and ph.user_id = :user_id ";
         $pdostm = $dbconnection->prepare($sql);
+        $pdostm->bindParam(':user_id', $user_id);
         $pdostm->execute();
         $phistories = $pdostm->fetchAll(\PDO::FETCH_OBJ);
         return $phistories;

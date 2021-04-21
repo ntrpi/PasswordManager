@@ -1,4 +1,16 @@
 <?php
+//SESSION VARIABLE
+use Codesses\php\Models\{Session};
+require_once "./php/Models/Session.php";
+
+// Get the session object.
+$session = Session::getInstance();
+
+// If the user is not logged in, redirect to the login page.
+if( !$session->hasUser() ) {
+  header( "Location: login.php" );
+  exit;
+}
 //File created by Wafa 04/2021
 use Codesses\php\Models\{DatabaseTwo, Sharepassword};
 
@@ -7,17 +19,19 @@ require_once "./php/Models/DatabaseTwo.php";
 require_once "./library/share-functions.php";
 
 $sp = new Sharepassword();
-// $allSharedPass = $sp->getSharedpassword(DatabaseTwo::getDb());
 
-$urls = $sp->getAllurl(DatabaseTwo::getDb());
+$owner_id = $session->getUserId();
+$urls = $sp->getAllurlbyId($owner_id, DatabaseTwo::getDb());
 
 if(isset($_POST['updateSharedPassword'])){
     $sp_id = $_POST['sp_id'];
-    $url_id = $_POST['url']; //Warning: Undefined array key "url" in /Applications/XAMPP/xamppfiles/htdocs/php-class/Group7_Codesses_PasswordManager/updateSharing.php on line 15
+    $url_id = $_POST['url_id']; //Warning: Undefined array key "url" in /Applications/XAMPP/xamppfiles/htdocs/php-class/Group7_Codesses_PasswordManager/updateSharing.php on line 15
 
     $db = DatabaseTwo::getDb();
     $sp = new Sharepassword();
     $shareByid = $sp->getSharedPasswordById($sp_id, $db);
+
+    //issues with update password
     $updateShare = $sp->updateSharedPasswordByUrl($sp_id, $url_id, $db);
 
 }
@@ -49,7 +63,8 @@ if(isset($_POST['updateSharedPassword'])){
                             <h5><?= $shareByid->from_user; ?></h5>
                             <?= $shareByid->to_user; ?><br />
                             <label for="url">Url:</label>
-                                <select  name="url" class="form-control" id="url" >
+                            <!--look into this-->
+                                <select  name="url_id" class="form-control" id="<?= $shareByid->url_id; ?>" >
                                     <!--php statment-->
                                     <?php echo urlDropdown($urls) ?>
                                 </select>
