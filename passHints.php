@@ -35,7 +35,7 @@ if (isset($_POST['addupdateHint'])){
     $pass_hint = $POST['pass_hint'];
 
     $ph = new PasswordHints();
-    $pAddupdate = $ph->addupdatePasswordHint($url_id, $password_hint, DatabaseTwo::getDb());
+    $pAddupdate = $ph->addupdatePasswordHint($url_id, $pass_hint, DatabaseTwo::getDb());
 
     if ($pAddupdate) {
         header('Location: listPasswords.php');
@@ -62,7 +62,7 @@ if (isset($_POST['deleteHint'])){
     
 }
 
-
+//two forms for button
 
 
 
@@ -90,10 +90,10 @@ if (isset($_POST['deleteHint'])){
                 <h2>Password Hints</h2>
                 <form action="" method="POST">
                     <div class="hintDiv">
-                        <input type="hidden" name="url_id2" value="<?= $url_id; ?>" />
+                        <input type="hidden" name="url_id" value="<?= $url_id; ?>" />
                         <!--Hint-->
                         <label for="phint">Hint</label>
-                        <input type="text" name="password_hint" id="pass_hint" value="<?= $password_hint; ?>"/>
+                        <input type="text" name="password_hint" id="pass_hint" value="<?= $pass_hint; ?>"/>
                         <div>
                         <input type="submit" name="addupdateHint" value="Add">
                         <input type="submit" name="deleteHint" value="Delete">

@@ -25,14 +25,21 @@ $urls = $sp->getAllurlbyId($owner_id, DatabaseTwo::getDb());
 
 if(isset($_POST['updateSharedPassword'])){
     $sp_id = $_POST['sp_id'];
-    $url_id = $_POST['url_id']; //Warning: Undefined array key "url" in /Applications/XAMPP/xamppfiles/htdocs/php-class/Group7_Codesses_PasswordManager/updateSharing.php on line 15
+    //$url_id = $_POST['url_id']; 
 
     $db = DatabaseTwo::getDb();
     $sp = new Sharepassword();
     $shareByid = $sp->getSharedPasswordById($sp_id, $db);
+}
 
-    //issues with update password
+if (isset($_POST['updateShared'])){
+    $sp_id = $_POST['sp_id'];
+    $url_id = $_POST['url_id']; 
+
+    $db = DatabaseTwo::getDb();
+    $sp = new Sharepassword();
     $updateShare = $sp->updateSharedPasswordByUrl($sp_id, $url_id, $db);
+
 
 }
 
@@ -60,18 +67,18 @@ if(isset($_POST['updateSharedPassword'])){
                     <h2>Update Shared Password</h2>
                     <div class="cBox2">
                         <div class="cBox">
-                            <h5><?= $shareByid->from_user; ?></h5>
-                            <?= $shareByid->to_user; ?><br />
-                            <label for="url">Url:</label>
-                            <!--look into this-->
+                            <form action="./listSharing.php" method="post">
+                                <h5><?= $shareByid->from_user; ?></h5>
+                                <?= $shareByid->to_user; ?><br />
+                                <label for="url">Url:</label>
+                                <!--look into this-->
                                 <select  name="url_id" class="form-control" id="<?= $shareByid->url_id; ?>" >
                                     <!--php statment-->
                                     <?php echo urlDropdown($urls) ?>
                                 </select>
-                            <br/>
-                            <form action="./listSharing.php" method="post">
+                                <br/>
                                 <input type="hidden" name="sp_id" value="<?= $shareByid->sp_id; ?>"/>
-                                <input type="submit" class="formEdit" name="updateSharedPassword" value="Update"/>
+                                <input type="submit" class="formEdit" name="updateShared" value="Update"/>
                             </form>
                         </div>
                     </div>
