@@ -7,17 +7,37 @@ namespace Codesses\php\Models
 
     class Url extends Model
     {
+        const COLUMN_URL_ID = "url_id";
+        const COLUMN_URL = "url";
+        const COLUMN_USER_NAME = "user_name";
+        const COLUMN_USER_ID = "user_id";
+        const COLUMN_PASSWORD = "password";
+        const COLUMN_PASSWORD_HINT = "password_hint";
+        
         // There should be one item for every column in the database.
-        public static array $columnNames = array( "url_id", "url", "password", "user_name", "user_id", "password_hint" );
+        public static array $columnNames = array( 
+            self::COLUMN_URL_ID,
+            self::COLUMN_URL,
+            self::COLUMN_USER_NAME,
+            self::COLUMN_USER_ID,
+            self::COLUMN_PASSWORD,
+            self::COLUMN_PASSWORD_HINT,
+        );
 
         // These correspond to the names of the input fields of your form.
         // They may or may not be the same as the associated columns in the database, but if they are not,
         // you will need to deal with that manually. See createUser( $params ) below.
-        public static array $inputNames = array( "url_id", "url", "user_name", "password", "password_hint" );
+        public static array $inputNames = array( 
+            self::COLUMN_URL,
+            self::COLUMN_USER_NAME,
+            self::COLUMN_USER_ID,
+            self::COLUMN_PASSWORD,
+            self::COLUMN_PASSWORD_HINT,
+        );
 
         public function __construct()
         {
-            parent::__construct( "url", "url_id", self::$columnNames );
+            parent::__construct( "url", self::COLUMN_URL_ID, self::$columnNames );
         }
 
         // Syntactic sugar.
